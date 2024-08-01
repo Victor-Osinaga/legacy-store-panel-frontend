@@ -1,0 +1,23 @@
+.mainTitle{
+    font-weight: 600;
+    margin-bottom: 0px;
+}
+
+.btnNewContainer {
+    -webkit-box-shadow: 0px 0px 3px 0px rgba(117, 117, 117, 1);
+    -moz-box-shadow: 0px 0px 3px 0px rgba(117, 117, 117, 1);
+    box-shadow: 0px 0px 3px 0px rgba(117, 117, 117, 1);
+    background-color: var(--primaryColorBlue);
+}
+
+.btnNewContainer:hover {
+    /* cursor: pointer; */
+    background-color: #165dba;
+}
+
+.btnNew {
+    /* background-color: red; */
+    /* background-color: transparent; */
+    font-weight: 600;
+}
+

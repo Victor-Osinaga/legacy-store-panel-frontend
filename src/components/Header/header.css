@@ -1,0 +1,111 @@
+#header {
+    height: 4rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+}
+
+
+
+.inputSearch {
+    border: none;
+}
+
+.inputSearch:focus-visible {
+    outline: none;
+}
+
+.santaClaraInc {
+    font-weight: 600;
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.santaClaraInc:hover {
+    cursor: pointer;
+}
+
+.btnLogout {
+    font-weight: 600;
+    /* background-color: rgba(255, 255, 255, 0.2); */
+}
+
+.navLogo {
+    display: flex;
+    align-items: center;
+    height: 36px;
+    flex-grow: 3;
+}
+
+.navUtils {
+    height: 36px;
+    flex-grow: 1;
+    gap: 10px;
+}
+
+.navImageUser {
+    height: 36px;
+    width: 36px;
+}
+
+.navImageUser:hover {
+    cursor: pointer;
+}
+
+.containerPlusIcon {
+    width: 36px;
+    position: relative;
+}
+
+.containerPlusIcon:hover {
+    cursor: pointer;
+}
+
+.submenuPlusIcon {
+    width: 20px;
+}
+
+.custom-gradient {
+    background-image: linear-gradient(to right, #ffffff, #1877f2);
+}
+
+.header-burguer {
+    background-color: #ffffff;
+    /* display: none; */
+    padding: 5px 10px;
+    transition: all .5s ease;
+}
+
+.header-burguer:hover {
+    /* outline: 1px solid gray; */
+    /* color: red; */
+    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15);
+    cursor: pointer;
+}
+
+
+@media (max-width: 1000px) {
+
+    /* HEADER COMPONENT */
+    #header {
+        height: var(--navHeight);
+    }
+
+    .navLogo {
+        height: 32px;
+    }
+
+    .navUtils {
+        height: 32px;
+    }
+
+    .navImageUser {
+        height: 32px;
+        width: 32px;
+    }
+
+    .containerPlusIcon {
+        width: 32px;
+    }
+}

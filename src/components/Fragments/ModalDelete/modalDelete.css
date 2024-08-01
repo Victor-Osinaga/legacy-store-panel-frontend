@@ -1,0 +1,104 @@
+.openModal {
+  z-index: 500;
+}
+
+.modalDeleteContainer {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.266);
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  visibility: visible;
+  transition: visibility 3s ease;
+}
+
+.modalDelete {
+  min-width: 60%;
+  max-width: 90%;
+  padding: 20px;
+  border-radius: 10px;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: white;
+  font-size: var(--customFontSizeSm);
+}
+
+.modalButtons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.modalButtons>button {
+  width: 120px;
+  border: none;
+  height: 35px;
+  border: 1px solid gray;
+  border-radius: 5px;
+}
+
+
+
+.modalButtons>button:nth-child(2) {
+  background-color: red;
+  color: white;
+  border: none;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+    /* Ajusta esto para cambiar la dirección y distancia del desvanecimiento */
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateY(-20px);
+    /* Ajusta esto para cambiar la dirección y distancia del desvanecimiento */
+  }
+}
+
+/* Aplica la animación al mostrar el modal */
+.modal.show {
+  animation: fadeIn 0.5s forwards;
+  /* 0.5s es la duración de la animación */
+}
+
+/* Aplica la animación al ocultar el modal */
+.modal.hide {
+  animation: fadeOut 0.5s forwards;
+}
+
+@media (max-width: 1000px) {
+
+  /* MODAL DELETE COMPONENT */
+  .modalButtons>button {
+    width: 80px;
+  }
+
+}

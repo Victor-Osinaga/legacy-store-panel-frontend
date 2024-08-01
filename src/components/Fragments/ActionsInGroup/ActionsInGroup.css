@@ -1,0 +1,44 @@
+.btnActionMainsContainer{
+    height: 40px;
+    /* background-color: red; */
+}
+
+.btnActionMains {
+    /* position: relative; */
+    /* z-index: -100; */
+    /* border: none; */
+    /* background-color: transparent; */
+    color: var(--primaryColorBlue);
+    /* font-weight: 500; */
+    height: 40px;
+    /* width: 100%; */
+}
+
+.btnsActionsContainer{
+    -webkit-box-shadow: 0px 0px 3px 0px rgba(117, 117, 117, 1);
+    -moz-box-shadow: 0px 0px 3px 0px rgba(117, 117, 117, 1);
+    box-shadow: 0px 0px 3px 0px rgba(117, 117, 117, 1);
+}
+
+.btnActionMainInGroup {
+    /* display: flex; */
+    /* justify-content: center; */
+    /* align-items: center; */
+    height: 36px;
+    padding-right: 170px;
+    /* padding-left: 20px; */
+    /* gap: 10px; */
+    /* border: none; */
+    /* cursor: pointer; */
+    /* border-radius: 5px; */
+    background-color: transparent;
+
+    /* font-weight: 500; */
+
+    /* -webkit-box-shadow: 0px 0px 3px 0px rgba(117, 117, 117, 1);
+    -moz-box-shadow: 0px 0px 3px 0px rgba(117, 117, 117, 1);
+    box-shadow: 0px 0px 3px 0px rgba(117, 117, 117, 1); */
+}
+.btnActionMainInGroup:hover {
+    background-color: rgba(0, 0, 0, 0.116);
+}
