@@ -1,8 +1,16 @@
 import config from "../../../config.js";
 
+let back_legacy_admin_url;
+
+if(config.env == 'dev'){
+    back_legacy_admin_url = config.back_legacy_admin_url_dev
+}else{
+    back_legacy_admin_url = config.back_legacy_admin_url_prod
+}
+
 async function login(credential) {
     try {
-        const response = await fetch(`${config.API_LEGACY_BASE_URL}/clients/auth/login`,
+        const response = await fetch(`${back_legacy_admin_url}/clients/auth/login`,
             {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -11,14 +19,13 @@ async function login(credential) {
             })
 
         const result = await response.json()
-
+        console.log('logeado:', result);
 
         if (!response.ok) {
             throw { msg: result.data }
         }
 
 
-        console.log('logeado:', result);
         return result.data
     } catch (error) {
         console.log("ERROR DESDE login services: ", error.msg);

@@ -10,7 +10,7 @@ import { useEffect } from 'react';
 
 export default function FormRegister() {
     const navigate = useNavigate();
-    const { toastLoading, toastSuccess, toastError, dismissToast, setToken, setIsAuthenticated, isAuthenticated } = useStoreContext()
+    const { toastLoading, toastSuccess, toastError, dismissToast, isAuthenticated } = useStoreContext()
     const { register, handleSubmit, formState: { errors }, watch, reset, getValues, control, setValue } = useForm({
         emai: "",
         password: "",
@@ -29,13 +29,13 @@ export default function FormRegister() {
         try {
             const response = await registerClient(data)
             console.log("desde componente register", response);
-            setToken(true)
             console.log("desde componente", response);
             toastSuccess(<>!Proyecto creado <strong>{response.proyectName}</strong>!</>, toastId)
             setTimeout(() => {
                 const urlClient = `http://${response.subdomain}.localhost:5173/auth/login`
                 // navigate(`/auth/login?proyectName=${response.proyectName}`);
                 window.location.href = urlClient;
+                // window.history.pushState({}, '', urlClient);
             }, 3000);
         } catch (error) {
             toastError(

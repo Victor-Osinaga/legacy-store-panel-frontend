@@ -1,9 +1,17 @@
 import config from "../../../config.js";
 
+let back_legacy_admin_url;
+
+if(config.env == 'dev'){
+    back_legacy_admin_url = config.back_legacy_admin_url_dev
+}else{
+    back_legacy_admin_url = config.back_legacy_admin_url_prod
+}
+
 async function verifyToken(sub) {
     try {
         // si no conecta con el backend lanza el error failed to fetch
-        const response = await fetch(`${config.API_LEGACY_BASE_URL}/clients/auth/verify-token`,
+        const response = await fetch(`${back_legacy_admin_url}/clients/auth/verify-token`,
             {
                 //   headers: { Authorization: `Bearer ${token}` },
                 method: 'GET',
@@ -12,9 +20,9 @@ async function verifyToken(sub) {
             })
         const result = await response.json();
 
-        console.log("response desde veriyToken", response);
-        console.log("desde verifyToken service", result);
-        console.log("verifyToken : services", result.data);
+        // console.log("response desde veriyToken", response);
+        // console.log("desde verifyToken service", result);
+        // console.log("verifyToken : services", result.data);
 
         if(!response.ok){
             throw {msg: result.data}

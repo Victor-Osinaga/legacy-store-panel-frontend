@@ -1,8 +1,16 @@
 import config from "../../../config.js";
 
+let back_legacy_admin_url;
+
+if(config.env == 'dev'){
+    back_legacy_admin_url = config.back_legacy_admin_url_dev
+}else{
+    back_legacy_admin_url = config.back_legacy_admin_url_prod
+}
+
 async function registerClient(credential) {
     try {
-        const response = await fetch(`${config.API_LEGACY_BASE_URL}/clients/auth/register`,
+        const response = await fetch(`${back_legacy_admin_url}/clients/auth/register`,
             {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },

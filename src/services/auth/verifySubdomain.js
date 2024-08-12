@@ -1,9 +1,17 @@
 import config from "../../../config.js";
 
+let back_legacy_admin_url;
+
+if(config.env == 'dev'){
+    back_legacy_admin_url = config.back_legacy_admin_url_dev
+}else{
+    back_legacy_admin_url = config.back_legacy_admin_url_prod
+}
+
 async function verifySubdomain(sub) {
     try {
         // si no conecta con el backend lanza el error failed to fetch
-        const response = await fetch(`${config.API_LEGACY_BASE_URL}/clients/auth/verify-subdomain`,
+        const response = await fetch(`${back_legacy_admin_url}/clients/auth/verify-subdomain`,
             {
                 //   headers: { Authorization: `Bearer ${token}` },
                 method: 'POST',
@@ -11,12 +19,12 @@ async function verifySubdomain(sub) {
                 body: JSON.stringify({subdomain: sub}),
             })
         const result = await response.json();
+        // console.log("desde verify subdomain service", result);
 
         // console.log("response desde verifySubdomain", response);
         if(!response.ok){
             throw {msg: result.data}
         }
-        console.log("desde verify subdomain service", result);
         // console.log("subdomain : verifySubdomain : services", result.data);
         return result.data
     } catch (error) {

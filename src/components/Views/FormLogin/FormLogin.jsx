@@ -9,7 +9,7 @@ import { useEffect } from 'react';
 
 export default function FormLogin() {
     const navigate = useNavigate();
-    const { toastLoading, toastSuccess, toastError, dismissToast, setToken, setUser, user, setIsAuthenticated, isAuthenticated } = useStoreContext()
+    const { toastLoading, toastSuccess, toastError, dismissToast, setUser, user, setIsAuthenticated, isAuthenticated } = useStoreContext()
     const { register, handleSubmit, formState: { errors }, watch, reset, getValues, control, setValue } = useForm({
         emai: "",
         password: ""
@@ -27,15 +27,15 @@ export default function FormLogin() {
         const toastId = toastLoading("Verificando...")
         try {
             const response = await login(data)
-            console.log("desde componente login", response);
             toastSuccess(<>¡Bienvenid@ <strong>{response.name} {response.lastname}</strong>! ¿Cómo has estado?</>, toastId)
             setTimeout(() => {
-                setToken(true)
+                console.log("sesion iniciada", response);
                 setUser(response)
                 setIsAuthenticated(true)
                 const urlClient = `http://${response.subdomain}.localhost:5173/admin/productos`
                 window.location.href = urlClient;
-                // navigate("/admin/productos");
+                // window.history.pushState({}, '', urlClient);
+                // navigate(urlClient);
             }, 3000);
         } catch (error) {
             toastError(

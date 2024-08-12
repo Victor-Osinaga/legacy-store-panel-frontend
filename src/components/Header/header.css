@@ -66,9 +66,9 @@
     width: 20px;
 }
 
-.custom-gradient {
-    background-image: linear-gradient(to right, #ffffff, #1877f2);
-}
+/* .custom-gradient {
+    background-image: linear-gradient(to right, #ffffff, var(--primaryColorBlue));
+} */
 
 .header-burguer {
     background-color: #ffffff;

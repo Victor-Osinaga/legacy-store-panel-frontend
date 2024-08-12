@@ -12,8 +12,7 @@ import CreateCategorie from './components/Views/CreateCategorie/CreateCategorie'
 import FormLogin from './components/Views/FormLogin/FormLogin';
 import FormRegister from './components/Views/FormRegister/FormRegister';
 import ProtectedRoute from './ProtectedRoute/ProtectedRoute';
-import { useEffect } from 'react';
-import verifySubdomain from './services/auth/verifySubdomain.js';
+import CreateSotreConfig from './components/Views/CreateSotreConfig/CreateSotreConfig.jsx';
 
 const Layout = ({ children }) => {
   const location = useLocation();
@@ -48,6 +47,7 @@ function App() {
                 <Route path='/admin/productos/editar/:productId' element={<EditProduct />} />
                 <Route path='/admin/categorias' element={<Categories />} />
                 <Route path='/admin/categorias/crear' element={<CreateCategorie />} />
+                <Route path='/admin/ajustes/estilos/tienda' element={<CreateSotreConfig />} />
               </Route>
             </Routes>
           </Layout>

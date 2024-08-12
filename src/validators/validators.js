@@ -48,6 +48,18 @@ const validateSubdomain = (value) => {
     }
 }
 
+const validateStoreConfigurationName = (value) => {
+    if(value.length < 3  || value.length > 30){
+        return "Entre 3 y 30 caracteres"
+    }
+}
+
+const validateStoreConfigurationPrimaryColor = (value) => {
+    if(value.length < 3  || value.length > 30){
+        return "Entre 3 y 30 caracteres"
+    }
+}
+
 export {
     nameProductValidator,
     nameCategorieValidator,
@@ -56,5 +68,7 @@ export {
     validateProyectName,
     validateName,
     validateLastname,
-    validateSubdomain
+    validateSubdomain,
+    validateStoreConfigurationName,
+    validateStoreConfigurationPrimaryColor
 }

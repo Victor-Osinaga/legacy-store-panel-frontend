@@ -1,12 +1,21 @@
 import config from "../../../config";
 
+let back_panel_url;
+
+if(config.env == 'dev'){
+    back_panel_url = config.back_panel_url_dev
+}else{
+    back_panel_url = config.back_panel_url_prod
+}
+
 async function deleteCategorieById(categorieId, categorieName) {
     try {
-        const response = await fetch(`${config.API_PANEL_BASE_URL}/categories/${categorieId}`, {
+        const response = await fetch(`${back_panel_url}/categories/${categorieId}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json'
-            }
+            },
+            credentials: 'include'
         });
 
         const result = await response.json();

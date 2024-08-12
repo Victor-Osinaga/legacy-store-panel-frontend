@@ -75,6 +75,9 @@ export default function EditProduct() {
         getProductById(id)
             .then((res) => {
                 reset(res)
+            }).catch(err => {
+                console.log("error desde component EDIT PRODUCT: ", err);
+                
             })
     }
 
@@ -232,7 +235,7 @@ export default function EditProduct() {
         }
     };
 
-    console.log("main", errors);
+    console.log("errors desde edit product", errors);
     watch()
     return (
         <>
@@ -858,10 +861,12 @@ export default function EditProduct() {
                                                                         const stock = Number(numberConvert)
                                                                         if (/[\.,]$/.test(value)) {
                                                                             return "No puede terminar con un punto o una coma"
-                                                                        } else if (!stock) {
+                                                                        } else if (isNaN(stock)) {
                                                                             return "Debe ser un numero"
                                                                         } else if (!Number.isInteger(stock)) {
                                                                             return "Debe ser un numero entero";
+                                                                        } else if(stock < 0){
+                                                                            return "Debe ser mayor o igual a cero"
                                                                         }
                                                                     }
                                                                 })

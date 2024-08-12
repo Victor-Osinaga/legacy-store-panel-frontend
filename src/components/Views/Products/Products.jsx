@@ -17,7 +17,6 @@ import OutlineMore from '../../Icons/OutlineMore/OutlineMore';
 import EditIcon from '../../Icons/EditIcon/EditIcon';
 import DeleteIcon from '../../Icons/DeleteIcon/DeleteIcon';
 import deleteProductById from '../../../services/products/deleteProductById';
-import Cookies from "js-cookie";
 
 export default function Products() {
     const { selectAll, showItemActions, truncarTexto, toastLoading, toastSuccess, toastError, dismissToast } = useStoreContext()
@@ -33,8 +32,6 @@ export default function Products() {
     useEffect(() => {
         setLoading(true)
         fetchProducts()
-        const cookies = Cookies.get()
-        console.log("cokieee desde products", cookies.access_token);
         return () => {
             dismissToast()
         };

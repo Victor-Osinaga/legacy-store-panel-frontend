@@ -1,8 +1,16 @@
 import config from "../../../config";
 
+let back_panel_url;
+
+if(config.env == 'dev'){
+    back_panel_url = config.back_panel_url_dev
+}else{
+    back_panel_url = config.back_panel_url_prod
+}
+
 async function createProduct(product) {
     try {
-        const response = await fetch(`${config.API_PANEL_BASE_URL}/products/`,
+        const response = await fetch(`${back_panel_url}/products/`,
             {
                 //   headers: { Authorization: `Bearer ${token}` },
                 method: 'POST',

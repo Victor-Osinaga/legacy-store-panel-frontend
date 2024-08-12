@@ -8,19 +8,22 @@ if(config.env == 'dev'){
     back_panel_url = config.back_panel_url_prod
 }
 
-async function getProducts() {
+async function getStoreConfig() {
     try {
         // si no conecta con el backend lanza el error failed to fetch
-        const response = await fetch(`${back_panel_url}/products`, {
+        const response = await fetch(`${back_panel_url}/store-configuration/`, {
+            method: 'GET',
             credentials: 'include',
         })
         const result = await response.json();
+
+        console.log("response", response);
+        console.log("configuration : getStoreConfig : services", result);
 
         if(!response.ok){
             throw {msg: result.data}
         }
 
-        // console.log("Productos : getProducts : services", result.data);
         return result.data
     } catch (error) {
         if (error.message == 'Failed to fetch') {
@@ -30,4 +33,4 @@ async function getProducts() {
     }
 }
 
-export default getProducts;
+export default getStoreConfig;

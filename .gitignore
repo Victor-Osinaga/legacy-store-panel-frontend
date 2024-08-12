@@ -22,3 +22,7 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# CUSTOM IGNORE
+.env
+.package-lock.json
