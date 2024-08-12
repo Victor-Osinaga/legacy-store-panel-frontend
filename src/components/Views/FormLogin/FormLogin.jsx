@@ -6,6 +6,7 @@ import { useForm } from 'react-hook-form';
 import login from '../../../services/auth/login.js';
 import { useNavigate } from "react-router-dom";
 import { useEffect } from 'react';
+import config from '../../../../config.js';
 
 export default function FormLogin() {
     const navigate = useNavigate();
@@ -32,8 +33,13 @@ export default function FormLogin() {
                 console.log("sesion iniciada", response);
                 setUser(response)
                 setIsAuthenticated(true)
-                const urlClient = `http://${response.subdomain}.localhost:5173/admin/productos`
-                window.location.href = urlClient;
+                if (config.env == 'dev') {
+                    const urlClient = `http://${response.subdomain}.${config.front_panel_url_dev}/admin/productos`
+                    window.location.href = urlClient;
+                }else{
+                    const urlClient = `https://${response.subdomain}.${config.front_panel_url_prod}/admin/productos`
+                    window.location.href = urlClient;
+                }
                 // window.history.pushState({}, '', urlClient);
                 // navigate(urlClient);
             }, 3000);

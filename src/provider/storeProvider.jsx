@@ -97,8 +97,15 @@ export function StoreContextProvider({ children }) {
             if (subdomain !== "localhost") {
                 verifySubdomainAuth(subdomain);
             } else {
-                const urlClient = `http://${user.subdomain}.localhost:5173/admin/productos`;
-                window.location.href = urlClient;
+                // const urlClient = `http://${user.subdomain}.localhost:5173/admin/productos`;
+                // window.location.href = urlClient;
+                if (config.env == 'dev') {
+                    const urlClient = `http://${user.subdomain}.${config.front_panel_url_dev}/admin/productos`
+                    window.location.href = urlClient;
+                }else{
+                    const urlClient = `https://${user.subdomain}.${config.front_panel_url_prod}/admin/productos`
+                    window.location.href = urlClient;
+                }
             }
         }
     }, [isAuthenticated]);

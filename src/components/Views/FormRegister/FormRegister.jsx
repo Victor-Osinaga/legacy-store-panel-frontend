@@ -32,10 +32,13 @@ export default function FormRegister() {
             console.log("desde componente", response);
             toastSuccess(<>!Proyecto creado <strong>{response.proyectName}</strong>!</>, toastId)
             setTimeout(() => {
-                const urlClient = `http://${response.subdomain}.localhost:5173/auth/login`
-                // navigate(`/auth/login?proyectName=${response.proyectName}`);
-                window.location.href = urlClient;
-                // window.history.pushState({}, '', urlClient);
+                if (config.env == 'dev') {
+                    const urlClient = `http://${response.subdomain}.${config.front_panel_url_dev}/admin/productos`
+                    window.location.href = urlClient;
+                }else{
+                    const urlClient = `https://${response.subdomain}.${config.front_panel_url_prod}/admin/productos`
+                    window.location.href = urlClient;
+                }
             }, 3000);
         } catch (error) {
             toastError(
