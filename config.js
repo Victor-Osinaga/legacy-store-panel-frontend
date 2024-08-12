@@ -1,6 +1,6 @@
 const config = {
     // ENTORNO
-    env: process.argv[2],
+    env: import.meta.env.VITE_ENV,
 
     // BACK PANEL
     back_panel_url_dev : import.meta.env.VITE_BACK_PANEL_URL_DEV,
