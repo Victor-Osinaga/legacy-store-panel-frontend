@@ -48,7 +48,7 @@ export default function Products() {
                 // si const productos esta fuera del try no toma el valor para el condicional de abajo
                 setLoading(false)
                 if (productos.length == 0) {
-                    return toastSuccess(<>Cantidad: <strong>'{productos.length}'</strong></>, id)
+                    return toastSuccess(<>No hay productos cargados: <strong>'{productos.length}'</strong></>, id)
                 }
 
                 return toastSuccess(<>Productos cargados: <strong>'{productos.length}'</strong></>, id)

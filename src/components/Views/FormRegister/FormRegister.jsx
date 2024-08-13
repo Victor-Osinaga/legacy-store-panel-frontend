@@ -7,6 +7,7 @@ import registerClient from '../../../services/auth/registerClient.js';
 import { validatePassword, validateEmail, validateProyectName, validateName, validateLastname, validateSubdomain } from '../../../validators/validators.js';
 import { useNavigate } from "react-router-dom";
 import { useEffect } from 'react';
+import redirectSubdomain from '../../../utils/redirectSubdomain.js';
 
 export default function FormRegister() {
     const navigate = useNavigate();
@@ -32,13 +33,8 @@ export default function FormRegister() {
             console.log("desde componente", response);
             toastSuccess(<>!Proyecto creado <strong>{response.proyectName}</strong>!</>, toastId)
             setTimeout(() => {
-                if (config.env == 'dev') {
-                    const urlClient = `http://${response.subdomain}.${config.front_panel_url_dev}/admin/productos`
-                    window.location.href = urlClient;
-                }else{
-                    const urlClient = `https://${response.subdomain}.${config.front_panel_url_prod}/admin/productos`
-                    window.location.href = urlClient;
-                }
+                // redirectSubdomain(response.subdomain)
+                navigate("/admin/productos")
             }, 3000);
         } catch (error) {
             toastError(

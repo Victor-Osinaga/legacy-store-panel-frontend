@@ -6,6 +6,8 @@ import verifySubdomain from "../services/auth/verifySubdomain.js";
 import verifyToken from "../services/auth/verifyToken.js";
 import getStoreConfig from "../services/storeConfiguration/getStoreConfig.js";
 import config from "../../config.js";
+import redirectSubdomain from "../utils/redirectSubdomain.js";
+// import { useNavigate } from "react-router-dom";
 
 const StoreContext = createContext()
 const useStoreContext = () => useContext(StoreContext)
@@ -13,6 +15,7 @@ const useStoreContext = () => useContext(StoreContext)
 const { Provider } = StoreContext
 
 export function StoreContextProvider({ children }) {
+    // const navigate = useNavigate()
 
     const hostnameArray = window.location.hostname.split('.');
     const subdomain = hostnameArray[0];
@@ -30,6 +33,7 @@ export function StoreContextProvider({ children }) {
     })
 
     const verifyTokenAuth = async () => {
+        console.log("validando token");
         const idToast = toastLoading("Validando token")
         try {
             const verifyData = await verifyToken()
@@ -44,7 +48,7 @@ export function StoreContextProvider({ children }) {
     }
 
     const getConfigStoreAuth = async () => {
-        console.log("xdddddddddddddddddddddddd", isAuthenticated);
+        console.log("isAuthenticated: ", isAuthenticated);
 
         if (isAuthenticated) {
             const config = await getStoreConfig()
@@ -63,32 +67,13 @@ export function StoreContextProvider({ children }) {
             toastSuccess(<>Proyecto validado, bienvenido <strong>{verifyData.name} {verifyData.lastname}</strong>!</>, idToast)
             setUser(verifyData)
         } catch (error) {
+            console.log("error desde verifySubdomainAuth", error);
             toastError("Proyecto inexistente", idToast)
-
-            console.log(error);
         }
     }
 
     useEffect(() => {
-        console.log("desde coso1");
         verifyTokenAuth()
-        console.log("desde coso2");
-
-        // const hostnameArray = window.location.hostname.split('.');
-        // const subdomain = hostnameArray[0];
-        // console.log("hostname", window.location.hostname);
-        // console.log("hostnameArray", hostnameArray);
-
-        // console.log("isauth", isAuthenticated);
-        // console.log("ussssss", user);
-
-        // if (subdomain != "localhost") {
-        //     verifySubdomainAuth(subdomain)
-        // }else if(isAuthenticated){
-        //     console.log("desde coso");
-        //     const urlClient = `http://${user.subdomain}.localhost:5173/admin/productos`
-        //     window.location.href = urlClient;
-        // }
     }, [])
 
     useEffect(() => {
@@ -98,15 +83,8 @@ export function StoreContextProvider({ children }) {
             if (subdomain !== "localhost" && subdomain !== "legacy-panel") {
                 verifySubdomainAuth(subdomain);
             } else {
-                // const urlClient = `http://${user.subdomain}.localhost:5173/admin/productos`;
-                // window.location.href = urlClient;
-                if (config.env == 'dev') {
-                    const urlClient = `http://${user.subdomain}.${config.front_panel_url_dev}/admin/productos`
-                    window.location.href = urlClient;
-                }else{
-                    const urlClient = `https://${user.subdomain}.${config.front_panel_url_prod}/admin/productos`
-                    window.location.href = urlClient;
-                }
+                // redirectSubdomain(user.subdomain)
+                // navigate("/admin/productos")
             }
         }
     }, [isAuthenticated]);
