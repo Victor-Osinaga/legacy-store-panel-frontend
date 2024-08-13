@@ -112,7 +112,7 @@ export function StoreContextProvider({ children }) {
     }, [isAuthenticated]);
 
     useEffect(() => {
-        if (subdomain !== "localhost") {
+        if (subdomain !== "localhost" && subdomain !== "legacy-panel") {
             verifySubdomainAuth(subdomain);
         }
     }, [subdomain])
