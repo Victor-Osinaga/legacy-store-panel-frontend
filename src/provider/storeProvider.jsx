@@ -94,7 +94,7 @@ export function StoreContextProvider({ children }) {
         getConfigStoreAuth()
         // EL CODIGO DE ABAJO SE PODRIA LLEVAR CUANDO HACE EL verifyTokenAuth
         if (isAuthenticated) {
-            if (subdomain !== "localhost") {
+            if (subdomain !== "localhost" && subdomain !== "legacy-panel") {
                 verifySubdomainAuth(subdomain);
             } else {
                 // const urlClient = `http://${user.subdomain}.localhost:5173/admin/productos`;
