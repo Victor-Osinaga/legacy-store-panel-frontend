@@ -5,6 +5,7 @@ import getClient from "../services/auth/getClient.js";
 import verifySubdomain from "../services/auth/verifySubdomain.js";
 import verifyToken from "../services/auth/verifyToken.js";
 import getStoreConfig from "../services/storeConfiguration/getStoreConfig.js";
+import config from "../../config.js";
 
 const StoreContext = createContext()
 const useStoreContext = () => useContext(StoreContext)
