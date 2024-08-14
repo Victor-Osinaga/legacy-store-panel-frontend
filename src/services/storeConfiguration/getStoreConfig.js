@@ -11,7 +11,7 @@ if(config.env == 'dev'){
 async function getStoreConfig() {
     try {
         // si no conecta con el backend lanza el error failed to fetch
-        const response = await fetch(`${back_panel_url}/store-configuration/`, {
+        const response = await fetch(`${back_panel_url}/store-configuration`, {
             method: 'GET',
             credentials: 'include',
         })
