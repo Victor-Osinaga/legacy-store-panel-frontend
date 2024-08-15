@@ -10,7 +10,7 @@ if(config.env == 'dev'){
 
 export default async function createStoreConfiguration(storeConfig) {
     try {
-        const response = await fetch(`${back_panel_url}/store-configuration/`,
+        const response = await fetch(`${back_panel_url}/store-configuration`,
             {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },

@@ -17,7 +17,7 @@ async function getStoreConfig() {
         })
         const result = await response.json();
 
-        console.log("response", response);
+        console.log("response desde getStoreConfig", response);
         console.log("configuration : getStoreConfig : services", result);
 
         if(!response.ok){
