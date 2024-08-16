@@ -142,9 +142,9 @@ export default function Header() {
                                     <div className='d-flex align-items-center rounded santaClaraInc h-100 text-white pe-3 ps-3'>
                                         {/* <span>Mi tienda</span> */}
                                         {config.env == 'dev' ? (
-                                            <Link className='text-white' target='blank' to={`http://${user.subdomain}-legacy-store.localhost:5174/`}>Mi tienda</Link>
+                                            <Link className='text-white' target='blank' to={`http://${user.subdomain}-legacystore.localhost:5174/`}>Mi tienda</Link>
                                         ) : (
-                                            <Link className='text-white' target='blank' to={`https://${user.subdomain}-legacy-store.vercel.app`}>Mi tienda</Link>
+                                            <Link className='text-white' target='blank' to={`https://${user.subdomain}-legacystore.vercel.app`}>Mi tienda</Link>
                                         )}
                                     </div>
                                     {/* <div className=''>
