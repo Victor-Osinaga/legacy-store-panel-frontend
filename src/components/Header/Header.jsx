@@ -6,6 +6,7 @@ import avatar from '../../assets/avatar.jpg';
 import useStoreContext from '../../provider/storeProvider';
 import DeleteIcon from '../Icons/DeleteIcon/DeleteIcon';
 import logoutClient from '../../services/auth/logoutClient.js';
+import config from '../../../config.js';
 
 export default function Header() {
     const { configStore, loadingConfigStore, user, toastLoading, toastSuccess, toastError, dismissToast, setUser, setIsAuthenticated } = useStoreContext()
@@ -140,7 +141,11 @@ export default function Header() {
                                     </div>
                                     <div className='d-flex align-items-center rounded santaClaraInc h-100 text-white pe-3 ps-3'>
                                         {/* <span>Mi tienda</span> */}
-                                        <Link className='text-white' target='blank' to={`http://${user.subdomain}.localhost:5174/`}>Mi tienda</Link>
+                                        {config.env == 'dev' ? (
+                                            <Link className='text-white' target='blank' to={`http://${user.subdomain}-legacy.localhost:5174/`}>Mi tienda</Link>
+                                        ) : (
+                                            <Link className='text-white' target='blank' to={`https://${user.subdomain}-legacy.vercel.app`}>Mi tienda</Link>
+                                        )}
                                     </div>
                                     {/* <div className=''>
                             <img className='navImageUser rounded' src={avatar} alt="Avatar perfil" />
