@@ -144,7 +144,7 @@ export default function StoreConfigForm() {
                                     </div>
 
                                     {/* apiKeyMp */}
-                                    <div className="row mb-3">
+                                    {/* <div className="row mb-3">
                                         <p className='col-12 mb-2 text-center fw-semibold textGray-Custom fontSM-Custom '>MERCADO PAGO <MpSvg /></p>
                                         <div className='row rounded border col-12 p-0 py-2 mx-auto'>
                                             <div className='d-flex flex-column mb-2'>
@@ -163,10 +163,10 @@ export default function StoreConfigForm() {
                                                 {errors.storeConfigName && <span className='mt-1 fontXS-Custom text-danger'>{errors.storeConfigName.message} <span className='fw-semibold'>*</span></span>}
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> */}
 
-                                    {/* apiKeyMp */}
-                                    <div className="row mb-3">
+                                    {/* MENSAJES ROTATITVOS BANNER 1 */}
+                                    {/* <div className="row mb-3">
                                         <p className='col-12 mb-2 text-center fw-semibold textGray-Custom fontSM-Custom '>
                                             MENSAJES ROTATITIVOS (BANNER 1)
                                         </p>
@@ -187,7 +187,7 @@ export default function StoreConfigForm() {
                                                 {errors.storeConfigName && <span className='mt-1 fontXS-Custom text-danger'>{errors.storeConfigName.message} <span className='fw-semibold'>*</span></span>}
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> */}
 
                                     {/* BTN CREAR CATEGORIA */}
                                     <div className='row'>
