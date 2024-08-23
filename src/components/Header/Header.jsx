@@ -89,7 +89,7 @@ export default function Header() {
                                 </li>
                                 <li className='navUtils d-flex align-items-center justify-content-end'>
 
-                                    <div className="d-flex position-relative h-100">
+                                    <div className="d-none d-md-flex position-relative h-100 ">
 
                                         <button onClick={() => handleClick('asd1')} className="containerPlusIcon h-100 rounded btnMoreActionsMain position-relative border border-0 bg-white">
                                             <svg className='svgSize text-gray' xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
@@ -98,7 +98,7 @@ export default function Header() {
                                         </button>
 
                                         {/* LLEVAR A UN COMPONENTE APARTE */}
-                                        <ul id='asd1' className="submenuPruebaMain shadow-lg">
+                                        <ul id='asd1' className="submenuPruebaMain shadow-lg ">
                                             <li className="btnsMoreActionsContainerMain">
                                                 <Link to={`/#`}>
                                                     <button className="btnActionMain fontSM-Custom textGray700-Custom">
@@ -133,11 +133,8 @@ export default function Header() {
                                         <svg className='svgSize text-gray' xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
                                         <input className='inputSearch rounded ml-2' placeholder='Buscar...' type="text" name="search" id="" />
                                     </div>
-                                    <div className='d-flex align-items-center rounded santaClaraInc h-100 text-white pe-3 ps-3'>
+                                    <div className='d-none d-md-flex align-items-center rounded santaClaraInc h-100 text-white pe-3 ps-3'>
                                         <span>{user.proyectName}</span>
-                                        {/* <svg className='svgSize' xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
-                            </svg> */}
                                     </div>
                                     <div className='d-flex align-items-center rounded santaClaraInc h-100 text-white pe-3 ps-3'>
                                         {/* <span>Mi tienda</span> */}
