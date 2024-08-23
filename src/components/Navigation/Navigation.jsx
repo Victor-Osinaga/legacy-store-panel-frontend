@@ -181,7 +181,7 @@ export default function Navigation() {
                             </svg>
                         )}
                     </Link>
-                    {showSubmenuColores && (
+                    {/* {showSubmenuColores && (
                         <ul id='subMenuAjustes' className='submenuAjustes'>
                             <li className={`w-100 navLink ${getLinkClassName('tienda')}`}>
                                 <Link to={'/admin/ajustes/tienda'} onClick={() => handleSectionClick('tienda')}>
@@ -200,7 +200,7 @@ export default function Navigation() {
                                 </Link>
                             </li>
                         </ul>
-                    )}
+                    )} */}
 
                 </li>
             </ul>
