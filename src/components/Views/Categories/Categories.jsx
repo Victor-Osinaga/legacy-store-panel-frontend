@@ -48,7 +48,7 @@ export default function Categories() {
                     return toastSuccess(<>Cantidad: <strong>'{categorias.length}'</strong></>, id)
                 }
 
-                return toastSuccess(<>Categorias cargadas: <strong>'{categorias.length}'</strong></>,id)
+                return toastSuccess(<>Categorias cargadas: <strong>'{categorias.length}'</strong></>, id)
             }, 500);
 
 
@@ -118,12 +118,11 @@ export default function Categories() {
         )
         setCategories(newCategories)
 
-        newCategories.forEach(cat => {
-            if (cat.selected === true) {
-                setAllCategoriesSelected(false)
-                setShowBtnActions(true)
-            }
-        })
+        const algunaSeleccionada = newCategories.some(cat => cat.selected == true)
+        if (algunaSeleccionada) {
+            setAllCategoriesSelected(false)
+            setShowBtnActions(true)
+        }
 
         const noHayCategoriasSeleccionadas = newCategories.every(cat => cat.selected == false);
         const todosLasCategoriasSeleccionadas = newCategories.every(cat => cat.selected == true);
@@ -159,7 +158,7 @@ export default function Categories() {
             const products = await getProducts()
             const productsWithSelection = products.map(product => ({ ...product, selected: false }));
             setProducts(productsWithSelection);
-            return toastSuccess(<>Categoria eliminada: <strong>'{categorieName}'</strong></>,toastId)
+            return toastSuccess(<>Categoria eliminada: <strong>'{categorieName}'</strong></>, toastId)
         } catch (error) {
             console.log(error);
             toastError(
@@ -198,6 +197,7 @@ export default function Categories() {
                                         <tr>
                                             <th className='thSpacingMain'>
                                                 <input
+                                                    className="form-check-input inputCheckBoxTableMain"
                                                     type='checkbox'
                                                     checked={allCategoriesSelected}
                                                     onChange={selectAllCategories}
@@ -216,6 +216,7 @@ export default function Categories() {
                                             <tr key={cat.id}>
                                                 <td className='tdSpacingMain'>
                                                     <input
+                                                        className="form-check-input inputCheckBoxTableMain"
                                                         type='checkbox'
                                                         checked={cat.selected}
                                                         onChange={() => selectCategorie(cat.id)}
@@ -242,7 +243,7 @@ export default function Categories() {
                                                             <li className='btnsMoreActionsContainerMain'>
                                                                 <Link to={`/admin/categorias/editar/${cat.id}`}>
                                                                     <button className="btnActionMain textGray700-Custom">
-                                                                        <EditIcon/>
+                                                                        <EditIcon />
                                                                         Editar
                                                                     </button>
                                                                 </Link>

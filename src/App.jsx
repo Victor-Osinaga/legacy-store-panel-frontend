@@ -13,6 +13,7 @@ import FormLogin from './components/Views/FormLogin/FormLogin';
 import FormRegister from './components/Views/FormRegister/FormRegister';
 import ProtectedRoute from './ProtectedRoute/ProtectedRoute';
 import StoreConfigForm from './components/Views/StoreConfigForm/StoreConfigForm.jsx';
+import RetiroSucursal from './components/Views/RetiroSucursal/RetiroSucursal.jsx';
 
 const Layout = ({ children }) => {
   const location = useLocation();
@@ -43,10 +44,18 @@ function App() {
               <Route element={<ProtectedRoute />}>
                 <Route path='/admin/productos' element={<Products />} />
                 <Route path='/' />
+                
+                {/* PRODUCTS */}
                 <Route path='/admin/productos/crear' element={<CreateProduct />} />
                 <Route path='/admin/productos/editar/:productId' element={<EditProduct />} />
+                
+                {/* CATEGORES */}
                 <Route path='/admin/categorias' element={<Categories />} />
                 <Route path='/admin/categorias/crear' element={<CreateCategorie />} />
+
+                {/* SHIPMENTS LOCAL */}
+                <Route path='/admin/retiro-en-sucursal' element={<RetiroSucursal/>}/>
+                {/* SETTINGS */}
                 <Route path='/admin/ajustes/tienda' element={<StoreConfigForm />} />
               </Route>
             </Routes>

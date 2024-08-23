@@ -23,7 +23,6 @@ export default function Products() {
 
     const [loading, setLoading] = useState(true)
     const [products, setProducts] = useState([])
-    const [showGroupActions, setShowGroupActions] = useState(false)
 
     const [allProductsSelected, setAllProductsSelected] = useState(false);
     const [showBtnActions, setShowBtnActions] = useState(false);
@@ -73,12 +72,18 @@ export default function Products() {
         )
         setProducts(newProducts)
 
-        newProducts.forEach(prod => {
-            if (prod.selected === true) {
-                setAllProductsSelected(false)
-                setShowBtnActions(true)
-            }
-        })
+        // newProducts.forEach(prod => {
+        //     if (prod.selected === true) {
+        //         setAllProductsSelected(false)
+        //         setShowBtnActions(true)
+        //     }
+        // })
+
+        const algunaSeleccionada = newProducts.some(p => p.selected == true)
+        if(algunaSeleccionada){
+            setAllProductsSelected(false)
+            setShowBtnActions(true)
+        }
 
         const noHayProductosSeleccionados = newProducts.every(producto => producto.selected == false);
         const todosLosProductosSeleccionados = newProducts.every(producto => producto.selected == true);
@@ -161,12 +166,13 @@ export default function Products() {
                     products.length > 0 ? (
                         <>
                             <ActionsInGroup handlebtnActionMains={showBtnActions} deleteGroup={deleteProductsSelected} />
-                            <div className='tableContainerMain'>
+                            <div className='tableContainerMain rounded'>
                                 <table className='tableContainerViewMain bg-white w-100'>
                                     <thead className='tableHeadTitlesMain fontXS-Custom textGray-Custom'>
                                         <tr>
                                             <th className='thSpacingMain'>
                                                 <input
+                                                    className="form-check-input inputCheckBoxTableMain"
                                                     type='checkbox'
                                                     checked={allProductsSelected}
                                                     onChange={selectAllProducts}
@@ -185,6 +191,7 @@ export default function Products() {
                                             <tr key={product.id}>
                                                 <td className='tdSpacingMain'>
                                                     <input
+                                                        className="form-check-input inputCheckBoxTableMain"
                                                         type='checkbox'
                                                         checked={product.selected}
                                                         onChange={() => selectProduct(product.id)}

@@ -250,13 +250,13 @@ export default function CreateProduct() {
                             <form onSubmit={handleSubmit(onSubmit)} className='bg-white border px-4 py-4 rounded'>
                                 <div className='row mb-3'>
                                     <p className='col-12 mb-2 text-center fw-semibold textGray-Custom fontSM-Custom'>Información</p>
-                                    <div className='row rounded border col-12 p-0 py-2 mx-auto'>
+                                    <div className='row rounded border col-12 mx-auto'>
                                         {/* NOMBRE */}
-                                        <div className='d-flex flex-column mb-2'>
+                                        <div className='col-12 d-flex flex-column mb-2'>
                                             <label htmlFor="nombre" className='d-flex mb-1 fw-semibold textGray-Custom fontSM-Custom'>
                                                 Nombre
                                             </label>
-                                            <input type="text" className='form-control fontSM-Custom custom-placeholder' placeholder='Remera oversize' {
+                                            <input type="text" id='nombre' className='form-control fontSM-Custom custom-placeholder' placeholder='Remera oversize' {
                                                 ...register('name', {
                                                     required: {
                                                         value: true,
@@ -270,7 +270,7 @@ export default function CreateProduct() {
                                         </div>
 
                                         {/* DESCRIPCION */}
-                                        <div className='d-flex flex-column mb-2'>
+                                        <div className='col-12 d-flex flex-column mb-2'>
                                             <label htmlFor="" className='d-flex mb-1 fw-semibold textGray-Custom fontSM-Custom' >
                                                 Descripcion
                                             </label>
@@ -286,8 +286,8 @@ export default function CreateProduct() {
                                         </div>
 
                                         {/* PRECIO Y STOCK */}
-                                        <div className='row'>
-                                            <div className='col d-flex flex-column mb-2'>
+                                        {/* <div className='col-12 row mx-auto'> */}
+                                            <div className='col-6 d-flex flex-column mb-2'>
                                                 <label htmlFor="" className='d-flex mb-1 fw-semibold textGray-Custom fontSM-Custom'>
                                                     Precio
                                                 </label>
@@ -336,7 +336,7 @@ export default function CreateProduct() {
                                                     )}
                                                 />
                                             </div>
-                                            <div className='col d-flex flex-column mb-3'>
+                                            <div className='col-6 d-flex flex-column mb-3'>
                                                 <label htmlFor="" className='d-flex mb-1 fw-semibold textGray-Custom fontSM-Custom'>
                                                     Peso en gramos
                                                 </label>
@@ -350,7 +350,7 @@ export default function CreateProduct() {
                                                 } />
                                                 {errors.weight && <span className='mt-1 fontXS-Custom text-danger'>{errors.weight.message} <span className='fw-semibold'>*</span></span>}
                                             </div>
-                                        </div>
+                                        {/* </div> */}
                                     </div>
                                 </div>
 
