@@ -9,6 +9,7 @@ export default function ModalDelete({ id, closeModal, name, functionDelete, enti
         <p>Los productos relacionados se moveran a una categoria <span className='text-danger text-uppercase fw-bold'>'uncategorized'</span></p>
         <p>Nombre: <strong>'{name}'</strong> - ID <strong>'{id}'</strong></p>
     </div>
+
     const deleteProductById = <div>
         <p>¿Estás seguro que deseas eliminar este producto ?</p>
         <p>Tambien se eliminaran los datos asociados a este</p>
@@ -21,6 +22,12 @@ export default function ModalDelete({ id, closeModal, name, functionDelete, enti
         <p>Nombre: <strong>'{name}'</strong> - ID <strong>'{id}'</strong></p>
     </div>
     
+    const deleteShipmentDeliveryById = <div>
+        <p>¿Estás seguro que deseas eliminar esta provincia de envio ?</p>
+        <p>Si no tienes ninguna creada no podras ofrecer envios a provincias</p>
+        <p>Nombre: <strong>'{name}'</strong> - ID <strong>'{id}'</strong></p>
+    </div>
+    
     return ReactDOM.createPortal(
         <div className="modalDeleteContainer">
             <div className='modalDelete'>
@@ -29,6 +36,7 @@ export default function ModalDelete({ id, closeModal, name, functionDelete, enti
                 {entity == "category" && (deleteCategoryById)}
                 {entity == "product" && (deleteProductById)}
                 {entity == "shipmentLocal" && (deleteShipmentLocalById)}
+                {entity == "shipmentDelivery" && (deleteShipmentDeliveryById)}
                 <p className='text-danger text-uppercase fw-bold'>Esta acción es irreversible</p>
                 <div className="modalButtons">
                     <button onClick={closeModal}>Cancelar</button>

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 
 export default function ({ mainTitle, linkToCreate, titleButton }) {
     return (
-        <div className='d-flex justify-content-between align-items-center w-100'>
+        <div className='d-flex justify-content-between align-items-center w-100 mb-2'>
             <div>
                 <h3 className='fs-4 mainTitle'>{mainTitle}</h3>
             </div>

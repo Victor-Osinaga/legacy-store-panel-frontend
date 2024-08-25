@@ -14,6 +14,10 @@ import FormRegister from './components/Views/FormRegister/FormRegister';
 import ProtectedRoute from './ProtectedRoute/ProtectedRoute';
 import StoreConfigForm from './components/Views/StoreConfigForm/StoreConfigForm.jsx';
 import RetiroSucursal from './components/Views/RetiroSucursal/RetiroSucursal.jsx';
+import CrearSucursal from './components/Views/CrearSucursal/CrearSucursal.jsx';
+import EditarSucursal from './components/Views/EditarSucursal/EditarSucursal.jsx';
+import ShipmentsDelivery from './components/Views/ShipmentsDelivery/ShipmentsDelivery.jsx';
+import CreateShipmentDelivery from './components/Views/CreateShipmentDelivery/CreateShipmentDelivery.jsx';
 
 const Layout = ({ children }) => {
   const location = useLocation();
@@ -55,6 +59,12 @@ function App() {
 
                 {/* SHIPMENTS LOCAL */}
                 <Route path='/admin/retiro-en-sucursal' element={<RetiroSucursal/>}/>
+                <Route path='/admin/retiro-en-sucursal/crear' element={<CrearSucursal/>}/>
+                <Route path='/admin/retiro-en-sucursal/editar/:shipmentLocalId' element={<EditarSucursal/>}/>
+
+                {/* SHIPMENTS DELIVERY */}
+                <Route path='/admin/envios' element={<ShipmentsDelivery/>}/>
+                <Route path='/admin/envios/crear' element={<CreateShipmentDelivery/>}/>
                 {/* SETTINGS */}
                 <Route path='/admin/ajustes/tienda' element={<StoreConfigForm />} />
               </Route>

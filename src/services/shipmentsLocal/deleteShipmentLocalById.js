@@ -1,4 +1,4 @@
-import config from "../../../config.js";
+import config from "../../../config";
 
 let back_panel_url;
 
@@ -8,9 +8,9 @@ if(config.env == 'dev'){
     back_panel_url = config.back_panel_url_prod
 }
 
-async function deleteProductById(productId, productName) {
+async function deleteShipmentLocalById(shipmentLocalId) {
     try {
-        const response = await fetch(`${back_panel_url}/products/${productId}`, {
+        const response = await fetch(`${back_panel_url}/shipment-local/${shipmentLocalId}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json'
@@ -19,17 +19,15 @@ async function deleteProductById(productId, productName) {
         });
 
         const result = await response.json();
-        console.log('PRODUCTOS eliminado por id:', result);
+        console.log('SUCURSAL eliminado por id:', result);
 
         if (!response.ok) {
-            // throw new Error('Error al eliminar los clientes');
-            // throw {msg: `Error al eliminar el producto: ${productName}`}
             throw {msg: result.data}
         }
 
-        return result
+        return result.data
     } catch (error) {
-        console.log("ERROR DESDE deleteProductById services:", error.msg);
+        console.log("ERROR DESDE deleteShipmentLocalById services:", error.msg);
         if (error.message == 'Failed to fetch') {
             throw {msg: 'Error al conectar con el servidor'}
         }
@@ -37,4 +35,4 @@ async function deleteProductById(productId, productName) {
     }
 }
 
-export default deleteProductById;
+export default deleteShipmentLocalById;

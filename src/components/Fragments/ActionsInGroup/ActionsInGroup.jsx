@@ -22,8 +22,7 @@ export default function ActionsInGroup({ handlebtnActionMains, deleteGroup }) {
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="svgSize"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
                     </button>
                     {mostrarListAcciones ? (
-                        <ul className="mt-5 position-absolute">
-
+                        <ul className="position-absolute" style={{marginTop: "40px", marginRight:"10px"}}>
                             <li className="btnsActionsContainer rounded bg-primary bg-light d-flex flex-column">
                                 <button onClick={handleSubmit} className="btnActionMainInGroup fontSM-Custom textGray700-Custom w-100 d-flex ps-4 gap-2 rounded border border-0 justify-content-start align-items-center">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="text-gray svgSize">

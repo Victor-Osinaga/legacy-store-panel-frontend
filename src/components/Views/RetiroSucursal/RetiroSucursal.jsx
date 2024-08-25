@@ -1,6 +1,6 @@
 
 import { Link } from "react-router-dom";
-import getShipmentsLocal from "../../../services/products/getShipmentsLocal.js";
+import getShipmentsLocal from "../../../services/shipmentsLocal/getShipmentsLocal.js";
 import OutlineMore from "../../Icons/OutlineMore/OutlineMore";
 import EditIcon from "../../Icons/EditIcon/EditIcon";
 import DeleteIcon from "../../Icons/DeleteIcon/DeleteIcon";
@@ -12,6 +12,8 @@ import toNumberArgStandard from "../../../utils/toNumberArgStandard.js";
 
 // MODAL DELETE
 import ModalDelete from "../../Fragments/ModalDelete/ModalDelete";
+import NoItems from "../../Fragments/NoItems/NoItems.jsx";
+import deleteShipmentLocalById from "../../../services/shipmentsLocal/deleteShipmentLocalById.js";
 
 export default function RetiroSucursal() {
     const { selectAll, showItemActions, truncarTexto, toastLoading, toastSuccess, toastError, dismissToast } = useStoreContext()
@@ -32,29 +34,29 @@ export default function RetiroSucursal() {
     }, [])
 
     const fetchShipmentsLocal = async () => {
-        const id = toastLoading("cargando sucursales")
+        const id = toastLoading("Cargando sucursales")
         try {
-            // const shipmentsLocal = await getShipmentsLocal()
-            const shipmentsLocal = [
-                {
-                    id: "1",
-                    province: "Buenos Aires",
-                    locality: "CABA",
-                    postalCode: "1001",
-                    streetName: "Avenida Siempre Viva",
-                    streetNumber: "742",
-                    shipingCost: 300.00
-                },
-                {
-                    id: "2",
-                    province: "Salta",
-                    locality: "Capital",
-                    postalCode: "4400",
-                    streetName: "Avenida Siempre Viva",
-                    streetNumber: "742",
-                    shipingCost: 300.00
-                },
-            ]
+            const shipmentsLocal = await getShipmentsLocal()
+            // const shipmentsLocal = [
+            //     {
+            //         id: "1",
+            //         province: "Buenos Aires",
+            //         locality: "CABA",
+            //         postalCode: "1001",
+            //         streetName: "Avenida Siempre Viva",
+            //         streetNumber: "742",
+            //         shipingCost: 300.00
+            //     },
+            //     {
+            //         id: "2",
+            //         province: "Salta",
+            //         locality: "Capital",
+            //         postalCode: "4400",
+            //         streetName: "Avenida Siempre Viva",
+            //         streetNumber: "742",
+            //         shipingCost: 300.00
+            //     },
+            // ]
             const shipmentsLocalWithSelection = shipmentsLocal.map(shipment => ({ ...shipment, selected: false }))
             setShipmentsLocal(shipmentsLocalWithSelection)
 
@@ -126,12 +128,12 @@ export default function RetiroSucursal() {
         setModalInfo({ showModal: false, shipmentLocalId: null, shipmentLocalProvince: '' });
         const toastId = toastLoading("Eliminando sucursal...")
         try {
-            // const result = await deleteProductById(id, shipmentProvice)
-            // const products = await getProducts()
-            // const productsWithSelection = selectAll(false, products);
-            // setProducts(productsWithSelection);
-            // console.log("nuevos productos desde deleteById", productsWithSelection);
-            return toastSuccess(<>Producto eliminado: <strong>'{shipmentProvice}'</strong> - cantidad: <strong>''</strong></>, toastId)
+            const result = await deleteShipmentLocalById(id)
+            const shipmentsLocal = await getShipmentsLocal()
+            const shipmentsLocalWithSelection = selectAll(false, shipmentsLocal);
+            setShipmentsLocal(shipmentsLocalWithSelection);
+            console.log("nuevas sucursales desde deleteById", shipmentsLocalWithSelection);
+            return toastSuccess(<>Sucursal eliminada: <strong>'{shipmentProvice}'</strong> - cantidad: <strong>'{result.deletedCount}'</strong></>, toastId)
         } catch (error) {
             console.log(error);
             toastError(
@@ -154,11 +156,14 @@ export default function RetiroSucursal() {
         <>
             <section className="containerViewMain">
                 <MainTitle mainTitle='Retiro en sucursal' linkToCreate='/admin/retiro-en-sucursal/crear' titleButton='Nueva sucursal' />
+                <div className="text-secondary mb-2 fontSM-Custom">
+                    <p className="m-0">Aqui estara tu sucursal para que tus clientes puedan retirar los productos de tu tienda</p>
+                </div>
                 {!loading ? (
                     shipmentsLocal.length > 0 ? (
                         <>
                             <ActionsInGroup handlebtnActionMains={showBtnActions} deleteGroup={deleteShipmentsLocalSelected} />
-                            <div className="tableContainerMain">
+                            <div className="tableContainerMain rounded">
                                 <table className="tableContainerViewMain bg-white w-100">
                                     <thead className="tableHeadTitlesMain fontXS-Custom textGray-Custom">
                                         <tr>
@@ -246,7 +251,7 @@ export default function RetiroSucursal() {
                             />}
                         </>
                     ) : (
-                        <div>Todavia no se cargaron sucursales</div>
+                        <NoItems msg="Todavia no se cargaron sucursales"/>
                     )
                 ) : (
                     <section className='spinnerContainer'>

@@ -12,6 +12,7 @@ import ModalDelete from "../../Fragments/ModalDelete/ModalDelete.jsx"
 import deleteCategorieById from "../../../services/categorys/deleteCategorieById.js"
 import getTotalProductsByCategoryId from "../../../utils/getTotalProductsByCategoryId.js"
 import getProducts from "../../../services/products/getProducts.js"
+import NoItems from "../../Fragments/NoItems/NoItems.jsx"
 
 
 export default function Categories() {
@@ -172,6 +173,9 @@ export default function Categories() {
         <>
             <section className="containerViewMain">
                 <MainTitle mainTitle='Categorias' linkToCreate='/admin/categorias/crear' titleButton='Nueva Categoria' />
+                <div className="text-secondary mb-2 fontSM-Custom">
+                    <p className="m-0">Aqui estaran todas las categorias de tu tienda</p>
+                </div>
                 {/* <div className='d-flex justify-content-between align-items-center w-100'>
                     <div>
                         <h3 className='fs-4 mainTitle'>Categorias</h3>
@@ -191,7 +195,7 @@ export default function Categories() {
                     categories.length > 0 && products ? (
                         <>
                             <ActionsInGroup handlebtnActionMains={showBtnActions} deleteGroup={deleteCategoriesSelected} />
-                            <div className='tableContainerMain'>
+                            <div className='tableContainerMain rounded'>
                                 <table className='tableContainerViewMain bg-white w-100'>
                                     <thead className='tableHeadTitlesMain fontXS-Custom textGray-Custom'>
                                         <tr>
@@ -280,11 +284,7 @@ export default function Categories() {
                             />}
                         </>
                     ) : (
-                        <>
-                            <div>
-                                no hay categorias, crea una
-                            </div>
-                        </>
+                        <NoItems msg="Todavia no se cargaron categorias"/>
                     )
                 ) : (
                     <section className='spinnerContainer'>

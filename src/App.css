@@ -45,6 +45,17 @@ html {
   --pantoneLight: rgb(0,110,127);
   --pantoneDark: rgb(0,83,102);
 
+  --bgGrayDark: #23252F;
+  --bgGrayMedium: #2B2D38;
+  --bgGrayLight: #555b5d; /* test */
+
+  --bgBlueDark: #073f51; /* test */
+  --bgBlueMedium: #084c61;
+  --bgBlueLight: #095b73;
+
+  --bgReactBlueDark: rgb(88, 196, 220, 1);
+  --bgReactBlueMedium: rgba(88, 175, 223, .1);
+
   --bgContainer: rgb(241, 245, 249);
 
   --textGray300Custom: rgb(161, 161, 161);

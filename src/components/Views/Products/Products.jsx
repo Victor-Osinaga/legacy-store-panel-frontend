@@ -17,6 +17,7 @@ import OutlineMore from '../../Icons/OutlineMore/OutlineMore';
 import EditIcon from '../../Icons/EditIcon/EditIcon';
 import DeleteIcon from '../../Icons/DeleteIcon/DeleteIcon';
 import deleteProductById from '../../../services/products/deleteProductById';
+import NoItems from "../../Fragments/NoItems/NoItems";
 
 export default function Products() {
     const { selectAll, showItemActions, truncarTexto, toastLoading, toastSuccess, toastError, dismissToast } = useStoreContext()
@@ -80,7 +81,7 @@ export default function Products() {
         // })
 
         const algunaSeleccionada = newProducts.some(p => p.selected == true)
-        if(algunaSeleccionada){
+        if (algunaSeleccionada) {
             setAllProductsSelected(false)
             setShowBtnActions(true)
         }
@@ -162,6 +163,9 @@ export default function Products() {
         <>
             <section className='containerViewMain'>
                 <MainTitle mainTitle='Productos' linkToCreate='/admin/productos/crear' titleButton='Nuevo Producto' />
+                <div className="text-secondary mb-2 fontSM-Custom">
+                    <p className="m-0">Aqui estaran todos los productos con stock y sin stock de tu tienda</p>
+                </div>
                 {!loading ? (
                     products.length > 0 ? (
                         <>
@@ -254,7 +258,7 @@ export default function Products() {
                             />}
                         </>
                     ) : (
-                        <div>Todavia no se cargaron productos</div>
+                        <NoItems msg="Todavia no se cargaron productos" />
                     )
                 ) : (
                     <section className='spinnerContainer'>

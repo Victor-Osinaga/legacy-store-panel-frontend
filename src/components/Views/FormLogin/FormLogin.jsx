@@ -49,25 +49,25 @@ export default function FormLogin() {
             <div className="div1"></div>
             <div className="div2"></div>
             {/* <div className="div3"></div> */}
-            <div className="main rounded d-flex">
+            <div className="main bg-white rounded-0 d-flex">
                 <div className="main_left flex-column justify-content-center align-items-center text-white">
                     {user.proyectName ? (
-                        <h3>{user.proyectName}</h3>
+                        <h3 className='font-monospace'>{user.proyectName}</h3>
                     ) : (
-                        <h3>LEGACY STORE</h3>
+                        <h3 className='font-monospace'>LEGACY STORE</h3>
                     )}
-                    <img src={logo} className="bg-white img-fluid rounded" alt="legacy company logo" />
+                    <img src={logo} className="img-fluid rounded p-3" alt="company logo" />
                 </div>
 
                 <div className="main_right col-12 col-md-7">
 
                     <form onSubmit={handleSubmit(onSubmit)} className='formLogin px-5 d-flex flex-column justify-content-center align-items-center'>
-                        <h3 className="glitchLogin text-center" data-text="Iniciar sesion">Iniciar sesion</h3>
+                        <h3 className="glitchLogin text-center fw-semibold" data-text="Iniciar sesion">Iniciar sesion</h3>
                         <div className="form-group w-100 d-flex flex-column mb-3">
-                            <label className='mb-1' htmlFor="nombreUsuario"><b>E-mail</b></label>
+                            <label className='mb-1' htmlFor="nombreUsuario">Correo</label>
                             <input id="nombreUsuario" type="email" name="nombreUsuario"
                                 placeholder="john_doe@email.com"
-                                className='form-control fontSM-Custom custom-placeholder inputStyles'
+                                className='rounded-0 form-control fontSM-Custom custom-placeholder inputStyles'
                                 {...register('email', {
                                     required: {
                                         value: true,
@@ -78,10 +78,10 @@ export default function FormLogin() {
                             {errors.email && <span className='mt-1 fontXS-Custom text-danger'>{errors.email.message} <span className='fw-semibold'>*</span></span>}
                         </div>
                         <div className="form-group w-100 d-flex flex-column mb-3">
-                            <label className='mb-1' htmlFor="password"><b>Contraseña</b></label>
+                            <label className='mb-1' htmlFor="password">Contraseña</label>
                             <input id="password" type="password" name="password"
                                 placeholder="Tu contraseña..."
-                                className='form-control fontSM-Custom custom-placeholder inputStyles'
+                                className='rounded-0 form-control fontSM-Custom custom-placeholder inputStyles'
                                 {...register('password', {
                                     required: {
                                         value: true,
@@ -91,12 +91,13 @@ export default function FormLogin() {
                             />
                             {errors.password && <span className='mt-1 fontXS-Custom text-danger'>{errors.password.message} <span className='fw-semibold'>*</span></span>}
                         </div>
-                        <button className="btnLogin rounded mb-3" type="submit" value="Submit">
-                            <b>INICIAR SESION</b>
+                        <button className="btnLogin rounded-0 mb-2 text-white" type="submit" value="Submit">
+                            <p className='m-0 fw-semibold'>INICIAR SESION</p>
                         </button>
 
-                        <Link to={'/auth/register'} className='linkNotAccount fw-bold'>
-                            ¿No tienes una cuenta? - REGISTRARME
+                        <Link to={'/auth/register'} className='linkNotAccount fontSM-Custom text-decoration-underline'>
+                            <p className='m-0 text-center'>¿No tienes una cuenta?</p>
+                            <p className='m-0 text-center font-monospace'>REGISTRATE</p>
                         </Link>
                         {/* <button type="submit" className="btn btn-primary w-100 btn-sm fontSM-Custom">INICIAR</button> */}
                     </form>
