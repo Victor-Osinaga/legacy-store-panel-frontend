@@ -26,3 +26,4 @@ dist-ssr
 # CUSTOM IGNORE
 .env
 .package-lock.json
+.vercel.json
