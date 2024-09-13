@@ -73,16 +73,23 @@ export default function Header() {
                     </div >
                 ) : (
                     <header id='header' className='d-flex fontSM-Custom' style={{ backgroundImage: `linear-gradient(to right, #ffffff, ${configStore.primaryColorStore}) ` }}>
-                        <nav className="container-fluid px-5">
+                        <nav className="container-fluid px-2 px-md-5">
                             <ul className='d-flex align-items-center justify-content-between h-100'>
                                 <li className='navLogo'>
                                     {/* {console.log(windowWidth)} */}
                                     {windowWidth < 1000 ? (
+                                        <>
                                         <div id='header-burguer' className='header-burguer rounded' onClick={handleScrollable}>
                                             <svg xmlns="http://www.w3.org/2000/svg" className="text-gray svgSize" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path>
                                             </svg>
                                         </div>
+                                        <div className='h-100 d-flex flex-column align-items-center justify-content-center ms-2'>
+                                            <img className="h-100 header-logo" src={viteLogo} alt="legacy software logo" title='Legacy Software'/>
+                                            <span className='title_company'>LEGACY</span>
+                                        </div>
+                                        </>
+                                        
                                     ) : (
                                         <div className='h-100 d-flex flex-column align-items-center justify-content-center'>
                                             <img className="h-100 header-logo" src={viteLogo} alt="legacy software logo" title='Legacy Software'/>
