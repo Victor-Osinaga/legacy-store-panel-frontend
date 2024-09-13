@@ -10,6 +10,7 @@ import EditIcon from "../../Icons/EditIcon/EditIcon";
 import DeleteIcon from "../../Icons/DeleteIcon/DeleteIcon";
 import ModalDelete from "../../Fragments/ModalDelete/ModalDelete";
 import getShipmentsDelivery from "../../../services/shipmentsDelivery/getShipmentsDelivery.js";
+import deleteShipmentDeliveryById from "../../../services/shipmentsDelivery/deleteShipmentDeliveryById.js";
 
 export default function ShipmentsDelivery() {
     const { selectAll, showItemActions, truncarTexto, toastLoading, toastSuccess, toastError, dismissToast } = useStoreContext()
@@ -38,12 +39,12 @@ export default function ShipmentsDelivery() {
             //     {
             //         id: "1",
             //         province: "Buenos Aires",
-            //         shipingCost: 300.00
+            //         shipmentCost: 300.00
             //     },
             //     {
             //         id: "2",
             //         province: "Salta",
-            //         shipingCost: 300.00
+            //         shipmentCost: 300.00
             //     },
             // ]
             const shipmentsDeliveryWithSelection = shipmentsDelivery.map(shipment => ({ ...shipment, selected: false }))
@@ -116,13 +117,14 @@ export default function ShipmentsDelivery() {
         setModalInfo({ showModal: false, shipmentDeliveryId: null, shipmentDeliveryProvince: '' });
         const toastId = toastLoading("Eliminando provincia...")
         try {
-            // const result = await deleteShipmentLocalById(id)
-            // const shipmentsLocal = await getShipmentsLocal()
-            // const shipmentsLocalWithSelection = selectAll(false, shipmentsLocal);
-            // setShipmentsLocal(shipmentsLocalWithSelection);
-            // console.log("nuevas sucursales desde deleteById", shipmentsLocalWithSelection);
-            // return toastSuccess(<>Sucursal eliminada: <strong>'{shipmentProvice}'</strong> - cantidad: <strong>'{result.deletedCount}'</strong></>, toastId)
-            return toastSuccess(<>Sucursal eliminada: <strong>'{shipmentProvice}'</strong> - cantidad: <strong>'XDDDDD'</strong></>, toastId)
+            const result = await deleteShipmentDeliveryById(id)
+            console.log("result desde eliminarShipmentDeliveryPorId: ", result);
+            
+            const shipmentsDelivery = await getShipmentsDelivery()
+            const shipmentsDeliveryWithSelection = selectAll(false, shipmentsDelivery);
+            setShipmentsDelivery(shipmentsDeliveryWithSelection);
+            console.log("nuevas provincias desde deleteById", shipmentsDeliveryWithSelection);
+            return toastSuccess(<>Provincia eliminada: <strong>'{shipmentProvice}'</strong> - cantidad: <strong>'{result.deletedCount}'</strong></>, toastId)
         } catch (error) {
             console.log(error);
             toastError(
@@ -186,7 +188,7 @@ export default function ShipmentsDelivery() {
                                                     </Link>
                                                 </td>
                                                 <td className="fontSM-Custom tdSpacingMain text-success">
-                                                    <span>${toNumberArgStandard(shipment.shipingCost)}</span>
+                                                    <span>${toNumberArgStandard(shipment.shipmentCost)}</span>
                                                 </td>
                                                 <td className="fontSM-Custom tdSpacingMain position-relative">
                                                     <div className="d-flex">

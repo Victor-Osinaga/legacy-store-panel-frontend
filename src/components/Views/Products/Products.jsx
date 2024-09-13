@@ -164,7 +164,7 @@ export default function Products() {
             <section className='containerViewMain'>
                 <MainTitle mainTitle='Productos' linkToCreate='/admin/productos/crear' titleButton='Nuevo Producto' />
                 <div className="text-secondary mb-2 fontSM-Custom">
-                    <p className="m-0">Aqui estaran todos los productos con stock y sin stock de tu tienda</p>
+                    <p className="m-0">Aqui estaran las ordenes de compra de tus clientes con sus respectivos estados del proceso de compra</p>
                 </div>
                 {!loading ? (
                     products.length > 0 ? (

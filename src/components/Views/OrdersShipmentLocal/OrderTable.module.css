@@ -1,0 +1,84 @@
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 24px;
+  }
+  
+  .title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 16px;
+  }
+  
+  .filterContainer {
+    margin-bottom: 16px;
+  }
+  
+  .select {
+    width: 180px;
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+  }
+  
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .table th,
+  .table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .table th {
+    background-color: #f8f8f8;
+    font-weight: bold;
+  }
+  
+  .badge {
+    padding: 4px 8px;
+    border-radius: 9999px;
+    font-size: 12px;
+    font-weight: bold;
+  }
+  
+  .badgePendiente {
+    background-color: #fef3c7;
+    color: #92400e;
+  }
+  
+  .badgeProcesando {
+    background-color: #dbeafe;
+    color: #1e40af;
+  }
+  
+  .badgeListo {
+    background-color: #d1fae5;
+    color: #065f46;
+  }
+  
+  .badgeRetirado {
+    background-color: #f3f4f6;
+    color: #1f2937;
+  }
+  
+  .button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    margin-right: 8px;
+  }
+  
+  .button:hover {
+    background-color: #f3f4f6;
+    border-radius: 4px;
+  }
+  
+  .icon {
+    width: 16px;
+    height: 16px;
+  }

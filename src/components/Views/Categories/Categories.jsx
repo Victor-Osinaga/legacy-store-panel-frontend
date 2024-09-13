@@ -174,7 +174,7 @@ export default function Categories() {
             <section className="containerViewMain">
                 <MainTitle mainTitle='Categorias' linkToCreate='/admin/categorias/crear' titleButton='Nueva Categoria' />
                 <div className="text-secondary mb-2 fontSM-Custom">
-                    <p className="m-0">Aqui estaran todas las categorias de tu tienda</p>
+                    <p className="m-0">Aqui estaran todas las categorias de tu tienda, si eliminas una categoria no se eliminaran los productos asociados sino que estos se moveran a una categoria especial</p>
                 </div>
                 {/* <div className='d-flex justify-content-between align-items-center w-100'>
                     <div>

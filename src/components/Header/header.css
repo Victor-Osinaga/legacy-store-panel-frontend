@@ -18,12 +18,14 @@
 }
 
 .santaClaraInc {
-    font-weight: 600;
+    /* font-weight: 600; */
     background-color: rgba(255, 255, 255, 0.2);
+    transition: all .3s ease;
 }
 
 .santaClaraInc:hover {
     cursor: pointer;
+    background-color: rgba(255, 255, 255, 0.1);
 }
 
 .btnLogout {
@@ -32,6 +34,7 @@
 }
 
 .navLogo {
+    /* outline: 1px solid red; */
     display: flex;
     align-items: center;
     height: 36px;
@@ -83,6 +86,21 @@
     box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15);
     cursor: pointer;
 }
+
+.header-logo{
+    width: 25px;
+}
+.header-logo:hover{
+    cursor: pointer;
+}
+
+.title_company{
+    font-size: .7rem;
+    font-weight: 600;
+    letter-spacing: 0.1rem;
+}
+
+
 
 
 @media (max-width: 1000px) {

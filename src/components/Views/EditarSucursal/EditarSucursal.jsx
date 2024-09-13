@@ -20,7 +20,7 @@ export default function EditarSucursal() {
             postalCode: "",
             streetName: "",
             streetNumber: "",
-            shipingCost: 0
+            shipmentCost: 0
         }
     })
 
@@ -33,7 +33,7 @@ export default function EditarSucursal() {
     }, [shipmentLocalId])
 
     const fetchShipingLocalById = async () => {
-        const id = toastLoading("Cargando producto")
+        const id = toastLoading("Cargando sucursal")
         try {
             const shipmentLocalById = await getShipingLocalById(shipmentLocalId)
             reset(shipmentLocalById)
@@ -177,21 +177,21 @@ export default function EditarSucursal() {
 
                                             {/* COSTO DE RETIRO */}
                                             <div className="col-6 d-flex flex-column mb-3">
-                                                <label htmlFor="shipingCost" className='d-flex mb-1 fw-semibold textGray-Custom fontSM-Custom'>
+                                                <label htmlFor="shipmentCost" className='d-flex mb-1 fw-semibold textGray-Custom fontSM-Custom'>
                                                     Costo de retiro
                                                 </label>
                                                 {/* <input type="text" className='form-control fontSM-Custom custom-placeholder' placeholder='9900' {
-                                                    ...register('shipingCost', {
+                                                    ...register('shipmentCost', {
                                                         required: {
                                                             value: true,
                                                             message: "El 'costo de retiro' es requerido"
                                                         },
                                                     })
                                                 } />
-                                                {errors.shipingCost && <span className='mt-1 fontXS-Custom text-danger'>{errors.shipingCost.message} <span className='fw-semibold'>*</span></span>} */}
+                                                {errors.shipmentCost && <span className='mt-1 fontXS-Custom text-danger'>{errors.shipmentCost.message} <span className='fw-semibold'>*</span></span>} */}
                                                 <Controller
-                                                    name="shipingCost"
-                                                    id="shipingCost"
+                                                    name="shipmentCost"
+                                                    id="shipmentCost"
                                                     control={control}
                                                     rules={{
                                                         required: {
@@ -221,7 +221,7 @@ export default function EditarSucursal() {
                                                                 valueIsNumericString={true}
                                                                 prefix="$ "
                                                             />
-                                                            {errors.shipingCost && <span className='mt-1 fontXS-Custom text-danger'>{errors.shipingCost.message} <span className='fw-semibold'>*</span></span>}
+                                                            {errors.shipmentCost && <span className='mt-1 fontXS-Custom text-danger'>{errors.shipmentCost.message} <span className='fw-semibold'>*</span></span>}
                                                         </>
                                                     )}
                                                 />

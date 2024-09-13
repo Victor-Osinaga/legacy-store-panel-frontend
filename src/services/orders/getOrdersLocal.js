@@ -8,26 +8,21 @@ if(config.env == 'dev'){
     back_panel_url = config.back_panel_url_prod
 }
 
-async function deleteShipmentLocalById(shipmentLocalId) {
+async function getOrdersLocal() {
     try {
-        const response = await fetch(`${back_panel_url}/shipment-local/${shipmentLocalId}`, {
-            method: 'DELETE',
-            headers: {
-                'Content-Type': 'application/json'
-            },
+        // si no conecta con el backend lanza el error failed to fetch
+        const response = await fetch(`${back_panel_url}/orders`, {
             credentials: 'include',
-        });
-
+        })
         const result = await response.json();
-        console.log('SUCURSAL eliminado por id:', result);
 
-        if (!response.ok) {
+        if(!response.ok){
             throw {msg: result.data}
         }
 
+        console.log("ORDENES : getOrdersLocal : services", result.data);
         return result.data
     } catch (error) {
-        console.log("ERROR DESDE deleteShipmentLocalById services:", error.msg);
         if (error.message == 'Failed to fetch') {
             throw {msg: 'Error al conectar con el servidor'}
         }
@@ -35,4 +30,4 @@ async function deleteShipmentLocalById(shipmentLocalId) {
     }
 }
 
-export default deleteShipmentLocalById;
+export default getOrdersLocal;

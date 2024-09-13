@@ -16,7 +16,7 @@ export default function CrearSucursal() {
             postalCode: "9900",
             streetName: "Av Bicentenario",
             streetNumber: "678",
-            shipingCost: 0
+            shipmentCost: 0
         }
     })
 
@@ -173,21 +173,21 @@ export default function CrearSucursal() {
 
                                             {/* COSTO DE RETIRO */}
                                             <div className="col-6 d-flex flex-column mb-3">
-                                                <label htmlFor="shipingCost" className='d-flex mb-1 fw-semibold textGray-Custom fontSM-Custom'>
+                                                <label htmlFor="shipmentCost" className='d-flex mb-1 fw-semibold textGray-Custom fontSM-Custom'>
                                                     Costo de retiro
                                                 </label>
                                                 {/* <input type="text" className='form-control fontSM-Custom custom-placeholder' placeholder='9900' {
-                                                    ...register('shipingCost', {
+                                                    ...register('shipmentCost', {
                                                         required: {
                                                             value: true,
                                                             message: "El 'costo de retiro' es requerido"
                                                         },
                                                     })
                                                 } />
-                                                {errors.shipingCost && <span className='mt-1 fontXS-Custom text-danger'>{errors.shipingCost.message} <span className='fw-semibold'>*</span></span>} */}
+                                                {errors.shipmentCost && <span className='mt-1 fontXS-Custom text-danger'>{errors.shipmentCost.message} <span className='fw-semibold'>*</span></span>} */}
                                                 <Controller
-                                                    name="shipingCost"
-                                                    id="shipingCost"
+                                                    name="shipmentCost"
+                                                    id="shipmentCost"
                                                     control={control}
                                                     rules={{
                                                         required: {
@@ -217,7 +217,7 @@ export default function CrearSucursal() {
                                                                 valueIsNumericString={true}
                                                                 prefix="$ "
                                                             />
-                                                            {errors.shipingCost && <span className='mt-1 fontXS-Custom text-danger'>{errors.shipingCost.message} <span className='fw-semibold'>*</span></span>}
+                                                            {errors.shipmentCost && <span className='mt-1 fontXS-Custom text-danger'>{errors.shipmentCost.message} <span className='fw-semibold'>*</span></span>}
                                                         </>
                                                     )}
                                                 />

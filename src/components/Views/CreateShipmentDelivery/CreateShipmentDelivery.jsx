@@ -12,7 +12,7 @@ export default function CreateShipmentDelivery() {
     const { register, handleSubmit, formState: { errors }, control } = useForm({
         defaultValues: {
             province: "SALTAAAA",
-            shipingCost: "99"
+            shipmentCost: "99"
         }
     })
 
@@ -94,12 +94,12 @@ export default function CreateShipmentDelivery() {
 
                                             {/* COSTO DE RETIRO */}
                                             <div className="col-6 d-flex flex-column mb-3">
-                                                <label htmlFor="shipingCost" className='d-flex mb-1 fw-semibold textGray-Custom fontSM-Custom'>
+                                                <label htmlFor="shipmentCost" className='d-flex mb-1 fw-semibold textGray-Custom fontSM-Custom'>
                                                     Costo de envio
                                                 </label>
                                                 <Controller
-                                                    name="shipingCost"
-                                                    id="shipingCost"
+                                                    name="shipmentCost"
+                                                    id="shipmentCost"
                                                     control={control}
                                                     rules={{
                                                         required: {
@@ -129,7 +129,7 @@ export default function CreateShipmentDelivery() {
                                                                 valueIsNumericString={true}
                                                                 prefix="$ "
                                                             />
-                                                            {errors.shipingCost && <span className='mt-1 fontXS-Custom text-danger'>{errors.shipingCost.message} <span className='fw-semibold'>*</span></span>}
+                                                            {errors.shipmentCost && <span className='mt-1 fontXS-Custom text-danger'>{errors.shipmentCost.message} <span className='fw-semibold'>*</span></span>}
                                                         </>
                                                     )}
                                                 />

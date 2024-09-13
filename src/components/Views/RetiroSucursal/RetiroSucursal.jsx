@@ -45,7 +45,7 @@ export default function RetiroSucursal() {
             //         postalCode: "1001",
             //         streetName: "Avenida Siempre Viva",
             //         streetNumber: "742",
-            //         shipingCost: 300.00
+            //         shipmentCost: 300.00
             //     },
             //     {
             //         id: "2",
@@ -54,7 +54,7 @@ export default function RetiroSucursal() {
             //         postalCode: "4400",
             //         streetName: "Avenida Siempre Viva",
             //         streetNumber: "742",
-            //         shipingCost: 300.00
+            //         shipmentCost: 300.00
             //     },
             // ]
             const shipmentsLocalWithSelection = shipmentsLocal.map(shipment => ({ ...shipment, selected: false }))
@@ -212,7 +212,7 @@ export default function RetiroSucursal() {
                                                     <span>{shipment.streetNumber}</span>
                                                 </td>
                                                 <td className="fontSM-Custom tdSpacingMain text-success">
-                                                    <span>${toNumberArgStandard(shipment.shipingCost)}</span>
+                                                    <span>${toNumberArgStandard(shipment.shipmentCost)}</span>
                                                 </td>
                                                 <td className="fontSM-Custom tdSpacingMain position-relative">
                                                     <div className="d-flex">

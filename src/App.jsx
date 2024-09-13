@@ -18,6 +18,7 @@ import CrearSucursal from './components/Views/CrearSucursal/CrearSucursal.jsx';
 import EditarSucursal from './components/Views/EditarSucursal/EditarSucursal.jsx';
 import ShipmentsDelivery from './components/Views/ShipmentsDelivery/ShipmentsDelivery.jsx';
 import CreateShipmentDelivery from './components/Views/CreateShipmentDelivery/CreateShipmentDelivery.jsx';
+import OrdersShipmentLocal from './components/Views/OrdersShipmentLocal/OrdersShipmentLocal.jsx';
 
 const Layout = ({ children }) => {
   const location = useLocation();
@@ -53,9 +54,12 @@ function App() {
                 <Route path='/admin/productos/crear' element={<CreateProduct />} />
                 <Route path='/admin/productos/editar/:productId' element={<EditProduct />} />
                 
-                {/* CATEGORES */}
+                {/* CATEGORIES */}
                 <Route path='/admin/categorias' element={<Categories />} />
                 <Route path='/admin/categorias/crear' element={<CreateCategorie />} />
+
+                {/* OrdersShipmentLocal */}
+                <Route path='/admin/ordenes-retiro' element={<OrdersShipmentLocal />}/>
 
                 {/* SHIPMENTS LOCAL */}
                 <Route path='/admin/retiro-en-sucursal' element={<RetiroSucursal/>}/>

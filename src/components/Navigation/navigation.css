@@ -28,6 +28,8 @@
 
 .navLink{
     height: 40px;
+    background-color: transparent;
+    transition: all .3s ease;
 }
 
 .navLink:hover{

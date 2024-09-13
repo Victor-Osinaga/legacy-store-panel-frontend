@@ -8,9 +8,9 @@ if(config.env == 'dev'){
     back_panel_url = config.back_panel_url_prod
 }
 
-async function deleteShipmentLocalById(shipmentLocalId) {
+async function deleteShipmentDeliveryById(shipmentDeliveryId) {
     try {
-        const response = await fetch(`${back_panel_url}/shipment-local/${shipmentLocalId}`, {
+        const response = await fetch(`${back_panel_url}/shipment-delivery/${shipmentDeliveryId}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json'
@@ -19,7 +19,7 @@ async function deleteShipmentLocalById(shipmentLocalId) {
         });
 
         const result = await response.json();
-        console.log('SUCURSAL eliminado por id:', result);
+        console.log('PROVINCIA eliminado por id:', result);
 
         if (!response.ok) {
             throw {msg: result.data}
@@ -35,4 +35,4 @@ async function deleteShipmentLocalById(shipmentLocalId) {
     }
 }
 
-export default deleteShipmentLocalById;
+export default deleteShipmentDeliveryById;
