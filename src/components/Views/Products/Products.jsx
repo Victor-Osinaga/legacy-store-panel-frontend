@@ -128,7 +128,7 @@ export default function Products() {
             const products = await getProducts()
             const productsWithSelection = selectAll(false, products);
             setProducts(productsWithSelection);
-            console.log("nuevos productos desde deleteById", productsWithSelection);
+            console.log("nuevos productos desde :  deleteById", productsWithSelection);
             return toastSuccess(<>Producto eliminado: <strong>'{productName}'</strong> - cantidad: <strong>'{result.data.deletedCount}'</strong></>, toastId)
         } catch (error) {
             console.log(error);

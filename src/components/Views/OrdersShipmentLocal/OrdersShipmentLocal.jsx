@@ -156,6 +156,8 @@ import EditIcon from "../../Icons/EditIcon/EditIcon"
 import DeleteIcon from "../../Icons/DeleteIcon/DeleteIcon"
 import useHandlerTable from "../../../customHooks/useHandlerTable"
 import getOrdersLocal from "../../../services/orders/getOrdersLocal.js"
+import ModalDelete from "../../Fragments/ModalDelete/ModalDelete.jsx"
+import deleteOrderById from "../../../services/orders/deleteOrderById.js"
 
 export default function OrdersShipmentLocal() {
     const { truncarTexto, showItemActions, dismissToast, toastLoading, toastSuccess, toastError } = useStoreContext()
@@ -166,10 +168,12 @@ export default function OrdersShipmentLocal() {
 
     const [loading, setLoading] = useState(false)
 
+    const [modalInfo, setModalInfo] = useState({ showModal: false, id: null, name: '' });
+
     useEffect(() => {
         setLoading(true)
         fetchOrders()
-        return() => {
+        return () => {
             dismissToast()
         }
     }, [])
@@ -177,7 +181,7 @@ export default function OrdersShipmentLocal() {
     const fetchOrders = async () => {
         const id = toastLoading("Cargando ordenes...")
         try {
-            
+
             const ordenes = await getOrdersLocal()
             const ordersWithSelection = ordenes.map(orden => ({ ...orden, selected: false }));
             setOrders(ordersWithSelection);
@@ -202,6 +206,35 @@ export default function OrdersShipmentLocal() {
         }
 
     }
+
+    const deleteOrderByIdComponent = async (orderId, name) => {
+        setModalInfo({ showModal: false, id: null, name: '' })
+        const toastId = toastLoading("Eliminando orden")
+        try {
+            const result = await deleteOrderById(orderId, name)
+            const orders = await getOrdersLocal()
+            const ordersWithSelection = orders.map(order => ({ ...order, selected: false }));
+            setOrders(ordersWithSelection);
+
+            console.log("nuevas ordenesLocal desde : deleteOrderById", ordersWithSelection);
+            return toastSuccess(<>Orden eliminada eliminado: <strong>'{name}'</strong> - cantidad: <strong>'{result.data.deletedCount}'</strong></>, toastId)
+        } catch (error) {
+            console.log(error);
+            toastError(
+                <div className='text-center'><p className='mb-0'><strong>{error.msg}</strong></p></div>,
+                toastId
+            )
+        }
+    }
+
+    const openModal = (id, name) => {
+        showItemActions(id)
+        setModalInfo({ showModal: true, id: id, name: name });
+    };
+
+    const closeModal = () => {
+        setModalInfo({ showModal: false, id: null, name: '' });
+    };
 
 
     return (
@@ -281,7 +314,7 @@ export default function OrdersShipmentLocal() {
                                                                 </button>
                                                             </Link>
                                                             <button
-                                                                // onClick={() => openModal(product.id, product.name)}
+                                                                onClick={() => openModal(order.id, `${order.client_info_contact.name} ${order.client_info_contact.surname}`)}
                                                                 className="btnActionMain bg-danger text-white fontSM-Custom">
                                                                 <DeleteIcon classList="text-white svgSize" />
                                                                 Eliminar
@@ -295,6 +328,14 @@ export default function OrdersShipmentLocal() {
                                 </tbody>
                             </table>
                         </div>
+
+                        {modalInfo.showModal && <ModalDelete
+                            id={modalInfo.id}
+                            name={modalInfo.name}
+                            closeModal={closeModal}
+                            functionDelete={deleteOrderByIdComponent}
+                            entity="order"
+                        />}
                     </>
                 ) : (
                     <>
