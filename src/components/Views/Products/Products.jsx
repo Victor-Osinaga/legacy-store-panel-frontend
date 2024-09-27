@@ -62,7 +62,6 @@ export default function Products() {
             )
             setLoading(true)
         }
-
     }
 
     const selectProduct = (productId) => {

@@ -72,7 +72,7 @@ export default function Header() {
                         </nav>
                     </div >
                 ) : (
-                    <header id='header' className='d-flex fontSM-Custom' style={{ backgroundImage: `linear-gradient(to right, #ffffff, ${configStore.primaryColorStore}) ` }}>
+                    <header id='header' className='d-flex fontSM-Custom' style={{ backgroundImage: `linear-gradient(to right, #ffffff, ${configStore.colors.primaryColorStore}) ` }}>
                         <nav className="container-fluid px-2 px-md-5">
                             <ul className='d-flex align-items-center justify-content-between h-100'>
                                 <li className='navLogo'>

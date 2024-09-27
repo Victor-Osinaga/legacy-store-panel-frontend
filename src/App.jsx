@@ -19,6 +19,7 @@ import EditarSucursal from './components/Views/EditarSucursal/EditarSucursal.jsx
 import ShipmentsDelivery from './components/Views/ShipmentsDelivery/ShipmentsDelivery.jsx';
 import CreateShipmentDelivery from './components/Views/CreateShipmentDelivery/CreateShipmentDelivery.jsx';
 import OrdersShipmentLocal from './components/Views/OrdersShipmentLocal/OrdersShipmentLocal.jsx';
+import OrderDetail from './components/Views/OrderDetail/OrderDetail.jsx';
 
 const Layout = ({ children }) => {
   const location = useLocation();
@@ -60,17 +61,20 @@ function App() {
 
                 {/* OrdersShipmentLocal */}
                 <Route path='/admin/ordenes-retiro' element={<OrdersShipmentLocal />}/>
+                <Route path='/admin/ordenes-retiro/ver/:orderId' element={<OrderDetail />}/>
 
                 {/* SHIPMENTS LOCAL */}
                 <Route path='/admin/retiro-en-sucursal' element={<RetiroSucursal/>}/>
                 <Route path='/admin/retiro-en-sucursal/crear' element={<CrearSucursal/>}/>
                 <Route path='/admin/retiro-en-sucursal/editar/:shipmentLocalId' element={<EditarSucursal/>}/>
+                
 
                 {/* SHIPMENTS DELIVERY */}
                 <Route path='/admin/envios' element={<ShipmentsDelivery/>}/>
                 <Route path='/admin/envios/crear' element={<CreateShipmentDelivery/>}/>
-                {/* SETTINGS */}
-                <Route path='/admin/ajustes/tienda' element={<StoreConfigForm />} />
+
+                {/* SETTINGS STORE*/}
+                <Route path='/admin/ajustes/tienda/colores' element={<StoreConfigForm />} />
               </Route>
             </Routes>
           </Layout>

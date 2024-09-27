@@ -1,6 +1,5 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import toast from 'react-hot-toast';
-import Cookies from "js-cookie";
 import getClient from "../services/auth/getClient.js";
 import verifySubdomain from "../services/auth/verifySubdomain.js";
 import verifyToken from "../services/auth/verifyToken.js";
@@ -196,8 +195,16 @@ export function StoreContextProvider({ children }) {
         return texto;
     }
 
+    const calcPriceFinal = (products, costShipment) => {
+        let total = 0;
+        products.forEach(itemCart => {
+            total += itemCart.quantity * itemCart.price
+        })
+        return total + costShipment
+    }
+
     return (
-        <Provider value={{ setConfigStore, loadingConfigStore, configStore, selectAll, showItemActions, truncarTexto, toastLoading, toastSuccess, toastError, dismissToast, setUser, user, setIsAuthenticated, isAuthenticated }}>
+        <Provider value={{ setConfigStore, calcPriceFinal, loadingConfigStore, configStore, selectAll, showItemActions, truncarTexto, toastLoading, toastSuccess, toastError, dismissToast, setUser, user, setIsAuthenticated, isAuthenticated }}>
             {children}
         </Provider>
     )

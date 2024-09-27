@@ -146,6 +146,7 @@
 //     )
 // }
 
+import "./orders.css"
 import { useEffect, useState } from "react"
 import ActionsInGroup from "../../Fragments/ActionsInGroup/ActionsInGroup"
 import NoItems from "../../Fragments/NoItems/NoItems"
@@ -158,6 +159,7 @@ import useHandlerTable from "../../../customHooks/useHandlerTable"
 import getOrdersLocal from "../../../services/orders/getOrdersLocal.js"
 import ModalDelete from "../../Fragments/ModalDelete/ModalDelete.jsx"
 import deleteOrderById from "../../../services/orders/deleteOrderById.js"
+import EyeIcon from "../../Icons/EyeIcon/EyeIcon.jsx"
 
 export default function OrdersShipmentLocal() {
     const { truncarTexto, showItemActions, dismissToast, toastLoading, toastSuccess, toastError } = useStoreContext()
@@ -268,7 +270,9 @@ export default function OrdersShipmentLocal() {
                                                 onChange={selectAllItems}
                                             />
                                         </th>
+                                        <th className='thSpacingMain'><span>ID</span></th>
                                         <th className='thSpacingMain'><span>CLIENTE</span></th>
+                                        <th className='thSpacingMain'><span>ENVÍO/RETIRO</span></th>
                                         <th className='thSpacingMain'><span>FECHA</span></th>
                                         <th className='thSpacingMain'><span>TOTAL</span></th>
                                         <th className='thSpacingMain'><span>ESTADO</span></th>
@@ -286,15 +290,25 @@ export default function OrdersShipmentLocal() {
                                                     onChange={() => select(order.id)}
                                                 />
                                             </td>
-                                            <td className="fontSM-Custom tdSpacingMain">
-                                                <Link className="trBodyLinkNameMain" to={`/admin`}>
-                                                    {/* <img className='productImgMain' src={product.image} alt={product.name} /> */}
-                                                    <span title={`${order.client_info_contact.name} ${order.client_info_contact.surname}`}>{truncarTexto(`${order.client_info_contact.name} ${order.client_info_contact.surname}`)}</span>
+                                            <td className="fontSM-Custom textGray-Custom tdSpacingMain">
+                                                <Link
+                                                    className="trBodyLinkNameMain"
+                                                    to={`/admin/ordenes-retiro/ver/${order.id}`}
+                                                    state={{ order }}
+                                                >
+                                                    <span title={order.id}>{truncarTexto(order.id)}</span>
                                                 </Link>
                                             </td>
+                                            <td className="fontSM-Custom tdSpacingMain">
+                                                {/* <Link className="trBodyLinkNameMain" to={`/admin`}> */}
+                                                    {/* <img className='productImgMain' src={product.image} alt={product.name} /> */}
+                                                    <span className="text-capitalize" title={`${order.client_info_contact.name} ${order.client_info_contact.surname}`}>{truncarTexto(`${order.client_info_contact.name} ${order.client_info_contact.surname}`)}</span>
+                                                {/* </Link> */}
+                                            </td>
+                                            <td className="fontSM-Custom textGray-Custom tdSpacingMain"><span>{order.shipment_info.shipment_type == "shipment_local" ? "Retiro" : "Envio"}</span></td>
                                             <td className="fontSM-Custom textGray-Custom tdSpacingMain"><span>{order.timestamp}</span></td>
-                                            <td className="fontSM-Custom tdSpacingMain text-success"><span>$ {order.total_paid_amount}</span></td>
-                                            <td className="fontSM-Custom tdSpacingMain textGray-Custom"><span>{order.order_status}</span></td>
+                                            <td className="fontSM-Custom tdSpacingMain text-success"><span>${order.total_paid_amount}</span></td>
+                                            <td className="fontSM-Custom tdSpacingMain textGray-Custom text-capitalize"><span data-status={order.order_status} className="status_order">{order.order_status}</span></td>
                                             <td className='fontSM-Custom tdSpacingMain position-relative'>
                                                 {/* poner el id a este contenedor para poder agregarle el mostrar more actions */}
                                                 <div className='d-flex '>
@@ -307,10 +321,37 @@ export default function OrdersShipmentLocal() {
                                                     </button>
                                                     <ul id={order.id} className={`submenuPruebaMain shadow-lg ${index === entity.length - 1 && index !== 0 ? '' : ''}`}>
                                                         <li className='btnsMoreActionsContainerMain'>
-                                                            <Link /*to={`/admin/productos/editar/${product.id}`}*/>
+                                                            {/* <Link >
                                                                 <button className="btnActionMain textGray700-Custom">
                                                                     <EditIcon></EditIcon>
-                                                                    Editar
+                                                                    Cambiar a 'pendiente'
+                                                                </button>
+                                                            </Link>
+                                                            <Link >
+                                                                <button className="btnActionMain textGray700-Custom">
+                                                                    <EditIcon></EditIcon>
+                                                                    Cambiar a 'procesando'
+                                                                </button>
+                                                            </Link>
+                                                            <Link >
+                                                                <button className="btnActionMain textGray700-Custom">
+                                                                    <EditIcon></EditIcon>
+                                                                    Cambiar a 'listo'
+                                                                </button>
+                                                            </Link>
+                                                            <Link >
+                                                                <button className="btnActionMain textGray700-Custom">
+                                                                    <EditIcon></EditIcon>
+                                                                    Cambiar a 'retirado'
+                                                                </button>
+                                                            </Link> */}
+                                                            <Link
+                                                                to={`/admin/ordenes-retiro/ver/${order.id}`}
+                                                                state={{ order }}
+                                                            >
+                                                                <button className="btnActionMain textGray700-Custom">
+                                                                    <EyeIcon />
+                                                                    Ver/editar
                                                                 </button>
                                                             </Link>
                                                             <button

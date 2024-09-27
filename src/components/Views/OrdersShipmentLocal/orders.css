@@ -114,3 +114,36 @@
     background-color: var(--pickedUpColor);
     color: white;
   } */
+
+  .status_order{
+    /* background-color: #ffc10763; */
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: .75rem;
+  }
+
+  /* Estilos condicionales basados en el valor de data-status */
+.status_order[data-status="pendiente"] {
+  background-color: rgba(255, 193, 7, .5); /* Amarillo */
+  color: #000;
+  color: rgba(133, 77, 14, 1);
+}
+
+.status_order[data-status="procesado"] {
+  background-color: rgba(23, 163, 184, .5); /* Azul */
+  color: #fff;
+  color: rgba(23, 163, 184, 1);
+}
+
+.status_order[data-status="listo"] {
+  background-color: rgba(40, 167, 70, .5); /* Verde */
+  color: #fff;
+  color: rgba(40, 167, 70, 1);
+}
+
+.status_order[data-status="enviado/retirado"] {
+  background-color: rgba(108, 117, 125, .5); /* Gris */
+  color: #fff;
+  color: rgba(108, 117, 125, 1);
+}

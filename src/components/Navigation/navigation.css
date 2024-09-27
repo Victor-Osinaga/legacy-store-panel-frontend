@@ -43,6 +43,10 @@
     height: 100%;
 }
 
+.submenuAjustes a {
+    padding-left: 40px;
+}
+
 
 
 @media (max-width: 1000px) {

@@ -2,9 +2,9 @@ import config from "../../../config.js";
 
 let back_legacy_admin_url;
 
-if(config.env == 'dev'){
+if (config.env == 'dev') {
     back_legacy_admin_url = config.back_legacy_admin_url_dev
-}else{
+} else {
     back_legacy_admin_url = config.back_legacy_admin_url_prod
 }
 
@@ -24,14 +24,14 @@ async function verifyToken(sub) {
         // console.log("desde verifyToken service", result);
         // console.log("verifyToken : services", result.data);
 
-        if(!response.ok){
-            throw {msg: result.data}
+        if (!response.ok) {
+            throw { msg: result.data }
         }
-        
+
         return result.data
     } catch (error) {
         if (error.message == 'Failed to fetch') {
-            throw {msg: 'Error al conectar con el servidor'}
+            throw { msg: 'Error al conectar con el servidor' }
         }
         throw error
     }
