@@ -245,19 +245,12 @@ export default function Categories() {
                                                         </button>
                                                         <ul id={cat.id} className={`submenuPruebaMain shadow-lg ${index === cat.length - 1 && index !== 0 ? '' : ''}`}>
                                                             <li className='btnsMoreActionsContainerMain'>
-                                                                <Link to={`/admin/categorias/editar/${cat.id}`}>
+                                                                {/* <Link to={`/admin/categorias/editar/${cat.id}`}>
                                                                     <button className="btnActionMain textGray700-Custom">
                                                                         <EditIcon />
                                                                         Editar
                                                                     </button>
-                                                                </Link>
-                                                                {/* <button
-                                                                    onClick={() => openModal(cat.id, cat.name)}
-                                                                    className="btnActionMain textGray700-Custom"
-                                                                >
-                                                                    <DeleteIcon classList="textGray-Custom svgSize"/>
-                                                                    Eliminar
-                                                                </button> */}
+                                                                </Link> */}
                                                                 <button
                                                                     onClick={() => openModal(cat.id, cat.name)}
                                                                     className="btnActionMain bg-danger text-white fontSM-Custom"
