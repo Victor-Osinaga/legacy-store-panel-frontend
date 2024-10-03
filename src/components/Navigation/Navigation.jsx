@@ -215,6 +215,17 @@ export default function Navigation() {
                                     <span className={`ms-3`}>Colores</span>
                                 </Link>
                             </li>
+                            <li className={`w-100 navLink ${getLinkClassName('footer')}`}>
+                                <Link className='' to={'/admin/ajustes/tienda/footer'} onClick={() => handleSectionClick('footer')}>
+                                    {/* <svg className="svgSize text-gray" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z"></path>
+                                    </svg> */}
+                                    <svg className='svgSize text-gray' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" /><path d="M4 15l16 0" />
+                                    </svg>
+                                    <span className={`ms-3`}>Pie de página</span>
+                                </Link>
+                            </li>
                             {/* <li className={`w-100 navLink ${getLinkClassName('panel')}`}>
                                 <Link to={'/admin/ajustes/panel'} onClick={() => handleSectionClick('panel')}>
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="svgSize text-gray">

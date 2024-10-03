@@ -20,6 +20,7 @@ import ShipmentsDelivery from './components/Views/ShipmentsDelivery/ShipmentsDel
 import CreateShipmentDelivery from './components/Views/CreateShipmentDelivery/CreateShipmentDelivery.jsx';
 import OrdersShipmentLocal from './components/Views/OrdersShipmentLocal/OrdersShipmentLocal.jsx';
 import OrderDetail from './components/Views/OrderDetail/OrderDetail.jsx';
+import FooterConfig from './components/Views/FooterConfig/FooterConfig.jsx';
 
 const Layout = ({ children }) => {
   const location = useLocation();
@@ -75,6 +76,8 @@ function App() {
 
                 {/* SETTINGS STORE*/}
                 <Route path='/admin/ajustes/tienda/colores' element={<StoreConfigForm />} />
+                {/* SETTINGS FOOTER */}
+                <Route path='/admin/ajustes/tienda/footer' element={< FooterConfig/>}/>
               </Route>
             </Routes>
           </Layout>

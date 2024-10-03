@@ -108,8 +108,8 @@ export default function OrderDetail() {
 
                                 if (!validate) return "Valor no admitido"
 
-                                if(order.order_status == v){
-                                    return `La orden ya se encuentra en estado ${order.order_status}` 
+                                if (order.order_status == v) {
+                                    return `La orden ya se encuentra en estado ${order.order_status}`
                                 }
 
                             }
@@ -202,10 +202,19 @@ export default function OrderDetail() {
                                                 <p className='m-0' style={{ fontWeight: 'bold' }}>{item.name}</p>
                                                 <div style={{ fontSize: '.75rem', display: 'flex', flexDirection: 'column', alignItems: 'start', gap: '0rem' }}>
 
-                                                    <p className="m-0">Talla: {item.selected_size_name}, Color: {item.selected_color_name}</p>
-                                                    {/* <div>
-                                            <p className="m-0">Color: {item.selectedColorName}</p>
-                                        </div> */}
+                                                    <p className="m-0 d-flex align-items-center">
+                                                        Talla: {item.selected_size_name}, Color: {item.selected_color_name} 
+                                                        <span
+                                                        className="rounded ms-1"
+                                                        style={{
+                                                            width: "10px",
+                                                            height: "10px",
+                                                            backgroundColor: `${item.selected_color_value_hexa}`,
+                                                            display: "flex",
+                                                            // border: "1px solid white"
+                                                        }}
+                                                    ></span></p>
+
                                                     <span className="m-0">Cantidad: {item.quantity}</span>
                                                     <span className="m-0">Precio: ${item.price}</span>
                                                 </div>

@@ -124,10 +124,11 @@ export default function StoreConfigForm() {
                                         </div>
                                     </div> */}
 
-                                    {/* primaryColorStore */}
+
                                     <div className="row mb-3 gap-3">
-                                        <h4 className='col-12 text-center fw-semibold textGray-Custom fontSM-Custom'>COLORES</h4>
+                                        <h4 className='col-12 text-center fw-semibold textGray-Custom fontSM-Custom'>COLORES PRINCIPALES</h4>
                                         <p className="textGray-Custom fontSM-Custom"><span className="fw-bold">Tip:</span> El color de texto se ajustará automaticamente a color blanco o negro dependiendo el color de fondo que elijas (mejora la lectura)</p>
+                                        {/* PRIMARYCOLORSTORE */}
                                         <div className='row rounded border col-12 p-0 py-2 mx-auto'>
                                             <div className='d-flex flex-column'>
                                                 <label htmlFor="colors.primaryColorStore" className='d-flex mb-1 fw-semibold textGray-Custom fontSM-Custom'>
@@ -153,7 +154,7 @@ export default function StoreConfigForm() {
                                                     <div
                                                         className="btn btn-sm btn-outline-secondary rounded" title="reset"
                                                         onClick={() => {
-                                                            setValue("colors.primaryColorStore", "#1877f2")
+                                                            setValue("colors.primaryColorStore", "#084c61")
                                                         }}
                                                     >
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -171,10 +172,9 @@ export default function StoreConfigForm() {
                                                 </div>
                                                 {errors.colors?.primaryColorStore && <span className='mt-1 fontXS-Custom text-danger'>{errors.colors?.primaryColorStore.message} <span className='fw-semibold'>*</span></span>}
                                             </div>
-
-
                                         </div>
 
+                                        {/* secondaryColorStore */}
                                         <div className="row rounded border col-12 p-0 py-2 mx-auto">
                                             <div className='d-flex flex-column'>
                                                 <label htmlFor="colors.secondaryColorStore" className='d-flex mb-1 fw-semibold textGray-Custom fontSM-Custom'>
@@ -220,6 +220,7 @@ export default function StoreConfigForm() {
                                             </div>
                                         </div>
 
+                                        {/* tertiaryColorStore */}
                                         <div className="row rounded border col-12 p-0 py-2 mx-auto">
                                             <div className='d-flex flex-column'>
                                                 <label htmlFor="colors.tertiaryColorStore" className='d-flex mb-1 fw-semibold textGray-Custom fontSM-Custom'>
