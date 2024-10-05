@@ -79,20 +79,20 @@ export default function Header() {
                                     {/* {console.log(windowWidth)} */}
                                     {windowWidth < 1000 ? (
                                         <>
-                                        <div id='header-burguer' className='header-burguer rounded' onClick={handleScrollable}>
-                                            <svg xmlns="http://www.w3.org/2000/svg" className="text-gray svgSize" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                                            </svg>
-                                        </div>
-                                        <div className='h-100 d-flex flex-column align-items-center justify-content-center ms-2'>
-                                            <img className="h-100 header-logo" src={viteLogo} alt="legacy software logo" title='Legacy Software'/>
-                                            <span className='title_company'>LEGACY</span>
-                                        </div>
+                                            <div id='header-burguer' className='header-burguer rounded' onClick={handleScrollable}>
+                                                <svg xmlns="http://www.w3.org/2000/svg" className="text-gray svgSize" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                                                </svg>
+                                            </div>
+                                            <div className='h-100 d-flex flex-column align-items-center justify-content-center ms-2'>
+                                                <img className="h-100 header-logo" src={viteLogo} alt="legacy software logo" title='Legacy Software' />
+                                                <span className='title_company'>LEGACY</span>
+                                            </div>
                                         </>
-                                        
+
                                     ) : (
                                         <div className='h-100 d-flex flex-column align-items-center justify-content-center'>
-                                            <img className="h-100 header-logo" src={viteLogo} alt="legacy software logo" title='Legacy Software'/>
+                                            <img className="h-100 header-logo" src={viteLogo} alt="legacy software logo" title='Legacy Software' />
                                             <span className='title_company'>LEGACY</span>
                                         </div>
                                     )
@@ -111,41 +111,43 @@ export default function Header() {
                                         {/* LLEVAR A UN COMPONENTE APARTE */}
                                         <ul id='asd1' className="submenuPruebaMain shadow-lg ">
                                             <li className="btnsMoreActionsContainerMain">
-                                                <Link to={`/#`}>
+                                                <Link to={`/admin/productos/crear`} onClick={() => handleClick('asd1')}>
                                                     <button className="btnActionMain fontSM-Custom textGray700-Custom">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="textGray-Custom svgSize">
-                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="text-gray svgSize">
+                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"></path>
                                                         </svg>
-                                                        Nueva Factura
+                                                        Nuevo Producto
                                                     </button>
                                                 </Link>
-                                                <Link to={`/#`}>
+                                                <Link to={`/admin/categorias/crear`} onClick={() => handleClick('asd1')}>
                                                     <button className="btnActionMain fontSM-Custom textGray700-Custom">
 
-                                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="textGray-Custom svgSize">
-                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+                                                        <svg className="text-gray svgSize" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                                            <g fill="none" fillRule="evenodd" stroke="#200E32" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" transform="translate(2 2)">
+                                                                <path d="M14.2855094 9.76996262e-15L17.5521036 9.76996262e-15C18.9036211 9.76996262e-15 20 1.10589743 20 2.47018211L20 5.76410278C20 7.12735391 18.9036211 8.23428489 17.5521036 8.23428489L14.2855094 8.23428489C12.9329672 8.23428489 11.8365883 7.12735391 11.8365883 5.76410278L11.8365883 2.47018211C11.8365883 1.10589743 12.9329672 9.76996262e-15 14.2855094 9.76996262e-15zM2.44892104 9.76996262e-15L5.71449064 9.76996262e-15C7.06703281 9.76996262e-15 8.16341169 1.10589743 8.16341169 2.47018211L8.16341169 5.76410278C8.16341169 7.12735391 7.06703281 8.23428489 5.71449064 8.23428489L2.44892104 8.23428489C1.09637888 8.23428489 3.55271368e-15 7.12735391 3.55271368e-15 5.76410278L3.55271368e-15 2.47018211C3.55271368e-15 1.10589743 1.09637888 9.76996262e-15 2.44892104 9.76996262e-15zM2.44892104 11.7657151L5.71449064 11.7657151C7.06703281 11.7657151 8.16341169 12.8716125 8.16341169 14.2369308L8.16341169 17.5298179C8.16341169 18.8941026 7.06703281 20 5.71449064 20L2.44892104 20C1.09637888 20 3.55271368e-15 18.8941026 3.55271368e-15 17.5298179L3.55271368e-15 14.2369308C3.55271368e-15 12.8716125 1.09637888 11.7657151 2.44892104 11.7657151zM14.2855094 11.7657151L17.5521036 11.7657151C18.9036211 11.7657151 20 12.8716125 20 14.2369308L20 17.5298179C20 18.8941026 18.9036211 20 17.5521036 20L14.2855094 20C12.9329672 20 11.8365883 18.8941026 11.8365883 17.5298179L11.8365883 14.2369308C11.8365883 12.8716125 12.9329672 11.7657151 14.2855094 11.7657151z"></path>
+                                                            </g>
                                                         </svg>
-                                                        Nuevo Presupuesto
+                                                        Nueva Categoria
                                                     </button>
                                                 </Link>
-                                                <Link to={`/admin/clientes/crear`}>
+                                                {/* <Link to={`/admin/clientes/crear`}>
                                                     <button className="btnActionMain fontSM-Custom textGray700-Custom">
                                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="textGray-Custom svgSize">
                                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
                                                         </svg>
                                                         Nuevo Cliente
                                                     </button>
-                                                </Link>
+                                                </Link> */}
                                             </li>
                                         </ul>
                                     </div>
 
-                                    <div className='d-none d-md-flex align-items-center h-100 bg-white px-2 rounded'>
+                                    {/* <div className='d-none d-md-flex align-items-center h-100 bg-white px-2 rounded'>
                                         <svg className='svgSize text-gray' xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                                         </svg>
                                         <input className='inputSearch rounded ml-2' placeholder='Buscar...' type="text" name="search" id="" />
-                                    </div>
+                                    </div> */}
                                     <div className='d-none d-md-flex align-items-center justify-content-center rounded santaClaraInc fw-bold h-100 text-white pe-3 ps-3'>
                                         <span>{user.proyectName}</span>
                                     </div>
