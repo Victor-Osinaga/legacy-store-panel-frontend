@@ -73,6 +73,17 @@ html {
   --customFontSizeSm: .875rem;
 }
 
+.bgGrayDark {
+  background-color: var(--bgGrayDark);
+}
+/* .form-control:focus{
+  background-color: var(--bgGrayDark);
+} */
+
+.bgGrayMedium {
+  background-color: var(--bgGrayMedium);
+}
+
 .fontSM-Custom {
   font-size: var(--customFontSizeSm);
 }

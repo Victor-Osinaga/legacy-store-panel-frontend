@@ -1,5 +1,5 @@
 import './formLogin.css'
-import logo from '../../../assets/react.svg'
+import logo from '/public/logolegacy.svg'
 import { Link } from 'react-router-dom'
 import useStoreContext from '../../../provider/storeProvider.jsx';
 import { useForm } from 'react-hook-form';
@@ -56,7 +56,7 @@ export default function FormLogin() {
                     ) : (
                         <h3 className='font-monospace'>LEGACY STORE</h3>
                     )}
-                    <img src={logo} className="img-fluid rounded p-3" alt="company logo" />
+                    <img src={logo} className="logo-login img-fluid rounded" alt="company logo" />
                 </div>
 
                 <div className="main_right col-12 col-md-7">
