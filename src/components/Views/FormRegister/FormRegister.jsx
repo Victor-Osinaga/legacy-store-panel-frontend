@@ -1,5 +1,5 @@
 import "./formRegister.css";
-import logo from "/public/logolegacy.svg";
+import legacyLogo from "/public/logolegacy.svg";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import useStoreContext from "../../../provider/storeProvider";
@@ -85,7 +85,7 @@ export default function FormRegister() {
           <div className="main_left flex-column justify-content-center align-items-center text-white">
             <h3 className="font-monospace">LEGACY STORE</h3>
             <img
-              src={logo}
+              src={legacyLogo}
               className="logo-login img-fluid rounded"
               alt="legacy company logo"
             />
