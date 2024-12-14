@@ -8,6 +8,7 @@ import useStoreContext from "../../provider/storeProvider";
 import DeleteIcon from "../Icons/DeleteIcon/DeleteIcon";
 import logoutClient from "../../services/auth/logoutClient.js";
 import config from "../../../config.js";
+import getTextColor from "../../utils/getTextColor.js";
 
 export default function Header() {
   const {
@@ -142,16 +143,20 @@ export default function Header() {
               </li>
               <li className="navUtils d-flex align-items-center justify-content-end">
                 <div className="d-none d-md-flex position-relative h-100 ">
-                  <button
+                  <div
                     onClick={() => handleClick("asd1")}
-                    className="containerPlusIcon h-100 rounded btnMoreActionsMain position-relative border border-0 bg-white"
+                    // className="containerPlusIcon rounded btnMoreActionsMain position-relative border border-0 bg-white"
+                    className="containerPlusIcon text-white rounded position-relative d-flex justify-content-center align-items-center"
+                    data-primary-color={getTextColor(
+                      configStore.colors.primaryColorStore
+                    )}
                   >
-                    <svg
+                    {/* <svg
                       className="svgSize text-gray"
                       xmlns="http://www.w3.org/2000/svg"
                       fill="none"
                       viewBox="0 0 24 24"
-                      strokeWidth={1.5}
+                      strokeWidth="2"
                       stroke="currentColor"
                     >
                       <path
@@ -159,8 +164,24 @@ export default function Header() {
                         strokeLinejoin="round"
                         d="M12 4.5v15m7.5-7.5h-15"
                       />
+                    </svg> */}
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="svgSize"
+                    >
+                      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                      <path d="M12 5l0 14" />
+                      <path d="M5 12l14 0" />
                     </svg>
-                  </button>
+                  </div>
 
                   {/* LLEVAR A UN COMPONENTE APARTE */}
                   <ul id="asd1" className="submenuPruebaMain shadow-lg ">
@@ -230,63 +251,73 @@ export default function Header() {
                                         </svg>
                                         <input className='inputSearch rounded ml-2' placeholder='Buscar...' type="text" name="search" id="" />
                                     </div> */}
-                <div className="d-none d-md-flex align-items-center justify-content-center rounded santaClaraInc fw-bold h-100 text-white pe-3 ps-3">
+                <div
+                  data-primary-color={getTextColor(
+                    configStore.colors.primaryColorStore
+                  )}
+                  className="d-none d-md-flex align-items-center justify-content-center rounded fw-bold h-100 text-white pe-3 ps-3"
+                >
                   <span>{user.proyectName}</span>
                 </div>
-                <div className="d-flex gap-1 align-items-center justify-content-center rounded santaClaraInc fw-bold h-100 text-white pe-3 ps-3">
+                <div
+                  className="d-flex gap-1 align-items-center justify-content-center rounded fw-bold h-100 text-white"
+                  data-primary-color={getTextColor(
+                    configStore.colors.primaryColorStore
+                  )}
+                >
                   {/* <span>Mi tienda</span> */}
                   {config.env == "dev" ? (
                     <>
-                      <svg
-                        className="svgSize text-gray"
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      >
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                        <path d="M3 21l18 0" />
-                        <path d="M3 7v1a3 3 0 0 0 6 0v-1m0 1a3 3 0 0 0 6 0v-1m0 1a3 3 0 0 0 6 0v-1h-18l2 -4h14l2 4" />
-                        <path d="M5 21l0 -10.15" />
-                        <path d="M19 21l0 -10.15" />
-                        <path d="M9 21v-4a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v4" />
-                      </svg>
                       <Link
-                        className="text-white"
+                        className="text-white pe-3 ps-3"
                         target="blank"
                         to={`http://${user.subdomain}-legacystore.localhost:5174/`}
                       >
-                        MI TIENDA
+                        <svg
+                          className="svgSize text-gray"
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        >
+                          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                          <path d="M3 21l18 0" />
+                          <path d="M3 7v1a3 3 0 0 0 6 0v-1m0 1a3 3 0 0 0 6 0v-1m0 1a3 3 0 0 0 6 0v-1h-18l2 -4h14l2 4" />
+                          <path d="M5 21l0 -10.15" />
+                          <path d="M19 21l0 -10.15" />
+                          <path d="M9 21v-4a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v4" />
+                        </svg>
+                        <span className="ms-1">Mi tienda</span>
                       </Link>
                     </>
                   ) : (
                     <>
-                      <svg
-                        className="svgSize text-gray"
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      >
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                        <path d="M3 21l18 0" />
-                        <path d="M3 7v1a3 3 0 0 0 6 0v-1m0 1a3 3 0 0 0 6 0v-1m0 1a3 3 0 0 0 6 0v-1h-18l2 -4h14l2 4" />
-                        <path d="M5 21l0 -10.15" />
-                        <path d="M19 21l0 -10.15" />
-                        <path d="M9 21v-4a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v4" />
-                      </svg>
                       <Link
-                        className="text-white"
+                        className="text-white pe-3 ps-3"
                         target="blank"
                         to={`https://${user.subdomain}-legacystore.vercel.app`}
                       >
-                        Mi tienda
+                        <svg
+                          className="svgSize text-gray"
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        >
+                          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                          <path d="M3 21l18 0" />
+                          <path d="M3 7v1a3 3 0 0 0 6 0v-1m0 1a3 3 0 0 0 6 0v-1m0 1a3 3 0 0 0 6 0v-1h-18l2 -4h14l2 4" />
+                          <path d="M5 21l0 -10.15" />
+                          <path d="M19 21l0 -10.15" />
+                          <path d="M9 21v-4a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v4" />
+                        </svg>
+                        <span className="ms-1">Mi tienda</span>
                       </Link>
                     </>
                   )}
@@ -297,12 +328,36 @@ export default function Header() {
 
                 {/* PROFILE SETTINGS */}
                 <div className="d-flex position-relative h-100">
-                  <img
+                  {/* <img
                     onClick={() => handleClick("profileSettings")}
-                    className="navImageUser rounded"
+                    className=" rounded"
                     src={avatar}
-                    alt="Avatar perfil"
-                  />
+                    alt="Avatar"
+                  /> */}
+                  <div
+                    className="avatar-user d-flex rounded text-white justify-content-center align-items-center"
+                    onClick={() => handleClick("profileSettings")}
+                    data-primary-color={getTextColor(
+                      configStore.colors.primaryColorStore
+                    )}
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="20"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="svgSize"
+                    >
+                      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                      <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" />
+                      <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+                    </svg>
+                  </div>
 
                   {/* LLEVAR A UN COMPONENTE APARTE */}
                   <ul
@@ -310,31 +365,77 @@ export default function Header() {
                     className="submenuPruebaMain shadow-lg"
                   >
                     <li className="btnsMoreActionsContainerMain">
-                      <Link to={`/#`}>
-                        <button className="btnActionMain fontSM-Custom textGray700-Custom">
-                          {/* <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="text-gray svgSize">
+                      {config.env == "dev" ? (
+                        <>
+                          <Link
+                            to={`http://${user.subdomain}-legacystore.localhost:5174/`}
+                            target="blank"
+                          >
+                            <button className="btnActionMain fontSM-Custom textGray700-Custom">
+                              {/* <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="text-gray svgSize">
                                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"></path>
                                                         </svg> */}
-                          <svg
-                            className="svgSize text-gray"
-                            xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
+                              <svg
+                                className="svgSize text-gray"
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                strokeWidth="2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                              >
+                                <path
+                                  stroke="none"
+                                  d="M0 0h24v24H0z"
+                                  fill="none"
+                                />
+                                <path d="M3 21l18 0" />
+                                <path d="M3 7v1a3 3 0 0 0 6 0v-1m0 1a3 3 0 0 0 6 0v-1m0 1a3 3 0 0 0 6 0v-1h-18l2 -4h14l2 4" />
+                                <path d="M5 21l0 -10.15" />
+                                <path d="M19 21l0 -10.15" />
+                                <path d="M9 21v-4a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v4" />
+                              </svg>
+                              Mi tienda
+                            </button>
+                          </Link>
+                        </>
+                      ) : (
+                        <>
+                          <Link
+                            to={`https://${user.subdomain}-legacystore.vercel.app`}
+                            target="blank"
                           >
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                            <path d="M3 21l18 0" />
-                            <path d="M3 7v1a3 3 0 0 0 6 0v-1m0 1a3 3 0 0 0 6 0v-1m0 1a3 3 0 0 0 6 0v-1h-18l2 -4h14l2 4" />
-                            <path d="M5 21l0 -10.15" />
-                            <path d="M19 21l0 -10.15" />
-                            <path d="M9 21v-4a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v4" />
-                          </svg>
-                          Mi tienda
-                        </button>
-                      </Link>
+                            <button className="btnActionMain fontSM-Custom textGray700-Custom">
+                              {/* <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="text-gray svgSize">
+                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"></path>
+                                                        </svg> */}
+                              <svg
+                                className="svgSize text-gray"
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                strokeWidth="2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                              >
+                                <path
+                                  stroke="none"
+                                  d="M0 0h24v24H0z"
+                                  fill="none"
+                                />
+                                <path d="M3 21l18 0" />
+                                <path d="M3 7v1a3 3 0 0 0 6 0v-1m0 1a3 3 0 0 0 6 0v-1m0 1a3 3 0 0 0 6 0v-1h-18l2 -4h14l2 4" />
+                                <path d="M5 21l0 -10.15" />
+                                <path d="M19 21l0 -10.15" />
+                                <path d="M9 21v-4a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v4" />
+                              </svg>
+                              Mi tienda
+                            </button>
+                          </Link>
+                        </>
+                      )}
                       <div onClick={logoutClientAuth}>
                         <button className="btnActionMain bg-danger text-white fontSM-Custom">
                           <DeleteIcon classList="text-white svgSize" />

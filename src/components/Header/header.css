@@ -1,72 +1,79 @@
 #header {
-    height: 4rem;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000;
+  height: 4rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
 }
 
-
-
 .inputSearch {
-    border: none;
+  border: none;
 }
 
 .inputSearch:focus-visible {
-    outline: none;
+  outline: none;
 }
 
-.santaClaraInc {
-    /* font-weight: 600; */
-    background-color: rgba(255, 255, 255, 0.2);
-    transition: all .3s ease;
+/* DEFINE EL BACKGROUND SEGUND EL COLOR PRIMARIO DE LA TIENDA / ESTO ARREGLA PARA CUANDO ELIGE UN COLOR BLANCO*/
+[data-primary-color="#FFFFFF"] {
+  background-color: rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease-in-out;
+}
+[data-primary-color="#FFFFFF"]:hover {
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
-.santaClaraInc:hover {
-    cursor: pointer;
-    background-color: rgba(255, 255, 255, 0.1);
+[data-primary-color="#000000"] {
+  background-color: rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease-in-out;
+}
+[data-primary-color="#000000"]:hover {
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.2);
 }
 
 .btnLogout {
-    font-weight: 600;
-    /* background-color: rgba(255, 255, 255, 0.2); */
+  font-weight: 600;
+  /* background-color: rgba(255, 255, 255, 0.2); */
 }
 
 .navLogo {
-    /* outline: 1px solid red; */
-    display: flex;
-    align-items: center;
-    height: 36px;
-    flex-grow: 3;
+  /* outline: 1px solid red; */
+  display: flex;
+  align-items: center;
+  height: 36px;
+  flex-grow: 3;
 }
 
 .navUtils {
-    height: 36px;
-    flex-grow: 1;
-    gap: 10px;
+  height: 36px;
+  flex-grow: 1;
+  gap: 10px;
 }
 
-.navImageUser {
-    height: 36px;
-    width: 36px;
+.avatar-user {
+  height: 36px;
+  width: 36px;
 }
 
-.navImageUser:hover {
-    cursor: pointer;
+.avatar-user:hover {
+  cursor: pointer;
 }
 
 .containerPlusIcon {
-    width: 36px;
-    position: relative;
+  width: 36px;
+  height: 36px;
+  position: relative;
 }
 
 .containerPlusIcon:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .submenuPlusIcon {
-    width: 20px;
+  width: 20px;
 }
 
 /* .custom-gradient {
@@ -74,56 +81,52 @@
 } */
 
 .header-burguer {
-    background-color: #ffffff;
-    /* display: none; */
-    padding: 5px 10px;
-    transition: all .5s ease;
+  background-color: #ffffff;
+  /* display: none; */
+  padding: 5px 10px;
+  transition: all 0.5s ease;
 }
 
 .header-burguer:hover {
-    /* outline: 1px solid gray; */
-    /* color: red; */
-    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15);
-    cursor: pointer;
+  /* outline: 1px solid gray; */
+  /* color: red; */
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  cursor: pointer;
 }
 
-.header-logo{
-    width: 25px;
+.header-logo {
+  width: 25px;
 }
-.header-logo:hover{
-    cursor: pointer;
-}
-
-.title_company{
-    font-size: .7rem;
-    font-weight: 600;
-    letter-spacing: 0.1rem;
+.header-logo:hover {
+  cursor: pointer;
 }
 
-
-
+.title_company {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.1rem;
+}
 
 @media (max-width: 1000px) {
+  /* HEADER COMPONENT */
+  #header {
+    height: var(--navHeight);
+  }
 
-    /* HEADER COMPONENT */
-    #header {
-        height: var(--navHeight);
-    }
+  .navLogo {
+    height: 32px;
+  }
 
-    .navLogo {
-        height: 32px;
-    }
+  .navUtils {
+    height: 32px;
+  }
 
-    .navUtils {
-        height: 32px;
-    }
+  .avatar-user {
+    height: 32px;
+    width: 32px;
+  }
 
-    .navImageUser {
-        height: 32px;
-        width: 32px;
-    }
-
-    .containerPlusIcon {
-        width: 32px;
-    }
+  .containerPlusIcon {
+    width: 32px;
+  }
 }

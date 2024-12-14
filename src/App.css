@@ -1,6 +1,6 @@
 @font-face {
-  font-family: 'Poppins';
-  src: url('/fonts/Poppins/Poppins-Regular.ttf') format('truetype');
+  font-family: "Poppins";
+  src: url("/fonts/Poppins/Poppins-Regular.ttf") format("truetype");
 }
 
 html {
@@ -11,28 +11,28 @@ html {
 
 /* Personaliza el ancho y el color de la scrollbar */
 ::-webkit-scrollbar {
-  width: 13px;  /* Ancho de la scrollbar */
+  width: 13px; /* Ancho de la scrollbar */
   height: 13px;
 }
 
 /* Estilo de la pista (track) de la scrollbar */
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;  /* Color de fondo de la pista */
+  background: #f1f1f1; /* Color de fondo de la pista */
   border-radius: 10px;
 }
 
 /* Estilo del thumb de la scrollbar */
 ::-webkit-scrollbar-thumb {
-  background-color: #afafaf;  /* Color del thumb (la parte desplazable) */
-  border-radius: 10px;     /* Bordes redondeados del thumb */
+  background-color: #afafaf; /* Color del thumb (la parte desplazable) */
+  border-radius: 10px; /* Bordes redondeados del thumb */
   /* Border tiene que ser el mismo que en background del track */
-  border: 3px solid #f1f1f1;  /* Bordes del thumb */
+  border: 3px solid #f1f1f1; /* Bordes del thumb */
   transition: background-color 3s ease;
 }
 
 /* Cambia el color del thumb cuando está siendo activamente desplazado */
 ::-webkit-scrollbar-thumb:hover {
-  background-color: #8e8e8e;  /* Color del thumb al pasar el mouse */
+  background-color: #8e8e8e; /* Color del thumb al pasar el mouse */
   cursor: pointer;
 }
 
@@ -41,12 +41,12 @@ html {
   --neonColor: #08fdd8;
   --neonColor2: rgba(88, 196, 220, 1);
 
-  --pantoneMedium: rgb(14,78,103);
-  --pantoneLight: rgb(0,110,127);
-  --pantoneDark: rgb(0,83,102);
+  --pantoneMedium: rgb(14, 78, 103);
+  --pantoneLight: rgb(0, 110, 127);
+  --pantoneDark: rgb(0, 83, 102);
 
-  --bgGrayDark: #23252F;
-  --bgGrayMedium: #2B2D38;
+  --bgGrayDark: #23252f;
+  --bgGrayMedium: #2b2d38;
   --bgGrayLight: #555b5d; /* test */
 
   --bgBlueDark: #073f51; /* test */
@@ -54,7 +54,7 @@ html {
   --bgBlueLight: #095b73;
 
   --bgReactBlueDark: rgb(88, 196, 220, 1);
-  --bgReactBlueMedium: rgba(88, 175, 223, .1);
+  --bgReactBlueMedium: rgba(88, 175, 223, 0.1);
 
   --bgContainer: rgb(241, 245, 249);
 
@@ -69,8 +69,8 @@ html {
   --navHeightMD: 64px;
 
   /* FONT SIZES */
-  --customFontSizeXs: .75rem;
-  --customFontSizeSm: .875rem;
+  --customFontSizeXs: 0.75rem;
+  --customFontSizeSm: 0.875rem;
 }
 
 .bgGrayDark {
@@ -101,13 +101,13 @@ html {
 }
 
 .textGray300-Custom {
-  color: var(--textGray300Custom)
+  color: var(--textGray300Custom);
 }
 
 body {
   position: relative;
   background-color: white;
-  font-family: 'Poppins', 'Montserrat', sans-serif;
+  font-family: "Poppins", "Montserrat", sans-serif;
   /* color: black; */
 }
 
@@ -136,11 +136,11 @@ body {
 
 .tableHeadTitlesMain {
   font-weight: 500;
-  letter-spacing: .05rem;
+  letter-spacing: 0.05rem;
   line-height: 1rem;
-  -webkit-box-shadow: 0px 3px 6px -1px rgba(148, 148, 148, .5);
-  -moz-box-shadow: 0px 3px 6px -1px rgba(148, 148, 148, .5);
-  box-shadow: 0px 3px 6px -1px rgba(148, 148, 148, .5);
+  -webkit-box-shadow: 0px 3px 6px -1px rgba(148, 148, 148, 0.5);
+  -moz-box-shadow: 0px 3px 6px -1px rgba(148, 148, 148, 0.5);
+  box-shadow: 0px 3px 6px -1px rgba(148, 148, 148, 0.5);
 }
 
 .trBodyLinkNameMain {
@@ -192,7 +192,7 @@ td {
   padding: 0;
 }
 
-.inputCheckBoxTableMain{
+.inputCheckBoxTableMain {
   width: 14px;
   height: 14px;
   cursor: pointer;
@@ -209,7 +209,7 @@ td {
 
 .btnMoreActionsMain {
   /* background: #1876f224; */
-  border-radius: 10%;
+  /* border-radius: 10%; */
   height: 40px;
   width: 40px;
 }
@@ -242,11 +242,8 @@ td {
   background-color: white;
   opacity: 0;
   visibility: hidden;
-  transition: opacity .5s ease, visibility .5s ease;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
   /* Configura la transición en la propiedad opacity */
-
-  
-  
 }
 
 /* Estilo cuando se oculta el submenu */
@@ -258,9 +255,9 @@ td {
 .btnsMoreActionsContainerMain {
   border-radius: 5px;
   overflow: hidden;
-  -webkit-box-shadow: 0px 0px 3px 0px rgba(117, 117, 117, .4);
-  -moz-box-shadow: 0px 0px 3px 0px rgba(117, 117, 117, .4);
-  box-shadow: 0px 0px 3px 0px rgba(117, 117, 117, .4);
+  -webkit-box-shadow: 0px 0px 3px 0px rgba(117, 117, 117, 0.4);
+  -moz-box-shadow: 0px 0px 3px 0px rgba(117, 117, 117, 0.4);
+  box-shadow: 0px 0px 3px 0px rgba(117, 117, 117, 0.4);
 }
 
 .btnActionMain {
@@ -289,12 +286,10 @@ td {
 
 .customStylesNotification {
   /* font-size: 80px; */
-  font-size: .8rem;
+  font-size: 0.8rem;
   min-width: 480px;
   max-width: 480px;
 }
-
-
 
 @media (max-width: 1000px) {
   .containerViewMain {

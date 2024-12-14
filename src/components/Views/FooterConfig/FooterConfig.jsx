@@ -9,7 +9,6 @@ export default function FooterConfig() {
     toastLoading,
     toastSuccess,
     toastError,
-    dismissToast,
     configStore,
     loadingConfigStore,
     setConfigStore,
@@ -19,8 +18,6 @@ export default function FooterConfig() {
     register,
     handleSubmit,
     formState: { errors },
-    control,
-    getValues,
     setValue,
     watch,
   } = useForm({
@@ -44,7 +41,7 @@ export default function FooterConfig() {
       setLoading(false);
       reset(configStore.footerConfig);
     }, 500);
-  }, [loadingConfigStore]);
+  }, []);
 
   const onSubmit = async (data) => {
     console.log("data footerConfig", data);
