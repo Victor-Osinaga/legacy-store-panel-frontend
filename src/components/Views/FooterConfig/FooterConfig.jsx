@@ -149,7 +149,7 @@ export default function FooterConfig() {
                               onClick={() => {
                                 setValue(
                                   "colors.primaryColorFooter",
-                                  "#000000"
+                                  "#2b2d38"
                                 );
                               }}
                             >
