@@ -220,7 +220,7 @@ export default function Products() {
               />
               <div className="tableContainerMain rounded">
                 <table className="tableContainerViewMain bg-white w-100">
-                  <thead className="tableHeadTitlesMain fontXS-Custom textGray-Custom">
+                  <thead className="tableHeadTitlesMain fontXS-Custom textGray500-Custom">
                     <tr>
                       <th className="thSpacingMain">
                         <input
@@ -276,10 +276,10 @@ export default function Products() {
                         <td className="fontSM-Custom tdSpacingMain text-success">
                           <span>${toNumberArgStandard(product.price)}</span>
                         </td>
-                        <td className="fontSM-Custom textGray-Custom tdSpacingMain fw-bold">
+                        <td className="fontSM-Custom textGray500-Custom tdSpacingMain fw-bold">
                           <span>{calculateTotalStock(product.sizes)} u</span>
                         </td>
-                        <td className="fontSM-Custom textGray-Custom tdSpacingMain">
+                        <td className="fontSM-Custom textGray500-Custom tdSpacingMain">
                           <span
                             className={
                               product.categories[0].categoria.name ==
@@ -293,7 +293,7 @@ export default function Products() {
                             {product.categories[0].categoria.name}
                           </span>
                         </td>
-                        <td className="fontSM-Custom textGray-Custom tdSpacingMain">
+                        <td className="fontSM-Custom textGray500-Custom tdSpacingMain">
                           <span>{product.timestamp}</span>
                         </td>
                         <td className="fontSM-Custom tdSpacingMain position-relative">
@@ -327,7 +327,7 @@ export default function Products() {
                                                                     onClick={() => openModal(product.id, product.name)}
                                                                     className="btnActionMain textGray700-Custom"
                                                                 >
-                                                                    <DeleteIcon classList="textGray-Custom svgSize" />
+                                                                    <DeleteIcon classList="textGray500-Custom svgSize" />
                                                                     Eliminar
                                                                 </button> */}
                                 <button

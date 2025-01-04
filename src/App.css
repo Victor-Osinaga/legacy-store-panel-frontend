@@ -92,7 +92,7 @@ html {
   font-size: var(--customFontSizeXs);
 }
 
-.textGray-Custom {
+.textGray500-Custom {
   color: var(--textGray500Custom);
 }
 

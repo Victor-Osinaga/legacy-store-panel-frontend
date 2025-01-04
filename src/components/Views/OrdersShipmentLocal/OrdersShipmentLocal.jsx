@@ -1,7 +1,6 @@
 // import { useState } from 'react'
 // import './orders.css'
 
-
 // export default function Orders() {
 //     const [darkMode, setDarkMode] = useState(false)
 
@@ -70,8 +69,8 @@
 //         { id: '005', customer: 'Pedro Sánchez', date: '2023-06-05', total: 125.75, status: 'pendiente' },
 //       ]
 
-//   const filteredOrders = filter === 'todos' 
-//     ? orders 
+//   const filteredOrders = filter === 'todos'
+//     ? orders
 //     : orders.filter(order => order.status === filter)
 
 //     const getStatusBadgeClass = (status) => {
@@ -146,182 +145,274 @@
 //     )
 // }
 
-import "./orders.css"
-import { useEffect, useState } from "react"
-import ActionsInGroup from "../../Fragments/ActionsInGroup/ActionsInGroup"
-import NoItems from "../../Fragments/NoItems/NoItems"
-import useStoreContext from "../../../provider/storeProvider"
-import { Link } from "react-router-dom"
-import OutlineMore from "../../Icons/OutlineMore/OutlineMore"
-import EditIcon from "../../Icons/EditIcon/EditIcon"
-import DeleteIcon from "../../Icons/DeleteIcon/DeleteIcon"
-import useHandlerTable from "../../../customHooks/useHandlerTable"
-import getOrdersLocal from "../../../services/orders/getOrdersLocal.js"
-import ModalDelete from "../../Fragments/ModalDelete/ModalDelete.jsx"
-import deleteOrderById from "../../../services/orders/deleteOrderById.js"
-import EyeIcon from "../../Icons/EyeIcon/EyeIcon.jsx"
+import "./orders.css";
+import { useEffect, useState } from "react";
+import ActionsInGroup from "../../Fragments/ActionsInGroup/ActionsInGroup";
+import NoItems from "../../Fragments/NoItems/NoItems";
+import useStoreContext from "../../../provider/storeProvider";
+import { Link } from "react-router-dom";
+import OutlineMore from "../../Icons/OutlineMore/OutlineMore";
+import EditIcon from "../../Icons/EditIcon/EditIcon";
+import DeleteIcon from "../../Icons/DeleteIcon/DeleteIcon";
+import useHandlerTable from "../../../customHooks/useHandlerTable";
+import getOrdersLocal from "../../../services/orders/getOrdersLocal.js";
+import ModalDelete from "../../Fragments/ModalDelete/ModalDelete.jsx";
+import deleteOrderById from "../../../services/orders/deleteOrderById.js";
+import EyeIcon from "../../Icons/EyeIcon/EyeIcon.jsx";
 
 export default function OrdersShipmentLocal() {
-    const { truncarTexto, showItemActions, dismissToast, toastLoading, toastSuccess, toastError } = useStoreContext()
+  const {
+    truncarTexto,
+    showItemActions,
+    dismissToast,
+    toastLoading,
+    toastSuccess,
+    toastError,
+  } = useStoreContext();
 
-    const [orders, setOrders] = useState([])
+  const [orders, setOrders] = useState([]);
 
-    const { select, showBtnActions, entity, allSelected, selectAllItems, deleteItemsSelected } = useHandlerTable(orders)
+  const {
+    select,
+    showBtnActions,
+    entity,
+    allSelected,
+    selectAllItems,
+    deleteItemsSelected,
+  } = useHandlerTable(orders);
 
-    const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
 
-    const [modalInfo, setModalInfo] = useState({ showModal: false, id: null, name: '' });
+  const [modalInfo, setModalInfo] = useState({
+    showModal: false,
+    id: null,
+    name: "",
+  });
 
-    useEffect(() => {
-        setLoading(true)
-        fetchOrders()
-        return () => {
-            dismissToast()
-        }
-    }, [])
-
-    const fetchOrders = async () => {
-        const id = toastLoading("Cargando ordenes...")
-        try {
-
-            const ordenes = await getOrdersLocal()
-            const ordersWithSelection = ordenes.map(orden => ({ ...orden, selected: false }));
-            setOrders(ordersWithSelection);
-
-            setTimeout(() => {
-                // si const productos esta fuera del try no toma el valor para el condicional de abajo
-                setLoading(false)
-                if (ordenes.length == 0) {
-                    return toastSuccess(<>No hay ordenes creadas: <strong>'{ordenes.length}'</strong></>, id)
-                }
-
-                return toastSuccess(<>Ordenes cargadas: <strong>'{ordenes.length}'</strong></>, id)
-            }, 500);
-
-
-        } catch (error) {
-            toastError(
-                <div className='text-center'><p className='mb-0'><strong>{error.msg}</strong></p></div>,
-                id
-            )
-            setLoading(true)
-        }
-
-    }
-
-    const deleteOrderByIdComponent = async (orderId, name) => {
-        setModalInfo({ showModal: false, id: null, name: '' })
-        const toastId = toastLoading("Eliminando orden")
-        try {
-            const result = await deleteOrderById(orderId, name)
-            const orders = await getOrdersLocal()
-            const ordersWithSelection = orders.map(order => ({ ...order, selected: false }));
-            setOrders(ordersWithSelection);
-
-            console.log("nuevas ordenesLocal desde : deleteOrderById", ordersWithSelection);
-            return toastSuccess(<>Orden eliminada eliminado: <strong>'{name}'</strong> - cantidad: <strong>'{result.data.deletedCount}'</strong></>, toastId)
-        } catch (error) {
-            console.log(error);
-            toastError(
-                <div className='text-center'><p className='mb-0'><strong>{error.msg}</strong></p></div>,
-                toastId
-            )
-        }
-    }
-
-    const openModal = (id, name) => {
-        showItemActions(id)
-        setModalInfo({ showModal: true, id: id, name: name });
+  useEffect(() => {
+    setLoading(true);
+    fetchOrders();
+    return () => {
+      dismissToast();
     };
+  }, []);
 
-    const closeModal = () => {
-        setModalInfo({ showModal: false, id: null, name: '' });
-    };
+  const fetchOrders = async () => {
+    const id = toastLoading("Cargando ordenes...");
+    try {
+      const ordenes = await getOrdersLocal();
+      const ordersWithSelection = ordenes.map((orden) => ({
+        ...orden,
+        selected: false,
+      }));
+      setOrders(ordersWithSelection);
 
+      setTimeout(() => {
+        // si const productos esta fuera del try no toma el valor para el condicional de abajo
+        setLoading(false);
+        if (ordenes.length == 0) {
+          return toastSuccess(
+            <>
+              No hay ordenes creadas: <strong>'{ordenes.length}'</strong>
+            </>,
+            id
+          );
+        }
 
-    return (
-        <section className="containerViewMain">
-            <div className='d-flex justify-content-between align-items-center w-100 mb-2'>
-                <div>
-                    <h3 className='fs-4 mainTitle'>Ordenes de compra - Retiros</h3>
-                </div>
-            </div>
+        return toastSuccess(
+          <>
+            Ordenes cargadas: <strong>'{ordenes.length}'</strong>
+          </>,
+          id
+        );
+      }, 500);
+    } catch (error) {
+      toastError(
+        <div className="text-center">
+          <p className="mb-0">
+            <strong>{error.msg}</strong>
+          </p>
+        </div>,
+        id
+      );
+      setLoading(true);
+    }
+  };
 
-            <div className="text-secondary mb-2 fontSM-Custom">
-                <p className="m-0">Aqui estaran todas las ordenes de compra para retiro en local y sus respectivos estados de compra</p>
-            </div>
+  const deleteOrderByIdComponent = async (orderId, name) => {
+    setModalInfo({ showModal: false, id: null, name: "" });
+    const toastId = toastLoading("Eliminando orden");
+    try {
+      const result = await deleteOrderById(orderId, name);
+      const orders = await getOrdersLocal();
+      const ordersWithSelection = orders.map((order) => ({
+        ...order,
+        selected: false,
+      }));
+      setOrders(ordersWithSelection);
 
-            {!loading ? (
-                entity.length > 0 ? (
-                    <>
-                        <ActionsInGroup
-                            handlebtnActionMains={showBtnActions}
-                            deleteGroup={deleteItemsSelected}
+      console.log(
+        "nuevas ordenesLocal desde : deleteOrderById",
+        ordersWithSelection
+      );
+      return toastSuccess(
+        <>
+          Orden eliminada eliminado: <strong>'{name}'</strong> - cantidad:{" "}
+          <strong>'{result.data.deletedCount}'</strong>
+        </>,
+        toastId
+      );
+    } catch (error) {
+      console.log(error);
+      toastError(
+        <div className="text-center">
+          <p className="mb-0">
+            <strong>{error.msg}</strong>
+          </p>
+        </div>,
+        toastId
+      );
+    }
+  };
+
+  const openModal = (id, name) => {
+    showItemActions(id);
+    setModalInfo({ showModal: true, id: id, name: name });
+  };
+
+  const closeModal = () => {
+    setModalInfo({ showModal: false, id: null, name: "" });
+  };
+
+  return (
+    <section className="containerViewMain">
+      <div className="d-flex justify-content-between align-items-center w-100 mb-2">
+        <div>
+          <h3 className="fs-4 mainTitle">Ordenes de compra - Retiros</h3>
+        </div>
+      </div>
+
+      <div className="text-secondary mb-2 fontSM-Custom">
+        <p className="m-0">
+          Aqui estaran todas las ordenes de compra para retiro en local y sus
+          respectivos estados de compra
+        </p>
+      </div>
+
+      {!loading ? (
+        entity.length > 0 ? (
+          <>
+            <ActionsInGroup
+              handlebtnActionMains={showBtnActions}
+              deleteGroup={deleteItemsSelected}
+            />
+            <div className="tableContainerMain rounded">
+              <table className="tableContainerViewMain bg-white w-100">
+                <thead className="tableHeadTitlesMain fontXS-Custom textGray500-Custom">
+                  <tr>
+                    <th className="thSpacingMain">
+                      <input
+                        className="form-check-input inputCheckBoxTableMain"
+                        type="checkbox"
+                        checked={allSelected}
+                        onChange={selectAllItems}
+                      />
+                    </th>
+                    <th className="thSpacingMain">
+                      <span>ID</span>
+                    </th>
+                    <th className="thSpacingMain">
+                      <span>CLIENTE</span>
+                    </th>
+                    <th className="thSpacingMain">
+                      <span>ENVÍO/RETIRO</span>
+                    </th>
+                    <th className="thSpacingMain">
+                      <span>FECHA</span>
+                    </th>
+                    <th className="thSpacingMain">
+                      <span>TOTAL</span>
+                    </th>
+                    <th className="thSpacingMain">
+                      <span>ESTADO</span>
+                    </th>
+                    {/* <th className='thSpacingMain'><span>AGREGADO</span></th> */}
+                  </tr>
+                </thead>
+                <tbody className="fontSM-Custom">
+                  {entity.map((order, index) => (
+                    <tr key={order.id}>
+                      <td className="tdSpacingMain">
+                        <input
+                          className="form-check-input inputCheckBoxTableMain"
+                          type="checkbox"
+                          checked={order.selected}
+                          onChange={() => select(order.id)}
                         />
-                        <div className="tableContainerMain rounded">
-                            <table className='tableContainerViewMain bg-white w-100'>
-                                <thead className='tableHeadTitlesMain fontXS-Custom textGray-Custom'>
-                                    <tr>
-                                        <th className='thSpacingMain'>
-                                            <input
-                                                className="form-check-input inputCheckBoxTableMain"
-                                                type='checkbox'
-                                                checked={allSelected}
-                                                onChange={selectAllItems}
-                                            />
-                                        </th>
-                                        <th className='thSpacingMain'><span>ID</span></th>
-                                        <th className='thSpacingMain'><span>CLIENTE</span></th>
-                                        <th className='thSpacingMain'><span>ENVÍO/RETIRO</span></th>
-                                        <th className='thSpacingMain'><span>FECHA</span></th>
-                                        <th className='thSpacingMain'><span>TOTAL</span></th>
-                                        <th className='thSpacingMain'><span>ESTADO</span></th>
-                                        {/* <th className='thSpacingMain'><span>AGREGADO</span></th> */}
-                                    </tr>
-                                </thead>
-                                <tbody className='fontSM-Custom'>
-                                    {entity.map((order, index) => (
-                                        <tr key={order.id}>
-                                            <td className='tdSpacingMain'>
-                                                <input
-                                                    className="form-check-input inputCheckBoxTableMain"
-                                                    type='checkbox'
-                                                    checked={order.selected}
-                                                    onChange={() => select(order.id)}
-                                                />
-                                            </td>
-                                            <td className="fontSM-Custom textGray-Custom tdSpacingMain">
-                                                <Link
-                                                    className="trBodyLinkNameMain"
-                                                    to={`/admin/ordenes-retiro/ver/${order.id}`}
-                                                    state={{ order }}
-                                                >
-                                                    <span title={order.id}>{truncarTexto(order.id)}</span>
-                                                </Link>
-                                            </td>
-                                            <td className="fontSM-Custom tdSpacingMain">
-                                                {/* <Link className="trBodyLinkNameMain" to={`/admin`}> */}
-                                                    {/* <img className='productImgMain' src={product.image} alt={product.name} /> */}
-                                                    <span className="text-capitalize" title={`${order.client_info_contact.name} ${order.client_info_contact.surname}`}>{truncarTexto(`${order.client_info_contact.name} ${order.client_info_contact.surname}`)}</span>
-                                                {/* </Link> */}
-                                            </td>
-                                            <td className="fontSM-Custom textGray-Custom tdSpacingMain"><span>{order.shipment_info.shipment_type == "shipment_local" ? "Retiro" : "Envio"}</span></td>
-                                            <td className="fontSM-Custom textGray-Custom tdSpacingMain"><span>{order.timestamp}</span></td>
-                                            <td className="fontSM-Custom tdSpacingMain text-success"><span>${order.total_paid_amount}</span></td>
-                                            <td className="fontSM-Custom tdSpacingMain textGray-Custom text-capitalize"><span data-status={order.order_status} className="status_order">{order.order_status}</span></td>
-                                            <td className='fontSM-Custom tdSpacingMain position-relative'>
-                                                {/* poner el id a este contenedor para poder agregarle el mostrar more actions */}
-                                                <div className='d-flex '>
-                                                    {/*  el width del button de abajo si esta activo el btn deja de ser cuadrado */}
-                                                    <button
-                                                        onClick={() => showItemActions(order.id)}
-                                                        className="btnMoreActionsMain /*w-100*/ position-relative border border-0"
-                                                    >
-                                                        <OutlineMore />
-                                                    </button>
-                                                    <ul id={order.id} className={`submenuPruebaMain shadow-lg ${index === entity.length - 1 && index !== 0 ? '' : ''}`}>
-                                                        <li className='btnsMoreActionsContainerMain'>
-                                                            {/* <Link >
+                      </td>
+                      <td className="fontSM-Custom textGray500-Custom tdSpacingMain">
+                        <Link
+                          className="trBodyLinkNameMain"
+                          to={`/admin/ordenes-retiro/ver/${order.id}`}
+                          state={{ order }}
+                        >
+                          <span title={order.id}>{truncarTexto(order.id)}</span>
+                        </Link>
+                      </td>
+                      <td className="fontSM-Custom tdSpacingMain">
+                        {/* <Link className="trBodyLinkNameMain" to={`/admin`}> */}
+                        {/* <img className='productImgMain' src={product.image} alt={product.name} /> */}
+                        <span
+                          className="text-capitalize"
+                          title={`${order.client_info_contact.name} ${order.client_info_contact.surname}`}
+                        >
+                          {truncarTexto(
+                            `${order.client_info_contact.name} ${order.client_info_contact.surname}`
+                          )}
+                        </span>
+                        {/* </Link> */}
+                      </td>
+                      <td className="fontSM-Custom textGray500-Custom tdSpacingMain">
+                        <span>
+                          {order.shipment_info.shipment_type == "shipment_local"
+                            ? "Retiro"
+                            : "Envio"}
+                        </span>
+                      </td>
+                      <td className="fontSM-Custom textGray500-Custom tdSpacingMain">
+                        <span>{order.timestamp}</span>
+                      </td>
+                      <td className="fontSM-Custom tdSpacingMain text-success">
+                        <span>${order.total_paid_amount}</span>
+                      </td>
+                      <td className="fontSM-Custom tdSpacingMain textGray500-Custom text-capitalize">
+                        <span
+                          data-status={order.order_status}
+                          className="status_order"
+                        >
+                          {order.order_status}
+                        </span>
+                      </td>
+                      <td className="fontSM-Custom tdSpacingMain position-relative">
+                        {/* poner el id a este contenedor para poder agregarle el mostrar more actions */}
+                        <div className="d-flex ">
+                          {/*  el width del button de abajo si esta activo el btn deja de ser cuadrado */}
+                          <button
+                            onClick={() => showItemActions(order.id)}
+                            className="btnMoreActionsMain /*w-100*/ position-relative border border-0"
+                          >
+                            <OutlineMore />
+                          </button>
+                          <ul
+                            id={order.id}
+                            className={`submenuPruebaMain shadow-lg ${
+                              index === entity.length - 1 && index !== 0
+                                ? ""
+                                : ""
+                            }`}
+                          >
+                            <li className="btnsMoreActionsContainerMain">
+                              {/* <Link >
                                                                 <button className="btnActionMain textGray700-Custom">
                                                                     <EditIcon></EditIcon>
                                                                     Cambiar a 'pendiente'
@@ -345,53 +436,61 @@ export default function OrdersShipmentLocal() {
                                                                     Cambiar a 'retirado'
                                                                 </button>
                                                             </Link> */}
-                                                            <Link
-                                                                to={`/admin/ordenes-retiro/ver/${order.id}`}
-                                                                state={{ order }}
-                                                            >
-                                                                <button className="btnActionMain textGray700-Custom">
-                                                                    <EyeIcon />
-                                                                    Ver/editar
-                                                                </button>
-                                                            </Link>
-                                                            <button
-                                                                onClick={() => openModal(order.id, `${order.client_info_contact.name} ${order.client_info_contact.surname}`)}
-                                                                className="btnActionMain bg-danger text-white fontSM-Custom">
-                                                                <DeleteIcon classList="text-white svgSize" />
-                                                                Eliminar
-                                                            </button>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    ))}
-                                </tbody>
-                            </table>
+                              <Link
+                                to={`/admin/ordenes-retiro/ver/${order.id}`}
+                                state={{ order }}
+                              >
+                                <button className="btnActionMain textGray700-Custom">
+                                  <EyeIcon />
+                                  Ver/editar
+                                </button>
+                              </Link>
+                              <button
+                                onClick={() =>
+                                  openModal(
+                                    order.id,
+                                    `${order.client_info_contact.name} ${order.client_info_contact.surname}`
+                                  )
+                                }
+                                className="btnActionMain bg-danger text-white fontSM-Custom"
+                              >
+                                <DeleteIcon classList="text-white svgSize" />
+                                Eliminar
+                              </button>
+                            </li>
+                          </ul>
                         </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
 
-                        {modalInfo.showModal && <ModalDelete
-                            id={modalInfo.id}
-                            name={modalInfo.name}
-                            closeModal={closeModal}
-                            functionDelete={deleteOrderByIdComponent}
-                            entity="order"
-                        />}
-                    </>
-                ) : (
-                    <>
-                        <NoItems msg="Todavia no se cargaron ordenes" />
-                    </>
-                )
-            ) : (
-                <>
-                    <section className='spinnerContainer'>
-                        <div className="spinner-grow" role="status">
-                            <span className="visually-hidden">Loading...</span>
-                        </div>
-                    </section>
-                </>
+            {modalInfo.showModal && (
+              <ModalDelete
+                id={modalInfo.id}
+                name={modalInfo.name}
+                closeModal={closeModal}
+                functionDelete={deleteOrderByIdComponent}
+                entity="order"
+              />
             )}
-        </section>
-    )
+          </>
+        ) : (
+          <>
+            <NoItems msg="Todavia no se cargaron ordenes" />
+          </>
+        )
+      ) : (
+        <>
+          <section className="spinnerContainer">
+            <div className="spinner-grow" role="status">
+              <span className="visually-hidden">Loading...</span>
+            </div>
+          </section>
+        </>
+      )}
+    </section>
+  );
 }

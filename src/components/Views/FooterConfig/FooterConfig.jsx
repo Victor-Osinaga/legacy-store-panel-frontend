@@ -105,10 +105,10 @@ export default function FooterConfig() {
                     className="bg-white border px-4 py-4 rounded"
                   >
                     <div className="row mb-3 gap-3">
-                      <h4 className="col-12 text-center fw-semibold textGray-Custom fontSM-Custom m-0">
+                      <h4 className="col-12 text-center fw-semibold textGray500-Custom fontSM-Custom m-0">
                         COLOR PRIMARIO
                       </h4>
-                      <p className="textGray-Custom fontSM-Custom m-0">
+                      <p className="textGray500-Custom fontSM-Custom m-0">
                         Tip: el color primario es el color de fondo de tu pie de
                         página
                       </p>
@@ -118,7 +118,7 @@ export default function FooterConfig() {
                         <div className="d-flex flex-column">
                           <label
                             htmlFor="colors.primaryColorFooter"
-                            className="d-flex mb-1 fw-semibold textGray-Custom fontSM-Custom"
+                            className="d-flex mb-1 fw-semibold textGray500-Custom fontSM-Custom"
                           >
                             Color primario
                           </label>
@@ -191,10 +191,10 @@ export default function FooterConfig() {
                         </div>
                       </div>
 
-                      <h4 className="col-12 text-center fw-semibold textGray-Custom fontSM-Custom m-0">
+                      <h4 className="col-12 text-center fw-semibold textGray500-Custom fontSM-Custom m-0">
                         REDES SOCIALES
                       </h4>
-                      <p className="textGray-Custom fontSM-Custom m-0">
+                      <p className="textGray500-Custom fontSM-Custom m-0">
                         Tip: tus clientes podran clickear y acceder a tus redes
                         asi que es importante tener configurado esta sección
                       </p>
@@ -203,7 +203,7 @@ export default function FooterConfig() {
                         <div className="d-flex flex-column mb-2">
                           <label
                             htmlFor="social.facebook"
-                            className="d-flex align-items-end mb-1 fw-semibold textGray-Custom fontSM-Custom"
+                            className="d-flex align-items-end mb-1 fw-semibold textGray500-Custom fontSM-Custom"
                           >
                             <span>Tu link de facebook</span>
                             <svg
@@ -251,7 +251,7 @@ export default function FooterConfig() {
                         <div className="d-flex flex-column mb-2">
                           <label
                             htmlFor="social.instagram"
-                            className="d-flex align-items-end mb-1 fw-semibold textGray-Custom fontSM-Custom"
+                            className="d-flex align-items-end mb-1 fw-semibold textGray500-Custom fontSM-Custom"
                           >
                             Tu link de instagram
                             <svg
@@ -301,7 +301,7 @@ export default function FooterConfig() {
                         <div className="d-flex flex-column mb-2">
                           <label
                             htmlFor="social.gmail"
-                            className="d-flex mb-1 fw-semibold textGray-Custom fontSM-Custom"
+                            className="d-flex mb-1 fw-semibold textGray500-Custom fontSM-Custom"
                           >
                             Tu mail
                           </label>
@@ -330,7 +330,7 @@ export default function FooterConfig() {
                         <div className="d-flex flex-column mb-2">
                           <label
                             htmlFor="social.whatsapp"
-                            className="d-flex mb-1 fw-semibold textGray-Custom fontSM-Custom"
+                            className="d-flex mb-1 fw-semibold textGray500-Custom fontSM-Custom"
                           >
                             Tu número de whastapp
                           </label>
@@ -359,7 +359,7 @@ export default function FooterConfig() {
                         <div className="d-flex flex-column mb-2">
                           <label
                             htmlFor="social.whatsapp"
-                            className="d-flex mb-1 fw-semibold textGray-Custom fontSM-Custom"
+                            className="d-flex mb-1 fw-semibold textGray500-Custom fontSM-Custom"
                           >
                             La direccion de tu local
                           </label>

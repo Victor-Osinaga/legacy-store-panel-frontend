@@ -1,0 +1,44 @@
+.custom-dropzone {
+  border: 1px dashed rgba(100, 116, 139, 0.42);
+  height: 200px;
+  outline: none;
+  transition: border-color 0.3s ease, border-width 0.3s ease,
+    background-color 0.3s ease;
+}
+.custom-dropzone:hover {
+  background-color: rgba(0, 0, 0, 0.096);
+  cursor: pointer;
+  border-color: rgba(0, 0, 0, 0.297); /* Cambio de color */
+  border-width: 1px; /* Cambio de grosor */
+}
+
+.btnLegacyFormLogo {
+  background-color: #23252f;
+  background-color: var(--bgBlueMedium);
+
+  border: none;
+  width: 100%;
+  margin: 0 auto;
+  letter-spacing: 1px;
+  box-shadow: inset 0 0 0 2px hsla(0, 0%, 100%, 0.08);
+  height: 3rem;
+  transition: all 0.3s ease;
+  color: white;
+}
+
+.btnLegacyFormLogo:hover {
+  cursor: pointer;
+  background-color: var(--bgBlueLight);
+  box-shadow: inset 0 0 0 3px hsla(0, 0%, 100%, 0.08);
+}
+
+/* .custom-dropzone {
+  border: 2px dashed #ccc;
+  transition: background-color 0.2s;
+} */
+
+.custom-dropzone.dragging {
+  background-color: rgba(0, 0, 0, 0.096);
+  border-color: rgba(0, 0, 0, 0.297); /* Cambio de color */
+  border-width: 1px; /* Cambio de grosor */
+}
