@@ -9,6 +9,7 @@ import { NumericFormat } from "react-number-format";
 import useStoreContext from "../../../provider/storeProvider.jsx";
 import getProductById from "../../../services/products/getProductById.js";
 import editProductById from "../../../services/products/editProductById.js";
+import { orderCategories } from "../../../utils/orderCategories.js";
 
 export default function EditProduct() {
   const { productId } = useParams();
@@ -104,7 +105,7 @@ export default function EditProduct() {
 
   const fetchCategories = async () => {
     getCategories().then((res) => {
-      setCategories(res);
+      setCategories(orderCategories(res));
       const currentValues = getValues();
       if (res.length > 0) {
         // si cambia el valor de primaryCategory va a coincidir con el valor que tenga en el option ("value")
@@ -217,7 +218,7 @@ export default function EditProduct() {
     console.log("HOLA XDDDDDDDDDDDD");
     const selectedPrimaryCategoryId = e.target.value;
     const selectedCategoryIndex = categories.findIndex(
-      (c) => c.categoria.id == selectedPrimaryCategoryId
+      (c) => c.children.id == selectedPrimaryCategoryId
     );
 
     if (selectedCategoryIndex !== -1) {
@@ -672,7 +673,7 @@ export default function EditProduct() {
                                       const categorie = categories.find(
                                         (c) => c.id == primaryId
                                       );
-                                      const sub = categorie.subCategories.find(
+                                      const sub = categorie.children.find(
                                         (sub) => sub.id == value
                                       );
                                       if (!sub) {
@@ -695,7 +696,7 @@ export default function EditProduct() {
                                       `categories.${categoryIndex}.categoria.id`
                                     )
                                   ) {
-                                    return cat.subCategories.map((sub, i) => (
+                                    return cat.children.map((sub, i) => (
                                       <option key={sub.id} value={sub.id}>
                                         {sub.name}
                                       </option>
@@ -858,10 +859,10 @@ export default function EditProduct() {
                                       const categorie = categories.find(
                                         (c) => c.id == primaryId
                                       );
-                                      const sub = categorie.subCategories.find(
+                                      const sub = categorie.children.find(
                                         (sub) => sub.id == secondaryId
                                       );
-                                      const subsub = sub.categories.find(
+                                      const subsub = sub.children.find(
                                         (c) => c.id == value
                                       );
                                       console.log("subsub", subsub);
@@ -888,14 +889,14 @@ export default function EditProduct() {
                                       `categories.${categoryIndex}.categoria.id`
                                     )
                                   ) {
-                                    return cat.subCategories.map((sub, i) => {
+                                    return cat.children.map((sub, i) => {
                                       if (
                                         sub.id ===
                                         getValues(
                                           `categories.${categoryIndex}.subCategoria.id`
                                         )
                                       ) {
-                                        return sub.categories.map((sub2) => (
+                                        return sub.children.map((sub2) => (
                                           <option key={sub2.id} value={sub2.id}>
                                             {sub2.name}
                                           </option>

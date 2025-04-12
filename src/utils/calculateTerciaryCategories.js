@@ -1,8 +1,8 @@
-export default function calculateTerciaryCategories (subcategories) {
-    let count=0;
-    subcategories.forEach(element => {
-        count += element.categories.length
-    });
-    console.log("cantidad de categorias terciarias: ", count);
-    return count
+export default function calculateTerciaryCategories(categorie) {
+  let count = 0;
+  categorie.forEach((element) => {
+    count += element.children.length;
+  });
+  console.log("cantidad de categorias terciarias: ", count);
+  return count;
 }

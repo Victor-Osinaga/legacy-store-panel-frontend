@@ -12,7 +12,7 @@ import CreateCategorie from "./components/Views/CreateCategorie/CreateCategorie"
 import FormLogin from "./components/Views/FormLogin/FormLogin";
 import FormRegister from "./components/Views/FormRegister/FormRegister";
 import ProtectedRoute from "./ProtectedRoute/ProtectedRoute";
-import StoreConfigForm from "./components/Views/StoreConfigForm/StoreConfigForm.jsx";
+import ColorsStoreConfig from "./components/Views/ColorsStoreConfig/ColorsStoreConfig.jsx";
 import RetiroSucursal from "./components/Views/RetiroSucursal/RetiroSucursal.jsx";
 import CrearSucursal from "./components/Views/CrearSucursal/CrearSucursal.jsx";
 import EditarSucursal from "./components/Views/EditarSucursal/EditarSucursal.jsx";
@@ -22,15 +22,18 @@ import OrdersShipmentLocal from "./components/Views/OrdersShipmentLocal/OrdersSh
 import OrderDetail from "./components/Views/OrderDetail/OrderDetail.jsx";
 import FooterConfig from "./components/Views/FooterConfig/FooterConfig.jsx";
 import LogoConfig from "./components/Views/LogoConfig/LogoConfig.jsx";
+import Pricing from "./components/Views/Pricing/Pricing.jsx";
+import EditCategory from "./components/Views/EditCategory/EditCategory.jsx";
 
 const Layout = ({ children }) => {
   const location = useLocation();
   const isAuthPage = location.pathname.startsWith("/auth");
+  const isPricingPage = location.pathname.startsWith("/precios");
 
   return (
     <>
-      {!isAuthPage && <Header />}
-      {!isAuthPage && <Navigation />}
+      {!isAuthPage && !isPricingPage && <Header />}
+      {!isAuthPage && !isPricingPage && <Navigation />}
       {children}
     </>
   );
@@ -39,16 +42,17 @@ const Layout = ({ children }) => {
 function App() {
   return (
     <>
-      <StoreContextProvider>
-        <Toaster position="top-right" reverseOrder={true} />
+      <BrowserRouter>
+        <StoreContextProvider>
+          <Toaster position="top-right" reverseOrder={true} />
 
-        <BrowserRouter>
           {/* <Header></Header>
           <Navigation></Navigation> */}
           <Layout>
             <Routes>
               <Route path="/auth/login" element={<FormLogin />} />
               <Route path="/auth/register" element={<FormRegister />} />
+              <Route path="/precios" element={<Pricing />} />
               <Route element={<ProtectedRoute />}>
                 <Route path="/admin/productos" element={<Products />} />
                 <Route path="/" />
@@ -68,6 +72,10 @@ function App() {
                 <Route
                   path="/admin/categorias/crear"
                   element={<CreateCategorie />}
+                />
+                <Route
+                  path="/admin/categorias/editar/:catid"
+                  element={<EditCategory />}
                 />
 
                 {/* OrdersShipmentLocal */}
@@ -104,7 +112,7 @@ function App() {
                 {/* SETTINGS STORE*/}
                 <Route
                   path="/admin/ajustes/tienda/colores"
-                  element={<StoreConfigForm />}
+                  element={<ColorsStoreConfig />}
                 />
                 {/* SETTINGS FOOTER */}
                 <Route
@@ -119,8 +127,8 @@ function App() {
               </Route>
             </Routes>
           </Layout>
-        </BrowserRouter>
-      </StoreContextProvider>
+        </StoreContextProvider>
+      </BrowserRouter>
     </>
   );
 }

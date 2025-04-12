@@ -7,6 +7,7 @@ import { nameProductValidator } from "../../../validators/validators.js";
 import createProduct from "../../../services/products/createProduct.js";
 import { NumericFormat } from "react-number-format";
 import useStoreContext from "../../../provider/storeProvider.jsx";
+import { orderCategories } from "../../../utils/orderCategories.js";
 
 export default function CreateProduct() {
   const { toastLoading, toastSuccess, toastError, dismissToast } =
@@ -109,7 +110,7 @@ export default function CreateProduct() {
 
   const fetchCategories = async () => {
     getCategories().then((res) => {
-      setCategories(res);
+      setCategories(orderCategories(res));
       const currentValues = getValues();
       if (res.length > 0) {
         // si cambia el valor de primaryCategory va a coincidir con el valor que tenga en el option ("value")
@@ -602,7 +603,7 @@ export default function CreateProduct() {
                                   const categorie = categories.find(
                                     (c) => c.id == getValues("primaryCategory")
                                   );
-                                  const subCategories = categorie.subCategories;
+                                  const subCategories = categorie.children;
                                   if (
                                     !subCategories.find((c) => c.id == value)
                                   ) {
@@ -614,7 +615,7 @@ export default function CreateProduct() {
                               <option value="">Opciones</option>
                               {categories.map((cat) => {
                                 if (cat.id == getValues("primaryCategory")) {
-                                  return cat.subCategories.map((sub, index) => (
+                                  return cat.children.map((sub, index) => (
                                     <option key={sub.id} value={sub.id}>
                                       {sub.name}
                                     </option>
@@ -733,22 +734,21 @@ export default function CreateProduct() {
                                   );
                                   console.log("primary", categorie);
 
-                                  const subCategorie =
-                                    categorie.subCategories.find(
-                                      (c) =>
-                                        c.id == getValues("secondaryCategory")
-                                    );
+                                  const subCategorie = categorie.children.find(
+                                    (c) =>
+                                      c.id == getValues("secondaryCategory")
+                                  );
                                   console.log("sec", subCategorie);
 
                                   const subsubCategorie =
-                                    subCategorie.categories.find(
+                                    subCategorie.children.find(
                                       (c) =>
                                         c.id == getValues("terciaryCategory")
                                     );
                                   console.log("ter", subsubCategorie);
 
                                   if (
-                                    !subCategorie.categories.find(
+                                    !subCategorie.children.find(
                                       (c) => c.id == value
                                     )
                                   ) {
@@ -760,11 +760,11 @@ export default function CreateProduct() {
                               <option value="">Opciones</option>
                               {categories.map((cat) => {
                                 if (cat.id == getValues("primaryCategory")) {
-                                  return cat.subCategories.map((sub) => {
+                                  return cat.children.map((sub) => {
                                     if (
                                       sub.id === getValues("secondaryCategory")
                                     ) {
-                                      return sub.categories.map((sub2) => (
+                                      return sub.children.map((sub2) => (
                                         <option key={sub2.id} value={sub2.id}>
                                           {sub2.name}
                                         </option>

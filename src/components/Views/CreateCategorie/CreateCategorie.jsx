@@ -22,18 +22,18 @@ export default function CreateCategorie() {
   } = useForm({
     defaultValues: {
       id: uuidv4(),
-      // name: 'MUJERESSSSSS',
-      name: "",
+      name: "MUJERESSSSSS",
+      // name: "",
       subCategories: [
         {
           id: uuidv4(),
-          // name: 'INVIERNOOOOO',
-          name: "",
+          name: "INVIERNOOOOO",
+          // name: "",
           categories: [
             {
               id: uuidv4(),
-              // name: 'CAMPERASSSSS',
-              name: "",
+              name: "CAMPERASSSSS",
+              // name: "",
             },
           ],
         },

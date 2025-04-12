@@ -1,213 +1,245 @@
 import { createContext, useContext, useState, useEffect } from "react";
-import toast from 'react-hot-toast';
+import toast from "react-hot-toast";
 import getClient from "../services/auth/getClient.js";
 import verifySubdomain from "../services/auth/verifySubdomain.js";
 import verifyToken from "../services/auth/verifyToken.js";
 import getStoreConfig from "../services/storeConfiguration/getStoreConfig.js";
 import config from "../../config.js";
 import redirectSubdomain from "../utils/redirectSubdomain.js";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-const StoreContext = createContext()
-const useStoreContext = () => useContext(StoreContext)
+const StoreContext = createContext();
+const useStoreContext = () => useContext(StoreContext);
 
-const { Provider } = StoreContext
+const { Provider } = StoreContext;
 
 export function StoreContextProvider({ children }) {
-    // const navigate = useNavigate()
+  const navigate = useNavigate();
 
-    const hostnameArray = window.location.hostname.split('.');
-    const subdomain = hostnameArray[0];
+  const hostnameArray = window.location.hostname.split(".");
+  const subdomain = hostnameArray[0];
 
-    const [loadingConfigStore, setLoadingConfigStore] = useState(true)
-    const [configStore, setConfigStore] = useState(null)
+  const [loadingConfigStore, setLoadingConfigStore] = useState(true);
+  const [configStore, setConfigStore] = useState(null);
 
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [toastId, setToastId] = useState(null);
+  const [user, setUser] = useState({
+    id: "",
+    email: "",
+    proyectName: "",
+  });
 
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
-    const [toastId, setToastId] = useState(null);
-    const [user, setUser] = useState({
-        id: "",
-        email: "",
-        proyectName: ""
-    })
+  const verifyTokenAuth = async () => {
+    console.log("validando toke123n");
+    const idToast = toastLoading("Validando token123");
+    try {
+      const verifyData = await verifyToken();
+      console.log("verifyData: ", verifyData);
 
-    const verifyTokenAuth = async () => {
-        console.log("validando token");
-        const idToast = toastLoading("Validando token")
-        try {
-            const verifyData = await verifyToken()
-            toastSuccess(<>Token validado, bienvenido <strong>{verifyData.proyectName}</strong>!</>, idToast)
-            setUser(verifyData)
-            setIsAuthenticated(true)
+      toastSuccess(
+        <>
+          Token validado, bienvenido <strong>{verifyData.proyectName}</strong>!
+        </>,
+        idToast
+      );
+      setUser(verifyData);
+      console.log("cambiando isAuthenticatedd a TRUE");
 
-        } catch (error) {
-            console.log("error desde storeProvider : verifyTokenAuth", error);
-            toastError(`Error en validacion de token: ${error.msg}`, idToast)
-        }
+      setIsAuthenticated(true);
+    } catch (error) {
+      console.log("error desde storeProvider : verifyTokenAuth", error);
+      toastError(`Error en validacion de token: ${error.msg}`, idToast);
+      //   navigate("/auth/login");
     }
+  };
 
-    const getConfigStoreAuth = async () => {
-        console.log("isAuthenticated: ", isAuthenticated);
+  const getConfigStoreAuth = async () => {
+    console.log("isAuthenticated: ", isAuthenticated);
 
-        if (isAuthenticated) {
-            const config = await getStoreConfig()
-            console.log("config desde getConfigStoreAuth", config);
+    if (isAuthenticated) {
+      const config = await getStoreConfig();
+      console.log("config desde getConfigStoreAuth", config);
 
-            setConfigStore(config)
-            setLoadingConfigStore(false)
-        }
+      setConfigStore(config);
+      setLoadingConfigStore(false);
     }
+  };
 
-    const verifySubdomainAuth = async (sub) => {
-        const idToast = toastLoading("Validando proyecto")
-        try {
-            const verifyData = await verifySubdomain(sub)
-            console.log("subdominio verificado", verifyData);
-            toastSuccess(<>Proyecto validado, bienvenido <strong>{verifyData.name} {verifyData.lastname}</strong>!</>, idToast)
-            setUser(verifyData)
-        } catch (error) {
-            console.log("error desde verifySubdomainAuth", error);
-            toastError("Proyecto inexistente", idToast)
-        }
+  const verifySubdomainAuth = async (sub) => {
+    const idToast = toastLoading("Validando proyecto");
+    try {
+      const verifyData = await verifySubdomain(sub);
+      console.log("subdominio verificado", verifyData);
+      toastSuccess(
+        <>
+          Proyecto validado, bienvenido{" "}
+          <strong>
+            {verifyData.name} {verifyData.lastname}
+          </strong>
+          !
+        </>,
+        idToast
+      );
+      setUser(verifyData);
+    } catch (error) {
+      console.log("error desde verifySubdomainAuth", error);
+      toastError("Proyecto inexistente", idToast);
     }
+  };
 
-    useEffect(() => {
-        verifyTokenAuth()
-    }, [])
+  useEffect(() => {
+    verifyTokenAuth();
+  }, []);
 
-    useEffect(() => {
-        getConfigStoreAuth()
-        // EL CODIGO DE ABAJO SE PODRIA LLEVAR CUANDO HACE EL verifyTokenAuth
-        if (isAuthenticated) {
-            if (subdomain !== "localhost" && subdomain !== "legacy-panel") {
-                verifySubdomainAuth(subdomain);
-            } else {
-                // redirectSubdomain(user.subdomain)
-                // navigate("/admin/productos")
-            }
-        }
-    }, [isAuthenticated]);
+  useEffect(() => {
+    getConfigStoreAuth();
+    // EL CODIGO DE ABAJO SE PODRIA LLEVAR CUANDO HACE EL verifyTokenAuth
+    if (isAuthenticated) {
+      if (subdomain !== "localhost" && subdomain !== "legacy-panel") {
+        console.log("subdomai 99: ", subdomain);
 
-    useEffect(() => {
-        if (subdomain !== "localhost" && subdomain !== "legacy-panel") {
-            verifySubdomainAuth(subdomain);
-        }
-    }, [subdomain])
+        verifySubdomainAuth(subdomain);
+      } else {
+        // redirectSubdomain(user.subdomain)
+        // navigate("/admin/productos")
+      }
+    }
+  }, [isAuthenticated]);
 
+  useEffect(() => {
+    if (subdomain !== "localhost" && subdomain !== "legacy-panel") {
+      verifySubdomainAuth(subdomain);
+    }
+  }, [subdomain]);
 
+  // const getClientFetch = async () => {
+  //     const cookies = Cookies.get()
+  //     console.log("cokieeee", cookies.access_token);
+  //     if(cookies.access_token){
+  //         console.log("cokieeee", cookies.access_token);
+  //         try {
+  //             const userr = await getClient();
+  //             setUser(userr)
+  //         } catch (error) {
+  //             console.log(error);
+  //         }
+  //     }
 
-    // const getClientFetch = async () => {
-    //     const cookies = Cookies.get()
-    //     console.log("cokieeee", cookies.access_token);
-    //     if(cookies.access_token){
-    //         console.log("cokieeee", cookies.access_token);
-    //         try {
-    //             const userr = await getClient();
-    //             setUser(userr)
-    //         } catch (error) {
-    //             console.log(error);
-    //         }
-    //     }
+  // }
 
+  const toastStyles = {
+    minWidth: window.innerWidth < 1000 ? "80%" : "480px",
+    maxWidth: window.innerWidth < 1000 ? "80%" : "480px",
+    fontSize: ".8rem",
+  };
+
+  const toastLoading = (msg) => {
+    const id = toast.loading(
+      <div>
+        <p className="mb-0">{msg}</p>
+      </div>,
+      {
+        id: toastId,
+        style: toastStyles,
+      }
+    );
+    setToastId(id);
+    return id;
+  };
+
+  const toastSuccess = (msg, toastId) => {
+    toast.success(
+      <div>
+        <p className="mb-0">{msg}</p>
+      </div>,
+      {
+        id: toastId,
+      }
+    );
+    setToastId(null); // Clear the toastId after success
+  };
+
+  const toastError = (msg, toastId) => {
+    toast.error(msg, {
+      id: toastId,
+    });
+    setToastId(null); // Clear the toastId after error
+  };
+
+  const dismissToast = () => {
+    // if (toastId) {
+    // toast.dismiss(toastId);
+    toast.dismiss();
+    setToastId(null);
     // }
+  };
 
-    const toastStyles = {
-        minWidth: window.innerWidth < 1000 ? '80%' : '480px',
-        maxWidth: window.innerWidth < 1000 ? '80%' : '480px',
-        fontSize: '.8rem',
+  const selectAll = (selected, data) => {
+    if (selected) {
+      console.log("data", data);
+      const allSelected = data.map((item) => ({
+        ...item,
+        selected: true,
+      }));
+
+      console.log("allSelected", allSelected);
+      return allSelected;
+    } else {
+      console.log("data", data);
+      const notAllSelected = data.map((item) => ({
+        ...item,
+        selected: false,
+      }));
+
+      console.log("notAllSelected", notAllSelected);
+      return notAllSelected;
     }
+  };
 
-    const toastLoading = (msg) => {
-        const id = toast.loading(
-            <div>
-                <p className="mb-0">{msg}</p>
-            </div>,
-            {
-                id: toastId,
-                style: toastStyles
-            }
-        );
-        setToastId(id);
-        return id;
-    };
+  function showItemActions(idDiv) {
+    const listAcciones = document.getElementById(idDiv);
+    listAcciones.classList.toggle("mostrar");
+  }
 
-    const toastSuccess = (msg, toastId) => {
-        toast.success(
-            <div>
-                <p className="mb-0">{msg}</p>
-            </div>,
-            {
-                id: toastId,
-            }
-        );
-        setToastId(null); // Clear the toastId after success
-    };
-
-    const toastError = (msg, toastId) => {
-        toast.error(
-            msg,
-            {
-                id: toastId,
-            }
-        );
-        setToastId(null); // Clear the toastId after error
-    };
-
-    const dismissToast = () => {
-        // if (toastId) {
-        // toast.dismiss(toastId);
-        toast.dismiss();
-        setToastId(null);
-        // }
-    };
-
-    const selectAll = (selected, data) => {
-        if (selected) {
-            console.log("data", data);
-            const allSelected = data.map(item => ({
-                ...item,
-                selected: true
-            }))
-
-            console.log("allSelected", allSelected);
-            return allSelected
-        } else {
-            console.log("data", data);
-            const notAllSelected = data.map(item => ({
-                ...item,
-                selected: false
-            }))
-
-            console.log("notAllSelected", notAllSelected);
-            return notAllSelected
-        }
+  function truncarTexto(texto, maxLen = 15) {
+    if (texto.length > maxLen) {
+      return texto.slice(0, maxLen) + "...";
     }
+    return texto;
+  }
 
-    function showItemActions(idDiv) {
-        const listAcciones = document.getElementById(idDiv)
-        listAcciones.classList.toggle('mostrar')
-    }
+  const calcPriceFinal = (products, costShipment) => {
+    let total = 0;
+    products.forEach((itemCart) => {
+      total += itemCart.quantity * itemCart.price;
+    });
+    return total + costShipment;
+  };
 
-    function truncarTexto(texto, maxLen = 15) {
-        if (texto.length > maxLen) {
-            return texto.slice(0, maxLen) + '...';
-        }
-        return texto;
-    }
-
-    const calcPriceFinal = (products, costShipment) => {
-        let total = 0;
-        products.forEach(itemCart => {
-            total += itemCart.quantity * itemCart.price
-        })
-        return total + costShipment
-    }
-
-    return (
-        <Provider value={{ setConfigStore, calcPriceFinal, loadingConfigStore, configStore, selectAll, showItemActions, truncarTexto, toastLoading, toastSuccess, toastError, dismissToast, setUser, user, setIsAuthenticated, isAuthenticated }}>
-            {children}
-        </Provider>
-    )
+  return (
+    <Provider
+      value={{
+        setConfigStore,
+        calcPriceFinal,
+        loadingConfigStore,
+        configStore,
+        selectAll,
+        showItemActions,
+        truncarTexto,
+        toastLoading,
+        toastSuccess,
+        toastError,
+        dismissToast,
+        setUser,
+        user,
+        setIsAuthenticated,
+        isAuthenticated,
+      }}
+    >
+      {children}
+    </Provider>
+  );
 }
 
 export default useStoreContext;

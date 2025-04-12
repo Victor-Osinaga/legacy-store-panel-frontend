@@ -13,6 +13,7 @@ import deleteCategorieById from "../../../services/categorys/deleteCategorieById
 import getTotalProductsByCategoryId from "../../../utils/getTotalProductsByCategoryId.js";
 import getProducts from "../../../services/products/getProducts.js";
 import NoItems from "../../Fragments/NoItems/NoItems.jsx";
+import { orderCategories } from "../../../utils/orderCategories.js";
 
 export default function Categories() {
   const {
@@ -49,10 +50,12 @@ export default function Categories() {
     const id = toastLoading("Cargando categorias...");
     try {
       const categorias = await getCategories();
-      const categoriasWithSelection = categorias.map((cat) => ({
-        ...cat,
-        selected: false,
-      }));
+      const categoriasWithSelection = orderCategories(categorias).map(
+        (cat) => ({
+          ...cat,
+          selected: false,
+        })
+      );
       setCategories(categoriasWithSelection);
 
       setTimeout(() => {
@@ -193,11 +196,13 @@ export default function Categories() {
   const eliminarCategoriaPorId = async (categorieId, categorieName) => {
     setModalInfo({ showModal: false, categorieId: null, categorieName: "" });
     const toastId = toastLoading("Eliminando categoria...");
+    console.log("categorieId", categorieId);
+
     try {
       const result = await deleteCategorieById(categorieId, categorieName);
       const categories = await getCategories();
       const categoriesWithSelection = selectAll(false, categories);
-      setCategories(categoriesWithSelection);
+      setCategories(orderCategories(categoriesWithSelection));
       console.log(
         "nuevas categorias desde deleteById",
         categoriesWithSelection
@@ -304,8 +309,15 @@ export default function Categories() {
                         </td>
                         <td className="fontSM-Custom tdSpacingMain">
                           <Link
-                            className="trBodyLinkNameMain"
+                            className={
+                              cat.name == "Uncategorized" ||
+                              cat.name == "uncategoried"
+                                ? "text-danger fw-bold"
+                                : "trBodyLinkNameMain"
+                            }
+                            // className="trBodyLinkNameMain"
                             to={`/admin/categorias/editar/${cat.id}`}
+                            state={{ categoria: cat }}
                           >
                             {/* <img className='productImgMain' src={cat.image} alt={cat.name} /> */}
                             <span title={cat.name}>
@@ -314,12 +326,11 @@ export default function Categories() {
                           </Link>
                         </td>
                         <td className="fontSM-Custom tdSpacingMain">
-                          <span>{cat.subCategories.length} (total)</span>
+                          <span>{cat.childs} (total)</span>
                         </td>
                         <td className="fontSM-Custom textGray500-Custom tdSpacingMain fw-bold">
                           <span>
-                            {calculateTerciaryCategories(cat.subCategories)}{" "}
-                            (total)
+                            {calculateTerciaryCategories(cat.children)} (total)
                           </span>
                         </td>
                         <td className="fontSM-Custom textGray500-Custom tdSpacingMain fw-bold">

@@ -11,7 +11,7 @@ import updateStoreConfiguration from "../../../services/storeConfiguration/updat
 import mplogo from "../../../assets/mp.svg";
 import MpSvg from "../../Icons/MpSvg/MpSvg.jsx";
 
-export default function StoreConfigForm() {
+export default function ColorsStoreConfig() {
   const {
     toastLoading,
     toastSuccess,

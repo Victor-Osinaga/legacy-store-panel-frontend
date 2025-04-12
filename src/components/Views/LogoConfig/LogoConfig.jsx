@@ -2,9 +2,17 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import useStoreContext from "../../../provider/storeProvider";
 import "./logoConfig.css";
+import updateLogoConfig from "../../../services/storeConfiguration/updateLogoConfig.js";
 
 export default function LogoConfig() {
-  const { configStore } = useStoreContext();
+  const {
+    configStore,
+    toastLoading,
+    toastSuccess,
+    toastError,
+    dismissToast,
+    setConfigStore,
+  } = useStoreContext();
   const [loading, setLoading] = useState(true);
   const [borderStyle, setBorderStyle] = useState(false);
   const [dragging, setDragging] = useState(false);
@@ -16,8 +24,6 @@ export default function LogoConfig() {
     formState: { errors },
     watch,
     reset,
-    getValues,
-    control,
     setValue,
     trigger,
   } = useForm();
@@ -63,6 +69,22 @@ export default function LogoConfig() {
 
   const onSubmit = async (data) => {
     console.log("logosssss", data);
+    const toastId = toastLoading("Actualizando logo");
+    try {
+      const formData = new FormData();
+      formData.append("image-logo", data["storeLogo"][0]);
+      const updatedConfig = await updateLogoConfig(configStore.id, formData);
+
+      toastSuccess(`Logo actualizado ${updatedConfig.data}`);
+    } catch (error) {
+      console.log("error desde LogoConfig.jsx : ", error);
+      toastError(
+        <div className="text-center">
+          <span>{error.msg}</span>
+        </div>,
+        toastId
+      );
+    }
   };
 
   const handleDragOver = (event) => {
