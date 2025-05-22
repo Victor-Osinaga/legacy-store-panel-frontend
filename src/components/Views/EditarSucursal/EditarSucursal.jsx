@@ -72,7 +72,7 @@ export default function EditarSucursal() {
 
   const onSubmit = async (data) => {
     console.log("data", data);
-    const toastId = toastLoading("Creando sucursal");
+    const toastId = toastLoading("Actualizando sucursal");
     try {
       const updatedShipmentLocal = await updateShipmentLocalById(
         shipmentLocalId,
@@ -122,6 +122,7 @@ export default function EditarSucursal() {
                       Tu sucursal
                     </p>
                     <div className="row rounded border col-12 p-0 py-2 mx-auto">
+                      {/* PROVINCE */}
                       <div className="d-flex flex-column mb-3">
                         <label
                           htmlFor="province"

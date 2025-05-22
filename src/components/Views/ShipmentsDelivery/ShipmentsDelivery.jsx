@@ -266,7 +266,7 @@ export default function ShipmentsDelivery() {
                         <td className="fontSM-Custom tdSpacingMain">
                           <Link
                             className="trBodyLinkNameMain"
-                            to={`/admin/retiro-en-sucursal/editar/${shipment.id}`}
+                            to={`/admin/envios/editar/${shipment.id}`}
                           >
                             <span title={shipment.province}>
                               {truncarTexto(shipment.province)}

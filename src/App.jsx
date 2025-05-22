@@ -24,6 +24,7 @@ import FooterConfig from "./components/Views/FooterConfig/FooterConfig.jsx";
 import LogoConfig from "./components/Views/LogoConfig/LogoConfig.jsx";
 import Pricing from "./components/Views/Pricing/Pricing.jsx";
 import EditCategory from "./components/Views/EditCategory/EditCategory.jsx";
+import EditShipmentDelivery from "./components/Views/EditShipmentDelivery/EditShipmentDelivery.jsx";
 
 const Layout = ({ children }) => {
   const location = useLocation();
@@ -100,6 +101,10 @@ function App() {
                 <Route
                   path="/admin/retiro-en-sucursal/editar/:shipmentLocalId"
                   element={<EditarSucursal />}
+                />
+                <Route
+                  path="/admin/envios/editar/:shipmentDeliveryId"
+                  element={<EditShipmentDelivery />}
                 />
 
                 {/* SHIPMENTS DELIVERY */}

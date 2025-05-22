@@ -17,7 +17,7 @@ export default function LogoConfig() {
   const [borderStyle, setBorderStyle] = useState(false);
   const [dragging, setDragging] = useState(false);
   const [logoPreview, setLogoPreview] = useState(null); // Almacena la URL de vista previa
-  const [logoSizeKb, setLogoSizeKb] = useState(null); // Almacena el tamaño en KB
+  const [logoSizeMb, setLogoSizeMb] = useState(null); // Almacena el tamaño en MB
   const {
     register,
     handleSubmit,
@@ -38,16 +38,18 @@ export default function LogoConfig() {
   let logoFile = watch("storeLogo");
   console.log("logoFile", logoFile);
   console.log("logoPreview", logoPreview);
-  console.log("logoSizeKb", logoSizeKb);
+  console.log("logoSizeMb", logoSizeMb);
 
   useEffect(() => {
     if (logoFile && logoFile[0]) {
       const file = logoFile[0];
       setLogoPreview(URL.createObjectURL(file)); // Actualiza la URL de vista previa
-      setLogoSizeKb(parseInt(file.size / 1024)); // Actualiza el tamaño en KB
+      console.log("PESOOOOOOOOOO", file.size);
+
+      setLogoSizeMb(parseFloat(file.size / (1024 * 1024)).toFixed(2)); // Actualiza el tamaño en MB
     } else {
       setLogoPreview(null); // Resetea si no hay archivo
-      setLogoSizeKb(null);
+      setLogoSizeMb(null);
     }
   }, [logoFile]); // Se ejecuta cada vez que cambia logoFile
 
@@ -59,13 +61,6 @@ export default function LogoConfig() {
       }
     };
   }, [logoPreview]);
-  // // Genera la URL de vista previa si hay un archivo seleccionado
-  // const logoPreview =
-  //   logoFile && logoFile[0] ? URL.createObjectURL(logoFile[0]) : null;
-
-  // // Genera el peso en KB del logo seleccionado
-  // const logoSizeKb =
-  //   logoFile && logoFile[0] ? parseInt(logoFile[0].size / 1024) : null;
 
   const onSubmit = async (data) => {
     console.log("logosssss", data);
@@ -75,7 +70,17 @@ export default function LogoConfig() {
       formData.append("image-logo", data["storeLogo"][0]);
       const updatedConfig = await updateLogoConfig(configStore.id, formData);
 
-      toastSuccess(`Logo actualizado ${updatedConfig.data}`);
+      setConfigStore((prev) => ({
+        ...prev,
+        logoConfig: updatedConfig.logoConfig, // asegúrate que contenga la nueva URL
+      }));
+
+      reset({ storeLogo: null });
+      setLogoPreview(null);
+      setLogoSizeMb(null);
+      console.log("updatedConfig", updatedConfig);
+
+      toastSuccess(`Logo actualizado`, toastId);
     } catch (error) {
       console.log("error desde LogoConfig.jsx : ", error);
       toastError(
@@ -133,7 +138,7 @@ export default function LogoConfig() {
             son: <strong>&quot;.svg&quot;</strong>{" "}
             <strong>&quot;.png&quot;</strong> <strong>&quot;.jpg&quot;</strong>{" "}
             <strong>&quot;.webp&quot;</strong> y el tamaño máxmio admitido es de{" "}
-            <strong>&quot;200KB&quot;</strong>.
+            <strong>&quot;2MG&quot;</strong>.
           </p>
         </div>
 
@@ -227,7 +232,7 @@ export default function LogoConfig() {
                               </svg>
                               {logoPreview ? (
                                 <span className="textGray300-Custom fw-semibold fontSM-Custom ">
-                                  Tamaño: {logoSizeKb} KB
+                                  Tamaño: {logoSizeMb} MB
                                 </span>
                               ) : (
                                 <span className="textGray300-Custom fw-semibold fontSM-Custom ">
@@ -240,7 +245,7 @@ export default function LogoConfig() {
                                 Formatos admitidos: WEBP, PNG, SVG
                               </span>
                               <span className="fw-semibold textGray500-Custom fontSM-Custom">
-                                Tamaño máximo: 200KB
+                                Tamaño máximo: 2MB
                               </span>
                             </div>
                           </div>
@@ -258,9 +263,9 @@ export default function LogoConfig() {
                                 isValidSize: (fileList) =>
                                   fileList &&
                                   fileList[0] &&
-                                  fileList[0].size <= 200 * 1024
+                                  fileList[0].size <= 2000 * 1024
                                     ? true
-                                    : "El archivo debe pesar menos de 200KB",
+                                    : "Tamaño máximo: 2MB",
                                 isValidType: (fileList) =>
                                   fileList &&
                                   fileList[0] &&
@@ -295,7 +300,7 @@ export default function LogoConfig() {
                                 onClick={() => {
                                   reset({ storeLogo: null });
                                   setLogoPreview(null);
-                                  setLogoSizeKb(null);
+                                  setLogoSizeMb(null);
                                 }}
                               >
                                 Cancelar
@@ -329,7 +334,10 @@ export default function LogoConfig() {
                         style={{
                           width: "200px",
                         }}
-                        src={configStore.logoConfig.logoUrl}
+                        src={`${
+                          configStore.logoConfig.logoUrl
+                        }?t=${Date.now()}`}
+                        // src={`${configStore.logoConfig.logoUrl}`}
                         alt="logo company"
                       />
                     </div>
