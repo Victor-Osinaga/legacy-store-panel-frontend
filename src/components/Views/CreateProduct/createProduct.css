@@ -1,17 +1,3 @@
-/* Quita los botones del input type NUMBER */
-input[type=number]::-webkit-inner-spin-button,
-input[type=number]::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-
-.custom-placeholder::placeholder {
-  color: var(--textGray300Custom);
-  /* Cambia 'red' por el color que prefieras */
-  opacity: 1;
-  /* Para que el color se vea claramente en todos los navegadores */
-}
-
 /* .hovered {
     background: rgb(226, 226, 226);
     transition: background 1s ease;

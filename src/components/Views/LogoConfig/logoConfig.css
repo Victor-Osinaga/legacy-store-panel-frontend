@@ -13,7 +13,7 @@
 }
 
 .btnLegacyFormLogo {
-  background-color: #23252f;
+  background-color: var(--bgGrayDark);
   background-color: var(--bgBlueMedium);
 
   border: none;

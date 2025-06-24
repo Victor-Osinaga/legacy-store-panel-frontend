@@ -1,0 +1,86 @@
+#plans {
+  background-image: linear-gradient(
+    to right,
+    var(--bgGrayDark),
+    var(--bgGrayDark)
+  );
+  min-height: 100vh;
+  padding: 3rem 2rem;
+  background-image: url(/src/assets/meta-gradient-dark.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.card-container {
+  box-shadow: inset 0 0 0 1px hsla(0, 0%, 100%, 0.08),
+    0px 0px 35px 15px rgba(0, 0, 0, 0.28);
+  /* box-shadow: 0px 0px 35px 15px rgba(0, 0, 0, 0.28);
+  -webkit-box-shadow: 0px 0px 35px 15px rgba(0, 0, 0, 0.28);
+  -moz-box-shadow: 0px 0px 35px 15px rgba(0, 0, 0, 0.28); */
+
+  width: 450px;
+  background-color: var(--bgGrayMedium);
+}
+
+.plans-price {
+  font-size: 2.5rem;
+  color: var(--bgReactBlueDark);
+}
+
+/* Estilos base del switch */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 56px;
+  /* height: 34px; */
+  height: 30px;
+}
+
+/* Ocultar el checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* Estilo del slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #838383;
+  /* background-color: rgb(229, 231, 235, 1); */
+  transition: 0.4s;
+  border-radius: 34px;
+}
+
+/* El círculo del switch */
+.slider::before {
+  position: absolute;
+  content: "";
+  height: 22px;
+  width: 22px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+/* Cambiar color al activar */
+input:checked + .slider {
+  background-color: var(--bgBlueMedium);
+}
+
+/* Mover el círculo al activar */
+input:checked + .slider::before {
+  transform: translateX(26px);
+}
+
+.planType {
+  transition: all 0.3s ease;
+}

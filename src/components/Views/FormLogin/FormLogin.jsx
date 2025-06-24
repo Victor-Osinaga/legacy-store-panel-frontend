@@ -1,3 +1,5 @@
+// para titulos: fw-bold (fw:700) fontXL-Custom (1.25rem = 20px)
+
 import "./formLogin.css";
 import legacyLogo from "/logolegacy.svg";
 import { Link } from "react-router-dom";
@@ -80,40 +82,53 @@ export default function FormLogin() {
       <div className="div2"></div>
       {/* <div className="div3"></div> */}
       <div className="main bg-white rounded-0 d-flex">
-        <div className="main_left flex-column justify-content-center align-items-center text-white">
-          {user.proyectName ? (
-            <h3 className="font-monospace">{user.proyectName}</h3>
-          ) : (
-            <h3 className="font-monospace">LEGACY STORE</h3>
-          )}
+        <div className="main_left bgGrayMedium flex-column justify-content-center align-items-center text-white">
           <img
             src={legacyLogo}
             className="logo-login img-fluid rounded"
             alt="company logo"
           />
+          {user.proyectName ? (
+            <h3 className="font-monospace">{user.proyectName}</h3>
+          ) : (
+            <h3 className="font-monospace">LEGACY STORE</h3>
+          )}
         </div>
 
-        <div className="main_right col-12 col-md-7">
+        <div className="main_right col-12 col-md-7 textWhiteMedium-Custom">
           <form
             onSubmit={handleSubmit(onSubmit)}
-            className="formLogin px-5 d-flex flex-column justify-content-center align-items-center"
+            className="formLogin px-5 d-flex flex-column justify-content-center align-items-center fontSM-Custom"
           >
+            <div className="sub-logo mb-4 text-center">
+              <img
+                src={legacyLogo}
+                className="logo-login img-fluid rounded"
+                alt="legacy software logo"
+              />
+              <p className="font-monospace">LEGACY-STORE</p>
+            </div>
             <h3
-              className="glitchLogin text-center fw-semibold"
+              className="glitchLogin text-center fw-bold fontXXL-Custom"
               data-text="Iniciar sesion"
             >
               Iniciar sesion
             </h3>
-            <div className="form-group w-100 d-flex flex-column mb-3">
+            <p className="textGray300-Custom fontXS-Custom">
+              Entrá a tu panel de control para manejar tu tienda como un
+              profesional.
+            </p>
+            <div className="form-group w-100 d-flex flex-column mb-3 fw-semibold">
               <label className="mb-1" htmlFor="nombreUsuario">
-                Correo
+                E-mail
               </label>
               <input
                 id="nombreUsuario"
                 type="email"
                 name="nombreUsuario"
                 placeholder="john_doe@email.com"
-                className="rounded-0 form-control fontSM-Custom custom-placeholder inputStyles"
+                autoComplete="off"
+                className="rounded-0 form-control custom-placeholder textWhiteMedium-Custom inputStyles fontSM-Custom"
                 {...register("email", {
                   required: {
                     value: true,
@@ -127,7 +142,7 @@ export default function FormLogin() {
                 </span>
               )}
             </div>
-            <div className="form-group w-100 d-flex flex-column mb-3">
+            <div className="form-group w-100 d-flex flex-column mb-3 fw-semibold">
               <label className="mb-1" htmlFor="password">
                 Contraseña
               </label>
@@ -136,11 +151,11 @@ export default function FormLogin() {
                 type="password"
                 name="password"
                 placeholder="Tu contraseña..."
-                className="rounded-0 form-control fontSM-Custom custom-placeholder inputStyles"
+                className="rounded-0 form-control custom-placeholder textWhiteMedium-Custom inputStyles fontSM-Custom"
                 {...register("password", {
                   required: {
                     value: true,
-                    message: "El 'password' es requerido",
+                    message: "La 'contraseña' es requerida",
                   },
                 })}
               />
@@ -152,7 +167,7 @@ export default function FormLogin() {
               )}
             </div>
             <button
-              className="btnLogin rounded-0 mb-2 text-white"
+              className="btnLogin rounded-0 mb-4 text-white"
               type="submit"
               value="Submit"
             >
@@ -160,13 +175,21 @@ export default function FormLogin() {
             </button>
 
             <Link
-              to={"/auth/register"}
-              className="linkNotAccount fontSM-Custom text-decoration-underline"
+              // to={"/auth/register"}
+              to={"/plans"}
             >
-              <p className="m-0 text-center">¿No tienes una cuenta?</p>
-              <p className="m-0 text-center font-monospace">REGISTRATE</p>
+              {/* <p className="m-0 text-center">¿No tienes una cuenta?</p>
+              <p className="m-0 text-center font-monospace">REGISTRATE</p> */}
+
+              <p className="m-0 text-center textWhiteMedium-Custom">
+                ¿Querés tu propia tienda online?
+              </p>
+              <p className="m-0 text-center font-monospace linkNotAccount fontBase-Custom fw-bold">
+                {/* Registrate y empezá a vender hoy */}
+                CREAR TIENDA
+              </p>
             </Link>
-            {/* <button type="submit" className="btn btn-primary w-100 btn-sm fontSM-Custom">INICIAR</button> */}
+            {/* <button type="submit" className="btn btn-primary w-100 btn-sm">INICIAR</button> */}
           </form>
         </div>
       </div>

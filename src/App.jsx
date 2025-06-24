@@ -25,11 +25,13 @@ import LogoConfig from "./components/Views/LogoConfig/LogoConfig.jsx";
 import Pricing from "./components/Views/Pricing/Pricing.jsx";
 import EditCategory from "./components/Views/EditCategory/EditCategory.jsx";
 import EditShipmentDelivery from "./components/Views/EditShipmentDelivery/EditShipmentDelivery.jsx";
+import { startTransitionSafe } from "./utils/startTransitionSafe.js";
+import { useEffect } from "react";
 
 const Layout = ({ children }) => {
   const location = useLocation();
   const isAuthPage = location.pathname.startsWith("/auth");
-  const isPricingPage = location.pathname.startsWith("/precios");
+  const isPricingPage = location.pathname.startsWith("/plans");
 
   return (
     <>
@@ -41,6 +43,12 @@ const Layout = ({ children }) => {
 };
 
 function App() {
+  // const location = useLocation();
+  // useEffect(() => {
+  //   startTransitionSafe(() => {
+  //     document.documentElement.style.setProperty("view-transition-name", "app");
+  //   });
+  // }, [location]);
   return (
     <>
       <BrowserRouter>
@@ -53,7 +61,7 @@ function App() {
             <Routes>
               <Route path="/auth/login" element={<FormLogin />} />
               <Route path="/auth/register" element={<FormRegister />} />
-              <Route path="/precios" element={<Pricing />} />
+              <Route path="/plans" element={<Pricing />} />
               <Route element={<ProtectedRoute />}>
                 <Route path="/admin/productos" element={<Products />} />
                 <Route path="/" />

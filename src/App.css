@@ -9,6 +9,15 @@ html {
     scrollbar-color: #888 #f1f1f1; */
 }
 
+/* START VIEW TRANSITION */
+
+::view-transition-old(app) {
+  animation-duration: 0.5s;
+}
+::view-transition-new(app) {
+  animation-duration: 0.5s;
+}
+
 /* Personaliza el ancho y el color de la scrollbar */
 ::-webkit-scrollbar {
   width: 13px; /* Ancho de la scrollbar */
@@ -36,10 +45,23 @@ html {
   cursor: pointer;
 }
 
+/* Quita los botones del input type NUMBER */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.custom-placeholder::placeholder {
+  color: var(--textGray300Custom);
+  font-size: 12px;
+  opacity: 1;
+  /* Para que el color se vea claramente en todos los navegadores */
+}
+
 :root {
   /* COLORS */
   --neonColor: #08fdd8;
-  --neonColor2: rgba(88, 196, 220, 1);
 
   --pantoneMedium: rgb(14, 78, 103);
   --pantoneLight: rgb(0, 110, 127);
@@ -54,13 +76,15 @@ html {
   --bgBlueLight: #095b73;
 
   --bgReactBlueDark: rgb(88, 196, 220, 1);
-  --bgReactBlueMedium: rgba(88, 175, 223, 0.1);
 
   --bgContainer: rgb(241, 245, 249);
 
   --textGray300Custom: rgb(161, 161, 161);
   --textGray500Custom: rgb(100, 116, 139);
   --textGray700Custom: rgb(51 65 85);
+
+  /* --whiteMedium: rgb(192, 193, 195); */
+  --whiteMedium: rgb(255, 255, 255);
 
   --primaryColorBlue: #1877f2;
 
@@ -71,12 +95,15 @@ html {
   /* FONT SIZES */
   --customFontSizeXs: 0.75rem;
   --customFontSizeSm: 0.875rem;
+  --customFontSizeBase: 1rem;
+  --customFontSizeXl: 1.25rem;
+  --customFontSizeXxl: 1.5rem;
 }
 
 .bgGrayDark {
   background-color: var(--bgGrayDark);
 }
-/* .form-control:focus{
+/* .form-control:focus {
   background-color: var(--bgGrayDark);
 } */
 
@@ -84,12 +111,28 @@ html {
   background-color: var(--bgGrayMedium);
 }
 
+.fontXS-Custom {
+  font-size: var(--customFontSizeXs);
+}
+
 .fontSM-Custom {
   font-size: var(--customFontSizeSm);
 }
 
-.fontXS-Custom {
-  font-size: var(--customFontSizeXs);
+.fontBase-Custom {
+  font-size: var(--customFontSizeBase);
+}
+
+.fontXL-Custom {
+  font-size: var(--customFontSizeXl);
+}
+
+.fontXXL-Custom {
+  font-size: var(--customFontSizeXxl);
+}
+
+.textGray300-Custom {
+  color: var(--textGray300Custom);
 }
 
 .textGray500-Custom {
@@ -100,14 +143,15 @@ html {
   color: var(--textGray700Custom);
 }
 
-.textGray300-Custom {
-  color: var(--textGray300Custom);
+.textWhiteMedium-Custom {
+  color: var(--whiteMedium);
 }
 
 body {
   position: relative;
   background-color: white;
-  font-family: "Poppins", "Montserrat", sans-serif;
+  /* font-family: "Poppins", "Montserrat", sans-serif; */
+  font-family: "Montserrat", sans-serif;
   /* color: black; */
 }
 
@@ -165,8 +209,8 @@ body {
 }
 
 .svgSize {
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
 }
 
 li {
