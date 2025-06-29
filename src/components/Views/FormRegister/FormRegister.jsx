@@ -14,7 +14,6 @@ import {
 } from "../../../validators/validators.js";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
-import redirectSubdomain from "../../../utils/redirectSubdomain.js";
 
 export default function FormRegister() {
   const navigate = useNavigate();
@@ -60,7 +59,6 @@ export default function FormRegister() {
         toastId
       );
       setTimeout(() => {
-        // redirectSubdomain(response.subdomain)
         navigate("/admin/productos");
       }, 3000);
     } catch (error) {

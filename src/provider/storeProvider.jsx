@@ -5,7 +5,6 @@ import verifySubdomain from "../services/auth/verifySubdomain.js";
 import verifyToken from "../services/auth/verifyToken.js";
 import getStoreConfig from "../services/storeConfiguration/getStoreConfig.js";
 import config from "../../config.js";
-import redirectSubdomain from "../utils/redirectSubdomain.js";
 import { useNavigate } from "react-router-dom";
 
 const StoreContext = createContext();
@@ -101,7 +100,6 @@ export function StoreContextProvider({ children }) {
 
         verifySubdomainAuth(subdomain);
       } else {
-        // redirectSubdomain(user.subdomain)
         // navigate("/admin/productos")
       }
     }
